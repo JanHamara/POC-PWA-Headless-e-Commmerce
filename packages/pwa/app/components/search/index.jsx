@@ -192,7 +192,7 @@ const Search = (props) => {
                                     type="search"
                                     ref={searchInputRef}
                                     {...props}
-                                    variant="filled"
+                                    variant="search"
                                 />
                             </InputGroup>
                             <HideOnDesktop>

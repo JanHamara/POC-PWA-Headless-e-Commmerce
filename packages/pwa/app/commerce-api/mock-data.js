@@ -5345,7 +5345,7 @@ export const mockProductSearch = {
                 },
                 {
                     hitCount: 43,
-                    label: 'Womens',
+                    label: 'Women',
                     value: 'womens',
                     values: [
                         {

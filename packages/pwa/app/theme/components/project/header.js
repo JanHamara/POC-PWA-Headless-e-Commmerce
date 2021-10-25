@@ -4,42 +4,71 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+
+const barStyle = {
+    maxWidth: 'container.xxxxl',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingTop: [1, 1, 2, 4],
+    paddingBottom: [3, 3, 2, 4]
+}
+
+const containerBase = {
+    height: 'full',
+    minWidth: 'xs',
+    width: 'full',
+    boxShadow: 'base'
+}
+
 export default {
     baseStyle: {
         container: {
-            height: 'full',
-            minWidth: 'xs',
-            width: 'full',
-            boxShadow: 'base',
-            backgroundColor: 'white'
+            ...containerBase
         },
-        content: {
-            maxWidth: 'container.xxxl',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            paddingLeft: [4, 4, 6, 8],
-            paddingRight: [4, 4, 6, 8],
-            paddingTop: [1, 1, 2, 4],
-            paddingBottom: [3, 3, 2, 4]
+        containerBordered: {
+            ...containerBase,
+            borderTop: '1px solid #bebebe',
+            borderBottom: '1px solid #bebebe'
         },
         searchContainer: {
             order: [2, 2, 2, 'inherit'],
-            width: ['full', 'full', 'full', 60],
-            marginRight: [0, 0, 0, 4],
-            marginBottom: [1, 1, 2, 0]
+            width: ['full', 'full', 'full', 60]
         },
-        bodyContainer: {
-            flex: '1'
+        iconContainer: {
+            order: [3, 3, 3, 'inherit'],
+            width: ['full', 'full', 'full', 60],
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end'
+        },
+        topbar: {
+            ...barStyle,
+            maxH: 10,
+            h: 10,
+            paddingTop: [1],
+            paddingBottom: [1],
+            size: 'xs',
+            fontWeight: 'semibold',
+            letterSpacing: 'wide'
+        },
+        mainbar: {
+            ...barStyle,
+            maxH: '94px',
+            h: '94px'
+        },
+        secondarybar: {
+            ...barStyle,
+            maxWidth: 'container.xxl',
+            maxH: '43px',
+            h: '43px',
+            paddingTop: 0,
+            paddingBottom: 0
         },
         logo: {
             width: [8, 8, 8, 12],
             height: [6, 6, 6, 8]
         },
-        icons: {
-            marginBottom: [1, 1, 2, 0]
-        },
         accountIcon: {
-            height: 11,
             cursor: 'pointer',
             alignSelf: ['self-start', 'self-start', 'self-start', 'auto'],
             _focus: {
@@ -81,5 +110,14 @@ export default {
             marginRight: 2
         }
     },
-    parts: ['container', 'content', 'searchContainer', 'bodyContainer', 'logo', 'icons', 'signout']
+    parts: [
+        'container',
+        'topbar',
+        'mainbar',
+        'searchContainer',
+        'bodyContainer',
+        'logo',
+        'icons',
+        'signout'
+    ]
 }

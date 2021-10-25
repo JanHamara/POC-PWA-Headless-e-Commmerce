@@ -58,7 +58,7 @@ const ListMenuTrigger = ({item, name, isOpen, onOpen, onClose, hasItems}) => {
     }
 
     return (
-        <Box {...baseStyle.listMenuTriggerContainer}>
+        <Box {...baseStyle.listMenuTriggerContainer} textStyle="linkMenu">
             <Link
                 as={RouteLink}
                 to={categoryUrlBuilder(item, locale)}
@@ -68,24 +68,10 @@ const ListMenuTrigger = ({item, name, isOpen, onOpen, onClose, hasItems}) => {
                 {...(!hasItems ? baseStyle.listMenuTriggerLinkWithIcon : {})}
                 {...(isOpen ? baseStyle.listMenuTriggerLinkActive : {})}
             >
-                {name}
+                <PopoverTrigger>
+                    <Box>{name}</Box>
+                </PopoverTrigger>
             </Link>
-
-            {hasItems && (
-                <Link
-                    as={RouteLink}
-                    to={'#'}
-                    onMouseOver={onOpen}
-                    onKeyDown={(e) => {
-                        keyMap[e.key]?.(e)
-                    }}
-                    {...baseStyle.listMenuTriggerLinkIcon}
-                >
-                    <PopoverTrigger>
-                        <ChevronIconTrigger {...baseStyle.selectedButtonIcon} />
-                    </PopoverTrigger>
-                </Link>
-            )}
         </Box>
     )
 }

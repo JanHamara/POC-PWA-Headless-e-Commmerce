@@ -21,9 +21,25 @@ export default {
         }
     },
     variants: {
-        filled: {
-            // we use filled variant for
+        search: {
             // search input
+            field: {
+                backgroundColor: 'none',
+                _focus: {
+                    backgroundColor: 'none'
+                },
+                _hover: {
+                    backgroundColor: 'none',
+                    _focus: {
+                        backgroundColor: 'none'
+                    }
+                },
+                _placeholder: {
+                    color: 'gray.700'
+                }
+            }
+        },
+        filled: {
             field: {
                 backgroundColor: 'gray.50',
                 _focus: {

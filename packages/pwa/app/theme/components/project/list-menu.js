@@ -13,7 +13,7 @@ export default {
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             paddingLeft: 4,
-            display: { base: 'none', lg: 'flex' }
+            display: {base: 'none', lg: 'flex'}
         },
         stackContainer: {
             whiteSpace: 'nowrap',
@@ -46,33 +46,22 @@ export default {
             whiteSpace: 'nowrap',
             position: 'relative',
             paddingTop: 3,
-            paddingRight: 1,
+            paddingRight: 4,
             paddingBottom: 2,
-            paddingLeft: 1,
-            marginLeft: 3,
-            fontSize: 'md',
-            fontWeight: 700,
+            paddingLeft: 4,
             _hover: {
                 textDecoration: 'none'
             }
         },
-        listMenuTriggerLinkWithIcon: {marginRight: 3},
+        // listMenuTriggerLinkWithIcon: {marginRight: 3},
         listMenuTriggerLinkActive: {
-            textDecoration: 'none',
-            _before: {
-                position: 'absolute',
-                backgroundColor: 'black',
-                content: 'attr(name)',
-                height: '2px',
-                color: 'transparent',
-                bottom: '0px'
-            }
+            textDecoration: 'none'
         },
         listMenuTriggerLinkIcon: {
             marginTop: 3,
-            marginRight: 3,
+            // marginRight: 4,
             marginBottom: 2,
-            marginLeft: 0,
+            // marginLeft: 1,
             _hover: {
                 textDecoration: 'none'
             }

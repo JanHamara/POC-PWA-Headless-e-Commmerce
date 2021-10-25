@@ -88,6 +88,14 @@ export default {
                       _hover: {bg: 'gray.900', _disabled: {bg: 'none', color: 'whiteAlpha.500'}},
                       _active: {bg: 'none', color: 'white'},
                       _disabled: {bg: 'none', color: 'whiteAlpha.500'}
-                  }
+                  },
+        unstyled: {
+            minW: 'auto',
+            minH: 'auto',
+            w: 6,
+            h: 6,
+            m: 0,
+            lineHeight: 0
+        }
     }
 }

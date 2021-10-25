@@ -8,7 +8,7 @@
 export default {
     global: (props) => ({
         'html, body': {
-            bg: props.colorMode === 'dark' ? '#222' : 'white',
+            bg: props.colorMode === 'dark' ? '#222' : 'teal.100',
             color: props.colorMode === 'dark' ? 'white' : '#222'
         },
         '.react-target, .sf-app': {

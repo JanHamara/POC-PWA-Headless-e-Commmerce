@@ -23,6 +23,7 @@ const Link = React.forwardRef(({href, to, useNavLink = false, ...props}, ref) =>
             {...props}
             to={_href === '/' ? '/' : localizedHref}
             ref={ref}
+            variant="nodecoration"
         />
     )
 })

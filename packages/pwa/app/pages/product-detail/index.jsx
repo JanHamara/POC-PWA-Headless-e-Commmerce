@@ -155,20 +155,19 @@ const ProductDetail = ({category, product, isLoading}) => {
                 <meta name="description" content={product?.pageDescription} />
             </Helmet>
 
-            <Stack spacing={16}>
-                <ProductView
+            {/* <Stack spacing={16}> */}
+            {/* <ProductView
                     product={product}
                     category={primaryCategory?.parentCategoryTree || []}
                     addToCart={(variant, quantity) => handleAddToCart(variant, quantity)}
                     addToWishlist={(_, quantity) => handleAddToWishlist(quantity)}
                     isProductLoading={isLoading}
                     isCustomerProductListLoading={!wishlist.isInitialized}
-                />
+                /> */}
 
-                {/* Information Accordion */}
-                <Stack direction="row" spacing={[0, 0, 0, 16]}>
+            {/* Information Accordion */}
+            {/* <Stack direction="row" spacing={[0, 0, 0, 16]}>
                     <Accordion allowMultiple allowToggle maxWidth={'896px'} flex={[1, 1, 1, 5]}>
-                        {/* Details */}
                         <AccordionItem>
                             <h2>
                                 <AccordionButton height="64px">
@@ -189,7 +188,6 @@ const ProductDetail = ({category, product, isLoading}) => {
                             </AccordionPanel>
                         </AccordionItem>
 
-                        {/* Size & Fit */}
                         <AccordionItem>
                             <h2>
                                 <AccordionButton height="64px">
@@ -206,7 +204,6 @@ const ProductDetail = ({category, product, isLoading}) => {
                             </AccordionPanel>
                         </AccordionItem>
 
-                        {/* Reviews */}
                         <AccordionItem>
                             <h2>
                                 <AccordionButton height="64px">
@@ -223,7 +220,6 @@ const ProductDetail = ({category, product, isLoading}) => {
                             </AccordionPanel>
                         </AccordionItem>
 
-                        {/* Questions */}
                         <AccordionItem>
                             <h2>
                                 <AccordionButton height="64px">
@@ -241,10 +237,10 @@ const ProductDetail = ({category, product, isLoading}) => {
                         </AccordionItem>
                     </Accordion>
                     <Box display={['none', 'none', 'none', 'block']} flex={4}></Box>
-                </Stack>
+                </Stack> */}
 
-                {/* Product Recommendations */}
-                <Stack spacing={16}>
+            {/* Product Recommendations */}
+            {/* <Stack spacing={16}>
                     <RecommendedProducts
                         title={<FormattedMessage defaultMessage="Complete The Set" />}
                         recommender={'complete-the-set'}
@@ -266,8 +262,8 @@ const ProductDetail = ({category, product, isLoading}) => {
                         recommender={'viewed-recently-einstein'}
                         mx={{base: -4, md: -8, lg: 0}}
                     />
-                </Stack>
-            </Stack>
+                </Stack> */}
+            {/* </Stack> */}
         </Box>
     )
 }

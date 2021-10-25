@@ -39,7 +39,7 @@ const linkMenu = {
     _hover: {
         textDecoration: 'underline',
         textDecorationThickness: '5px',
-        textUnderlineOffset: '6px'
+        textUnderlineOffset: '7px'
     }
 }
 

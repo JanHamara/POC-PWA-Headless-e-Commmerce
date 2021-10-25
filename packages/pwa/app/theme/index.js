@@ -32,6 +32,7 @@ import Drawer from './components/base/drawer'
 import FormLabel from './components/base/formLabel'
 import Icon from './components/base/icon'
 import Input from './components/base/input'
+import Link from './components/base/link'
 import Modal from './components/base/modal'
 import Radio from './components/base/radio'
 import Select from './components/base/select'
@@ -89,6 +90,7 @@ const overrides = {
         Drawer,
         FormLabel,
         Icon,
+        Link,
         Input,
         Modal,
         Popover,

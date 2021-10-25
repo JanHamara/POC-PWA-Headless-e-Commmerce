@@ -4,14 +4,15 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import React, { useRef, useState } from 'react'
+import React, {useRef, useState} from 'react'
 import PropTypes from 'prop-types'
-import { useIntl } from 'react-intl'
+import {useIntl} from 'react-intl'
 import {
     useMultiStyleConfig,
     Box,
     Flex,
     IconButton,
+    Image,
     Badge,
     Button,
     Popover,
@@ -21,13 +22,16 @@ import {
     PopoverBody,
     PopoverFooter,
     PopoverArrow,
+    Spacer,
     Stack,
+    HStack,
     Text,
     Divider,
     useDisclosure,
     useMediaQuery,
     useColorMode,
-    useColorModeValue
+    useColorModeValue,
+    AspectRatio
 } from '@chakra-ui/react'
 
 import useBasket from '../../commerce-api/hooks/useBasket'
@@ -46,8 +50,8 @@ import {
     SignoutIcon
 } from '../icons'
 
-import { noop } from '../../utils/utils'
-import { navLinks, messages } from '../../pages/account/constant'
+import {noop} from '../../utils/utils'
+import {navLinks, messages} from '../../pages/account/constant'
 import useNavigation from '../../hooks/use-navigation'
 import LoadingSpinner from '../loading-spinner'
 
@@ -85,10 +89,11 @@ const Header = ({
     const customer = useCustomer()
     const navigate = useNavigation()
 
-    const { colorMode, toggleColorMode } = useColorMode()
-    const bgColor = useColorModeValue('white', '#222')
+    const {colorMode, toggleColorMode} = useColorMode()
+    const topBarBg = useColorModeValue('bg', 'gray.800')
+    const mainBarBg = useColorModeValue('white', 'gray.900')
 
-    const { isOpen, onClose, onOpen } = useDisclosure()
+    const {isOpen, onClose, onOpen} = useDisclosure()
     const [isDesktop] = useMediaQuery('(min-width: 992px)')
 
     const [showLoading, setShowLoading] = useState(false)
@@ -118,168 +123,213 @@ const Header = ({
     }
 
     return (
-        <Box {...styles.container} bg={bgColor} {...props}>
-            <Box {...styles.content}>
-                {showLoading && <LoadingSpinner wrapperStyles={{ height: '100vh' }} />}
-                <Flex wrap="wrap" alignItems={['baseline', 'baseline', 'baseline', 'center']}>
-                    <IconButton
-                        aria-label={intl.formatMessage({
-                            id: 'header.button.assistive_msg.menu',
-                            defaultMessage: 'Menu'
-                        })}
-                        icon={<HamburgerIcon />}
-                        variant="unstyled"
-                        display={{ lg: 'none' }}
-                        {...styles.icons}
-                        onClick={onMenuClick}
-                    />
-                    <IconButton
-                        aria-label={intl.formatMessage({
-                            id: 'header.button.assistive_msg.logo',
-                            defaultMessage: 'Logo'
-                        })}
-                        icon={<BrandLogo {...styles.logo} />}
-                        {...styles.icons}
-                        variant="unstyled"
-                        onClick={onLogoClick}
-                    />
-                    <Box {...styles.bodyContainer}>{children}</Box>
-                    <Box {...styles.searchContainer}>
-                        <Search
-                            placeholder={intl.formatMessage({
-                                id: 'header.search.field.value.placeholder',
-                                defaultMessage: 'Search for products...'
-                            })}
-                            {...styles.search}
-                        />
-                    </Box>
-
-                    <Box {...styles.searchContainer}>
-                        <Button onClick={toggleColorMode}>
-                            {colorMode === 'light' ? 'Dark' : 'Light'} Mode
-                        </Button>
-                    </Box>
-
-                    <AccountIcon
-                        {...styles.accountIcon}
-                        tabIndex={0}
-                        onMouseOver={isDesktop ? onOpen : noop}
-                        onKeyDown={(e) => {
-                            e.key === ENTER_KEY ? onMyAccountClick() : noop
-                        }}
-                        onClick={onMyAccountClick}
-                        aria-label={intl.formatMessage({
-                            id: 'header.button.assistive_msg.my_account',
-                            defaultMessage: 'My account'
-                        })}
-                    />
-
-                    {customer.isRegistered && (
-                        <Popover
-                            isLazy
-                            arrowSize={15}
-                            isOpen={isOpen}
-                            placement="bottom-end"
-                            onClose={onClose}
-                            onOpen={onOpen}
-                        >
-                            <PopoverTrigger>
-                                <ChevronDownIcon
-                                    aria-label="My account trigger"
-                                    onMouseLeave={handleIconsMouseLeave}
-                                    onKeyDown={(e) => {
-                                        keyMap[e.key]?.(e)
-                                    }}
-                                    {...styles.arrowDown}
-                                    onMouseOver={onOpen}
-                                    tabIndex={0}
-                                />
-                            </PopoverTrigger>
-
-                            <PopoverContent
-                                {...styles.popoverContent}
-                                onMouseLeave={() => {
-                                    hasEnterPopoverContent.current = false
-                                    onClose()
-                                }}
-                                onMouseOver={() => {
-                                    hasEnterPopoverContent.current = true
-                                }}
-                            >
-                                <PopoverArrow />
-                                <PopoverHeader>
-                                    <Text>
-                                        {intl.formatMessage({
-                                            defaultMessage: 'My Account'
-                                        })}
-                                    </Text>
-                                </PopoverHeader>
-                                <PopoverBody>
-                                    <Stack spacing={0} as="nav" data-testid="account-detail-nav">
-                                        {navLinks.map((link) => {
-                                            const LinkIcon = link.icon
-                                            return (
-                                                <Button
-                                                    key={link.name}
-                                                    as={Link}
-                                                    to={`/account${link.path}`}
-                                                    useNavLink={true}
-                                                    variant="menu-link"
-                                                    leftIcon={<LinkIcon boxSize={5} />}
-                                                >
-                                                    {intl.formatMessage(messages[link.name])}
-                                                </Button>
-                                            )
-                                        })}
-                                    </Stack>
-                                </PopoverBody>
-                                <PopoverFooter onClick={onSignoutClick} cursor="pointer">
-                                    <Divider colorScheme="gray" />
-                                    <Button variant="unstyled" {...styles.signout}>
-                                        <Flex>
-                                            <SignoutIcon boxSize={5} {...styles.signoutIcon} />
-                                            <Text as="span" {...styles.signoutText}>
-                                                {intl.formatMessage({
-                                                    defaultMessage: 'Log out'
-                                                })}
-                                            </Text>
-                                        </Flex>
-                                    </Button>
-                                </PopoverFooter>
-                            </PopoverContent>
-                        </Popover>
-                    )}
-                    <IconButtonWithRegistration
-                        aria-label={intl.formatMessage({
-                            defaultMessage: 'Wishlist'
-                        })}
-                        icon={<HeartIcon />}
-                        variant="unstyled"
-                        {...styles.icons}
-                        onClick={onWishlistClick}
-                    />
-                    <IconButton
-                        aria-label={intl.formatMessage({
-                            id: 'header.button.assistive_msg.my_cart',
-                            defaultMessage: 'My cart'
-                        })}
-                        icon={
-                            <>
-                                <BasketIcon />
-                                {basket?.loaded && (
-                                    <Badge variant="notification">
-                                        {basket.itemAccumulatedCount}
-                                    </Badge>
-                                )}
-                            </>
-                        }
-                        variant="unstyled"
-                        {...styles.icons}
-                        onClick={onMyCartClick}
-                    />
+        <Flex direction="vertical" wrap="wrap">
+            {/* -------------------- */}
+            {/* Navigation - Top Bar */}
+            {/* -------------------- */}
+            <Box {...styles.container} minW="full" bg={topBarBg} {...props}>
+                <Flex alignItems="center" {...styles.topbar}>
+                    Subscribe to our newsletter and be the first to know about our offers, new
+                    arrivals and events.
+                    <Spacer />
+                    <Stack direction="row" spacing="40px">
+                        <Link>Outlet</Link>
+                        <Link>Hofstetter</Link>
+                        <Link onClick={toggleColorMode}>Our Stories</Link>
+                    </Stack>
                 </Flex>
             </Box>
-        </Box>
+
+            {/* -------------------- */}
+            {/* Navigation - Main Bar */}
+            {/* -------------------- */}
+            <Box {...styles.container} minW="full" bg={mainBarBg} {...props}>
+                <Box {...styles.mainbar}>
+                    {showLoading && <LoadingSpinner wrapperStyles={{height: '100vh'}} />}
+                    <Flex
+                        wrap="wrap"
+                        alignItems={['baseline', 'baseline', 'baseline', 'flex-end']}
+                        minH="full"
+                        justifyContent="center"
+                    >
+                        {/* <IconButton
+                            aria-label={intl.formatMessage({
+                                id: 'header.button.assistive_msg.menu',
+                                defaultMessage: 'Menu'
+                            })}
+                            icon={<HamburgerIcon />}
+                            variant="unstyled"
+                            display={{lg: 'none'}}
+                            {...styles.icons}
+                            onClick={onMenuClick}
+                        /> */}
+
+                        <Box {...styles.searchContainer}>
+                            <Search
+                                placeholder={intl.formatMessage({
+                                    id: 'header.search.field.value.placeholder',
+                                    defaultMessage: 'Search...'
+                                })}
+                            />
+                        </Box>
+
+                        <Spacer />
+
+                        <AspectRatio maxW="145px" w="full" h="65px" ratio={16 / 9}>
+                            <Image
+                                src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635174241/temp/logo_tumkaa.png"
+                                alt="Site Logo"
+                                objectFit="cover"
+                            />
+                        </AspectRatio>
+                        <Spacer></Spacer>
+                        <HStack {...styles.iconContainer}>
+                            <AccountIcon
+                                {...styles.accountIcon}
+                                tabIndex={0}
+                                onMouseOver={isDesktop ? onOpen : noop}
+                                onKeyDown={(e) => {
+                                    e.key === ENTER_KEY ? onMyAccountClick() : noop
+                                }}
+                                onClick={onMyAccountClick}
+                                aria-label={intl.formatMessage({
+                                    id: 'header.button.assistive_msg.my_account',
+                                    defaultMessage: 'My account'
+                                })}
+                            />
+
+                            {customer.isRegistered && (
+                                <Popover
+                                    isLazy
+                                    arrowSize={15}
+                                    isOpen={isOpen}
+                                    placement="bottom-end"
+                                    onClose={onClose}
+                                    onOpen={onOpen}
+                                >
+                                    <PopoverTrigger>
+                                        <ChevronDownIcon
+                                            aria-label="My account trigger"
+                                            onMouseLeave={handleIconsMouseLeave}
+                                            onKeyDown={(e) => {
+                                                keyMap[e.key]?.(e)
+                                            }}
+                                            {...styles.arrowDown}
+                                            onMouseOver={onOpen}
+                                            tabIndex={0}
+                                        />
+                                    </PopoverTrigger>
+
+                                    <PopoverContent
+                                        {...styles.popoverContent}
+                                        onMouseLeave={() => {
+                                            hasEnterPopoverContent.current = false
+                                            onClose()
+                                        }}
+                                        onMouseOver={() => {
+                                            hasEnterPopoverContent.current = true
+                                        }}
+                                    >
+                                        <PopoverArrow />
+                                        <PopoverHeader>
+                                            <Text>
+                                                {intl.formatMessage({
+                                                    defaultMessage: 'My Account'
+                                                })}
+                                            </Text>
+                                        </PopoverHeader>
+                                        <PopoverBody>
+                                            <Stack
+                                                spacing={0}
+                                                as="nav"
+                                                data-testid="account-detail-nav"
+                                            >
+                                                {navLinks.map((link) => {
+                                                    const LinkIcon = link.icon
+                                                    return (
+                                                        <Button
+                                                            key={link.name}
+                                                            as={Link}
+                                                            to={`/account${link.path}`}
+                                                            useNavLink={true}
+                                                            variant="menu-link"
+                                                            leftIcon={<LinkIcon boxSize={5} />}
+                                                        >
+                                                            {intl.formatMessage(
+                                                                messages[link.name]
+                                                            )}
+                                                        </Button>
+                                                    )
+                                                })}
+                                            </Stack>
+                                        </PopoverBody>
+                                        <PopoverFooter onClick={onSignoutClick} cursor="pointer">
+                                            <Divider colorScheme="gray" />
+                                            <Button variant="unstyled" {...styles.signout}>
+                                                <Flex>
+                                                    <SignoutIcon
+                                                        boxSize={5}
+                                                        {...styles.signoutIcon}
+                                                    />
+                                                    <Text as="span" {...styles.signoutText}>
+                                                        {intl.formatMessage({
+                                                            defaultMessage: 'Log out'
+                                                        })}
+                                                    </Text>
+                                                </Flex>
+                                            </Button>
+                                        </PopoverFooter>
+                                    </PopoverContent>
+                                </Popover>
+                            )}
+                            <IconButtonWithRegistration
+                                aria-label={intl.formatMessage({
+                                    defaultMessage: 'Wishlist'
+                                })}
+                                icon={<HeartIcon />}
+                                variant="unstyled"
+                                {...styles.icons}
+                                onClick={onWishlistClick}
+                            />
+                            <IconButton
+                                aria-label={intl.formatMessage({
+                                    id: 'header.button.assistive_msg.my_cart',
+                                    defaultMessage: 'My cart'
+                                })}
+                                icon={
+                                    <>
+                                        <BasketIcon />
+                                        {basket?.loaded && (
+                                            <Badge variant="notification">
+                                                {basket.itemAccumulatedCount}
+                                            </Badge>
+                                        )}
+                                    </>
+                                }
+                                variant="unstyled"
+                                {...styles.icons}
+                                onClick={onMyCartClick}
+                            />
+                        </HStack>
+                    </Flex>
+                </Box>
+            </Box>
+
+            {/* -------------------- */}
+            {/* Navigation - Navigation List Bar */}
+            {/* -------------------- */}
+            <Box {...styles.containerBordered} minW="full" bg={mainBarBg} {...props}>
+                <Box {...styles.secondarybar}>
+                    <Flex
+                        wrap="wrap"
+                        alignItems={['baseline', 'baseline', 'baseline', 'center']}
+                        justifyContent="center"
+                    >
+                        {children}
+                    </Flex>
+                </Box>
+            </Box>
+        </Flex>
     )
 }
 
@@ -292,7 +342,7 @@ Header.propTypes = {
     onMyCartClick: PropTypes.func,
     searchInputRef: PropTypes.oneOfType([
         PropTypes.func,
-        PropTypes.shape({ current: PropTypes.elementType })
+        PropTypes.shape({current: PropTypes.elementType})
     ])
 }
 

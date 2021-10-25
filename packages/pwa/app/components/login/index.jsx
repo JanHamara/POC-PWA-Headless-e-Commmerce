@@ -40,7 +40,7 @@ const LoginForm = ({submitForm, clickForgotPassword = noop, clickCreateAccount =
                         <LoginFields form={form} />
 
                         <Box>
-                            <Button variant="link" size="sm" onClick={clickForgotPassword}>
+                            <Button variant="ghost" size="sm" onClick={clickForgotPassword}>
                                 <FormattedMessage defaultMessage="Forgot password?" />
                             </Button>
                         </Box>
@@ -58,7 +58,7 @@ const LoginForm = ({submitForm, clickForgotPassword = noop, clickCreateAccount =
                             <Text fontSize="sm">
                                 <FormattedMessage defaultMessage="Don't have an account?" />
                             </Text>
-                            <Button variant="link" size="sm" onClick={clickCreateAccount}>
+                            <Button variant="ghost" size="sm" onClick={clickCreateAccount}>
                                 <FormattedMessage defaultMessage="Create account" />
                             </Button>
                         </Stack>
