@@ -1,0 +1,64 @@
+/*
+ * Copyright (c) 2021, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+export default {
+    baseStyle: {
+        bg: 'black',
+        color: 'white',
+        w: 'auto',
+        h: '60px',
+        minH: '60px',
+        px: 8,
+        fontFamily: 'body',
+        textTransform: 'uppercase',
+        fontSize: '2xs',
+        borderRadius: 0,
+        fontWeight: 'medium',
+        letterSpacing: 'widest'
+    },
+    variants: {
+        solid: (props) =>
+            props.colorMode === 'light'
+                ? {
+                      px: 8,
+                      fontSize: '2xs',
+                      backgroundColor: 'black',
+                      color: 'white',
+                      _hover: {bg: 'gray.900', _disabled: {bg: 'gray.300'}},
+                      _active: {bg: 'black'},
+                      _disabled: {bg: 'gray.300'}
+                  }
+                : {
+                      px: 8,
+                      fontSize: '2xs',
+                      backgroundColor: 'white',
+                      color: 'black',
+                      _hover: {bg: 'whiteAlpha.800', _disabled: {bg: 'whiteAlpha.300'}},
+                      _active: {bg: 'white'},
+                      _disabled: {bg: 'whiteAlpha.300'}
+                  },
+        link: (props) =>
+            props.colorMode === 'light'
+                ? {
+                      px: 8,
+                      fontSize: '2xs',
+                      backgroundColor: 'none',
+                      color: 'black',
+                      _hover: {bg: 'none', _disabled: {bg: 'none', color: 'gray.800'}},
+                      _active: {bg: 'none', color: 'black'},
+                      _disabled: {bg: 'none', color: 'gray.800'}
+                  }
+                : {
+                      px: 8,
+                      fontSize: '2xs',
+                      backgroundColor: 'none',
+                      color: 'white',
+                      _hover: {bg: 'none', _disabled: {bg: 'none', color: 'whiteAlpha.500'}},
+                      _active: {bg: 'none', color: 'white'},
+                      _disabled: {bg: 'none', color: 'whiteAlpha.500'}
+                  }
+    }
+}
