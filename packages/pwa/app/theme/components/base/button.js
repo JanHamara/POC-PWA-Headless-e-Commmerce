@@ -4,13 +4,14 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+
 export default {
     baseStyle: {
         bg: 'black',
         color: 'white',
         w: 'auto',
-        h: '60px',
         minH: '60px',
+        h: '60px',
         px: 8,
         fontFamily: 'body',
         textTransform: 'uppercase',
@@ -25,7 +26,7 @@ export default {
                 ? {
                       px: 8,
                       fontSize: '2xs',
-                      backgroundColor: 'black',
+                      bg: 'black',
                       color: 'white',
                       _hover: {bg: 'gray.900', _disabled: {bg: 'gray.300'}},
                       _active: {bg: 'black'},
@@ -34,29 +35,57 @@ export default {
                 : {
                       px: 8,
                       fontSize: '2xs',
-                      backgroundColor: 'white',
+                      bg: 'white',
                       color: 'black',
                       _hover: {bg: 'whiteAlpha.800', _disabled: {bg: 'whiteAlpha.300'}},
                       _active: {bg: 'white'},
                       _disabled: {bg: 'whiteAlpha.300'}
                   },
-        link: (props) =>
+        outline: (props) =>
             props.colorMode === 'light'
                 ? {
                       px: 8,
                       fontSize: '2xs',
-                      backgroundColor: 'none',
+                      bg: 'none',
                       color: 'black',
-                      _hover: {bg: 'none', _disabled: {bg: 'none', color: 'gray.800'}},
+                      _hover: {bg: 'gray.100', _disabled: {bg: 'none', color: 'black'}},
                       _active: {bg: 'none', color: 'black'},
                       _disabled: {bg: 'none', color: 'gray.800'}
                   }
                 : {
                       px: 8,
                       fontSize: '2xs',
-                      backgroundColor: 'none',
+                      bg: 'none',
                       color: 'white',
-                      _hover: {bg: 'none', _disabled: {bg: 'none', color: 'whiteAlpha.500'}},
+                      _hover: {bg: 'gray.200', _disabled: {bg: 'none', color: 'whiteAlpha.500'}},
+                      _active: {bg: 'none', color: 'white'},
+                      _disabled: {bg: 'none', color: 'whiteAlpha.500'}
+                  },
+        ghost: (props) =>
+            props.colorMode === 'light'
+                ? {
+                      px: 8,
+                      fontSize: '2xs',
+                      bg: 'none',
+                      color: 'black',
+                      border: 'none',
+                      outline: 'none',
+                      _hover: {
+                          bg: 'none',
+                          textDecoration: 'underline',
+                          _disabled: {bg: 'none', color: 'gray.800'}
+                      },
+                      _active: {bg: 'none', color: 'black'},
+                      _disabled: {bg: 'none', color: 'gray.800'}
+                  }
+                : {
+                      px: 8,
+                      fontSize: '2xs',
+                      bg: 'none',
+                      color: 'white',
+                      border: 'none',
+                      outline: 'none',
+                      _hover: {bg: 'gray.900', _disabled: {bg: 'none', color: 'whiteAlpha.500'}},
                       _active: {bg: 'none', color: 'white'},
                       _disabled: {bg: 'none', color: 'whiteAlpha.500'}
                   }

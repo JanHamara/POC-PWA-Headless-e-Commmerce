@@ -35,14 +35,15 @@ export default {
             swatch: {
                 height: 11,
                 width: 11,
-                borderRadius: 'full',
+                bg: 'none',
+                // borderRadius: 'full',
                 padding: 1,
                 cursor: 'pointer',
                 marginRight: 2,
                 marginLeft: 0,
                 marginBottom: 2,
                 color: `${props.selected ? 'black' : 'gray.200'}`,
-                border: `${props.selected ? '1px' : '0'}`,
+                // border: `${props.selected ? '1px' : '0'}`,
                 _hover: {
                     borderColor: `${props.selected ? 'black' : 'gray.200'}`,
                     borderWidth: 1,
@@ -64,7 +65,7 @@ export default {
             },
             swatchButton: {
                 height: 8,
-                borderColor: 'gray.200',
+                // borderColor: 'gray.200',
                 width: 8,
                 overflow: 'hidden',
                 borderRadius: 'full',
@@ -77,6 +78,8 @@ export default {
         }),
         square: (props) => ({
             swatch: {
+                h: 'auto',
+                minH: '45px',
                 marginRight: 2,
                 // diagonal line for disabled options
                 // theme variable like gray.200 won't work inside linear-gradient
@@ -104,9 +107,27 @@ export default {
                     borderColor: 'gray.900'
                 },
                 backgroundColor: `${
-                    props.selected ? (props.disabled ? 'gray.100' : 'black') : 'white'
+                    props.colorMode === 'light'
+                        ? props.selected
+                            ? props.disabled
+                                ? 'gray.100'
+                                : 'black'
+                            : 'white'
+                        : props.selected
+                        ? props.disabled
+                            ? 'gray.100'
+                            : 'white'
+                        : '#222'
                 }`,
-                color: `${props.selected && !props.disabled ? 'white' : 'gray.900'}`
+                color: `${
+                    props.colorMode === 'light'
+                        ? props.selected && !props.disabled
+                            ? 'white'
+                            : 'gray.900'
+                        : props.selected && !props.disabled
+                        ? 'black'
+                        : 'white'
+                }`
             },
             swatchButton: {}
         })

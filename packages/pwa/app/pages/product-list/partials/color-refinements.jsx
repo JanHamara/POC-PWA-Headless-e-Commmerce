@@ -43,7 +43,7 @@ const ColorRefinements = ({filter, toggleFilter, selectedFilters}) => {
                                     }
                                     border={selectedFilters?.includes(value.value) ? '1px' : '0'}
                                     aria-checked={selectedFilters?.includes(value.value)}
-                                    variant="outline"
+                                    variant="ghost"
                                     marginRight={0}
                                     marginBottom="-1px"
                                 >

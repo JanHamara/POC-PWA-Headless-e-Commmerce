@@ -37,7 +37,7 @@ const Swatch = (props) => {
                 onChange(value, href)
             }}
             aria-checked={selected}
-            variant="outline"
+            variant="ghost"
         >
             <Center {...styles.swatchButton}>
                 {children}
