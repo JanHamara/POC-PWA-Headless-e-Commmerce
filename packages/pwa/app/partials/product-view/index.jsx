@@ -26,7 +26,7 @@ import {Skeleton as ImageGallerySkeleton} from '../../components/image-gallery'
 import {HideOnDesktop, HideOnMobile} from '../../components/responsive'
 import QuantityPicker from '../../components/quantity-picker'
 
-const ProductViewHeader = ({name, price, currency, category}) => {
+const ProductViewHeader = ({name, brand, price, currency, category}) => {
     const intl = useIntl()
     const {currency: activeCurrency} = useCurrency()
     return (
@@ -39,17 +39,24 @@ const ProductViewHeader = ({name, price, currency, category}) => {
 
             {/* Title */}
             <Skeleton isLoaded={name}>
-                <Heading fontSize="2xl">{`${name}`}</Heading>
+                <Box textStyle="productName">{`${name}`}</Box>
+            </Skeleton>
+
+            {/* Brand */}
+            <Skeleton isLoaded={brand} mt={1}>
+                <Box textStyle="productBrand">{`${brand}`}</Box>
             </Skeleton>
 
             {/* Price */}
-            <Skeleton isLoaded={price} width={32}>
-                <Text fontWeight="bold" fontSize="md" aria-label="price">
-                    {intl.formatNumber(price, {
-                        style: 'currency',
-                        currency: currency || activeCurrency
-                    })}
-                </Text>
+            <Skeleton isLoaded={price} mt={4} width={32}>
+                <Flex alignItems="center">
+                    <Text textStyle="productPriceCurrency">
+                        {currency ? currency : activeCurrency ? activeCurrency : ''}
+                    </Text>
+                    <Text textStyle="productPrice" aria-label="price">
+                        {price}
+                    </Text>
+                </Flex>
             </Skeleton>
         </VStack>
     )
@@ -57,6 +64,7 @@ const ProductViewHeader = ({name, price, currency, category}) => {
 
 ProductViewHeader.propTypes = {
     name: PropTypes.string,
+    brand: PropTypes.string.isRequired,
     price: PropTypes.number,
     currency: PropTypes.string,
     category: PropTypes.array
@@ -70,7 +78,6 @@ const ButtonWithRegistration = withRegistration(Button)
  */
 const ProductView = ({
     product,
-    category,
     showFullLink = false,
     imageSize = 'md',
     isWishlistLoading = false,
@@ -179,16 +186,17 @@ const ProductView = ({
     return (
         <Flex direction={'column'} data-testid="product-view">
             {/* Basic information etc. title, price, breadcrumb*/}
-            <Box display={['block', 'block', 'block', 'none']}>
+            {/* Mobile Only */}
+            {/* <Box display={['block', 'block', 'block', 'none']}>
                 <ProductViewHeader
                     name={product?.name}
                     price={product?.price}
                     currency={product?.currency}
                     category={category}
                 />
-            </Box>
+            </Box> */}
             <Flex direction={['column', 'column', 'column', 'row']}>
-                <Box flex={1} mr={[0, 0, 0, 6, 6]}>
+                <Box flex={1} mr={[0, 0, 0, 6, 6]} borderTop="1px solid #bebebe" pt={12}>
                     {product ? (
                         <>
                             <ImageGallery
@@ -214,13 +222,20 @@ const ProductView = ({
                 </Box>
 
                 {/* Variations & Quantity Selector */}
-                <VStack align="stretch" spacing={8} flex={1} marginBottom={[16, 16, 16, 0, 0]}>
+                <VStack
+                    align="stretch"
+                    spacing={8}
+                    flex={1}
+                    marginBottom={[16, 16, 16, 0, 0]}
+                    pl={36}
+                >
                     <Box display={['none', 'none', 'none', 'block']}>
                         <ProductViewHeader
                             name={product?.name}
+                            brand="Balenciaga"
                             price={product?.price}
                             currency={product?.currency}
-                            category={category}
+                            breadcrumb={false}
                         />
                     </Box>
                     <VStack align="stretch" spacing={4}>

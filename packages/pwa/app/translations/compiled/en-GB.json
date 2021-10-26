@@ -1803,6 +1803,12 @@
             "value": "My cart"
         }
     ],
+    "header.button.assistive_msg.bg_club": [
+        {
+            "type": 0,
+            "value": "BG Club"
+        }
+    ],
     "header.search.field.value.placeholder": [
         {
             "type": 0,

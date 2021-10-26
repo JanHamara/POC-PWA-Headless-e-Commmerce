@@ -12,6 +12,7 @@ import {useIntl} from 'react-intl'
 
 // Components
 import {
+    Box,
     Breadcrumb as ChakraBreadcrumb,
     BreadcrumbItem as ChakraBreadcrumbItem,
     BreadcrumbLink as ChakraBreadcrumbLink,
@@ -29,8 +30,9 @@ import {categoryUrlBuilder} from '../../utils/url'
  * A simplification of the Chakra `Breadcrumb` component for our project needs. Given
  * a list of categories, display a breadcrumb and it's items.
  */
-const Breadcrumb = ({categories, ...rest}) => {
+const Breadcrumb = ({categories, product, ...rest}) => {
     const intl = useIntl()
+
     const styles = useStyleConfig('Breadcrumb')
 
     return (
@@ -38,8 +40,10 @@ const Breadcrumb = ({categories, ...rest}) => {
             {/* Home Link */}
             <ChakraBreadcrumbItem key={0} data-testid="sf-crumb-item">
                 <ChakraBreadcrumbLink as={RouteLink} to={'/'} {...styles.link} color="gray.400">
-                    {/* TO DO: Need locale label here as well */}
-                    Home
+                    {intl.formatMessage({
+                        defaultMessage: 'Home',
+                        description: 'Home Label'
+                    })}
                 </ChakraBreadcrumbLink>
             </ChakraBreadcrumbItem>
 
@@ -54,6 +58,13 @@ const Breadcrumb = ({categories, ...rest}) => {
                     </ChakraBreadcrumbLink>
                 </ChakraBreadcrumbItem>
             ))}
+
+            {/* Product Breadcrumb Item */}
+            {product && (
+                <ChakraBreadcrumbItem key={10} data-testid="sf-crumb-item">
+                    <Box {...styles.product}>{product}</Box>
+                </ChakraBreadcrumbItem>
+            )}
         </ChakraBreadcrumb>
     )
 }
@@ -64,7 +75,11 @@ Breadcrumb.propTypes = {
     /**
      * The categories to be displayed in this breadcrumb.
      */
-    categories: PropTypes.array
+    categories: PropTypes.array,
+    /**
+     * The product name to be shown in breadcrumbs..
+     */
+    product: PropTypes.object
 }
 
 export default Breadcrumb

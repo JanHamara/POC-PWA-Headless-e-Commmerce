@@ -48,23 +48,15 @@ export default {
             paddingTop: 3,
             paddingRight: 4,
             paddingBottom: 2,
-            paddingLeft: 4,
-            _hover: {
-                textDecoration: 'none'
-            }
+            paddingLeft: 4
         },
         // listMenuTriggerLinkWithIcon: {marginRight: 3},
-        listMenuTriggerLinkActive: {
-            textDecoration: 'none'
-        },
+        listMenuTriggerLinkActive: {},
         listMenuTriggerLinkIcon: {
             marginTop: 3,
             // marginRight: 4,
-            marginBottom: 2,
+            marginBottom: 2
             // marginLeft: 1,
-            _hover: {
-                textDecoration: 'none'
-            }
         }
     },
     parts: [

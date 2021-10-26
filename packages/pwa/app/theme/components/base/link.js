@@ -4,6 +4,15 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+
+const linkBase = {
+    fontFamily: 'body',
+    fontSize: 'xs',
+    fontWeight: 'semibold',
+    letterSpacing: 'wide',
+    cursor: 'pointer'
+}
+
 export default {
     baseStyle: {
         bg: 'transparent'
@@ -14,6 +23,7 @@ export default {
             _hover: {textDecoration: 'underline'}
         },
         primary: {
+            ...linkBase,
             display: 'inline-block',
             fontSize: '3xs',
             fontWeight: 'semibold',
@@ -46,6 +56,33 @@ export default {
                     opacity: 1,
                     transform: 'scale(1)'
                 }
+            }
+        },
+        secondary: {
+            ...linkBase,
+            fontSize: '3xs',
+            textDecoration: 'underline',
+            fontWeight: 'normal'
+        },
+        menu: {
+            ...linkBase,
+            textTransform: 'uppercase',
+            _hover: {
+                textDecoration: 'underline',
+                textDecorationThickness: '5px',
+                textUnderlineOffset: '7px'
+            }
+        },
+        submenu: {
+            ...linkBase,
+            fontSize: '3xs',
+            // color: props.colorMode === 'dark' ? 'white' : 'gray.400',
+            color: 'gray.400',
+            _hover: {
+                textDecoration: 'underline',
+                textDecorationThickness: '1px',
+                textUnderlineOffset: '3px',
+                textDecorationColor: 'black'
             }
         }
     }

@@ -37,5 +37,12 @@ export default {
         maxWidth: 'container.xxxxl',
         marginLeft: 'auto',
         marginRight: 'auto'
+    },
+
+    reset: {
+        p: 0,
+        m: 0,
+        border: 0,
+        outline: 0
     }
 }

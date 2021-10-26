@@ -42,7 +42,7 @@ import Search from '../search'
 import withRegistration from '../../hoc/with-registration'
 import {
     AccountIcon,
-    BrandLogo,
+    BgClub,
     BasketIcon,
     HamburgerIcon,
     ChevronDownIcon,
@@ -136,7 +136,7 @@ const Header = ({
                     <Stack direction="row" spacing="40px">
                         <Link>Outlet</Link>
                         <Link>Hofstetter</Link>
-                        <Link onClick={toggleColorMode}>Our Stories</Link>
+                        <Link onClick={toggleColorMode}>Our Stores</Link>
                     </Stack>
                 </Flex>
             </Box>
@@ -205,20 +205,31 @@ const Header = ({
 
                         <Spacer></Spacer>
 
-                        <HStack {...styles.iconContainer}>
-                            <AccountIcon
-                                {...styles.accountIcon}
-                                tabIndex={0}
-                                onMouseOver={isDesktop ? onOpen : noop}
-                                onKeyDown={(e) => {
-                                    e.key === ENTER_KEY ? onMyAccountClick() : noop
-                                }}
-                                onClick={onMyAccountClick}
-                                aria-label={intl.formatMessage({
-                                    id: 'header.button.assistive_msg.my_account',
-                                    defaultMessage: 'My account'
-                                })}
-                            />
+                        <HStack {...styles.iconContainer} spacing={4}>
+                            <Link href="/" {...styles.bgclub}>
+                                <BgClub
+                                    w="72px"
+                                    h="25px"
+                                    fill="gray.500"
+                                    _hover={{fill: 'gray.900'}}
+                                />
+                            </Link>
+
+                            <Flex boxSize={6} justifyContent="center" alignItems="center">
+                                <AccountIcon
+                                    {...styles.accountIcon}
+                                    tabIndex={0}
+                                    onMouseOver={isDesktop ? onOpen : noop}
+                                    onKeyDown={(e) => {
+                                        e.key === ENTER_KEY ? onMyAccountClick() : noop
+                                    }}
+                                    onClick={onMyAccountClick}
+                                    aria-label={intl.formatMessage({
+                                        id: 'header.button.assistive_msg.my_account',
+                                        defaultMessage: 'My account'
+                                    })}
+                                />
+                            </Flex>
 
                             {customer.isRegistered && (
                                 <Popover
@@ -308,7 +319,7 @@ const Header = ({
                                 aria-label={intl.formatMessage({
                                     defaultMessage: 'Wishlist'
                                 })}
-                                icon={<HeartIcon />}
+                                icon={<HeartIcon boxSize={6} />}
                                 variant="unstyled"
                                 {...styles.icons}
                                 onClick={onWishlistClick}
@@ -320,9 +331,9 @@ const Header = ({
                                 })}
                                 icon={
                                     <>
-                                        <BasketIcon />
+                                        <BasketIcon boxSize={6} />
                                         {basket?.loaded && (
-                                            <Badge variant="notification">
+                                            <Badge variant="notification" boxSize={6}>
                                                 {basket.itemAccumulatedCount}
                                             </Badge>
                                         )}

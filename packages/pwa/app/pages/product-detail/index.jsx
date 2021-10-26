@@ -162,8 +162,11 @@ const ProductDetail = ({category, product, isLoading}) => {
             </Helmet>
 
             {/*    Need styles here for this container */}
-            <HStack h="70px" verticalAlign="middle">
-                <Breadcrumb categories={primaryCategory?.parentCategoryTree || []}></Breadcrumb>
+            <HStack h="63px" verticalAlign="middle">
+                <Breadcrumb
+                    categories={primaryCategory?.parentCategoryTree || []}
+                    product={product?.name}
+                ></Breadcrumb>
 
                 <Spacer></Spacer>
 

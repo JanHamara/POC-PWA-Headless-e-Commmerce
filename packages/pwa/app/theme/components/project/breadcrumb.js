@@ -20,6 +20,10 @@ export default {
         link: {
             paddingTop: 3,
             paddingBottom: 3
+        },
+        product: {
+            textDecoration: 'none',
+            color: 'gray.900'
         }
     },
     parts: ['container', 'icon', 'link']

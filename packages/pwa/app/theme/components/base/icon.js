@@ -8,6 +8,10 @@ export default {
     baseStyle: {
         display: 'inline-block',
         verticalAlign: 'bottom',
-        boxSize: 4
+        boxSize: [4, 4],
+        _hover: {
+            fill: 'gray.900',
+            color: 'gray.900'
+        }
     }
 }

@@ -58,11 +58,12 @@ const ListMenuTrigger = ({item, name, isOpen, onOpen, onClose, hasItems}) => {
     }
 
     return (
-        <Box {...baseStyle.listMenuTriggerContainer} textStyle="linkMenu">
+        <Box {...baseStyle.listMenuTriggerContainer}>
             <Link
                 as={RouteLink}
                 to={categoryUrlBuilder(item, locale)}
                 onMouseOver={onOpen}
+                variant="menu"
                 {...baseStyle.listMenuTriggerLink}
                 {...(hasItems ? {name: name + ' __'} : {name: name})}
                 {...(!hasItems ? baseStyle.listMenuTriggerLinkWithIcon : {})}

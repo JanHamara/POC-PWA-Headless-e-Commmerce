@@ -13,6 +13,7 @@ import {
     VStack,
     Heading,
     Button,
+    Link,
     Accordion,
     AccordionItem,
     AccordionButton,
@@ -98,32 +99,48 @@ const Design = () => {
                 </Heading>
                 <Flex justifyContent="space-between" w="full">
                     <Box w="full" mt="md" mb="md">
-                        <Box textStyle="linkMenu" mb="6">
-                            <a>Menu Link</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="menu">
+                                Menu Link
+                            </Link>
                         </Box>
-                        <Box textStyle="linkSubMenu" mb="6">
-                            <a>Menu Sub-Link</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="submenu">
+                                Menu Sub-Link
+                            </Link>
                         </Box>
-                        <Box textStyle="linkPrimary" mb="6">
-                            <a>Basic Link</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="primary">
+                                Basic Link
+                            </Link>
                         </Box>
-                        <Box textStyle="linkSecondary" mb="6">
-                            <a>Sub Link</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="secondary">
+                                Secondary Link
+                            </Link>
                         </Box>
                     </Box>
 
                     <Box w="full" mt="xxl" mb="md">
-                        <Box textStyle="linkMenu" mb="6">
-                            <a>Nouveautés</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="menu">
+                                Nouveautés
+                            </Link>
                         </Box>
-                        <Box textStyle="linkSubMenu" mb="6">
-                            <a>Me connecter</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="submenu">
+                                Me connecter
+                            </Link>
                         </Box>
-                        <Box textStyle="linkPrimary" mb="6">
-                            <a>Découvrir</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="primary">
+                                Découvrir
+                            </Link>
                         </Box>
-                        <Box textStyle="linkSecondary" mb="6">
-                            <a>Plus d’infos</a>
+                        <Box mb="6">
+                            <Link href={'/'} variant="secondary">
+                                Plus d’infos
+                            </Link>
                         </Box>
                     </Box>
                 </Flex>

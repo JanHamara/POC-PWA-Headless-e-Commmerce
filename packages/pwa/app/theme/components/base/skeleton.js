@@ -7,6 +7,7 @@
 export default {
     baseStyle: {
         borderRadius: 'base',
-        opacity: 0.3
+        opacity: 0.3,
+        m: 0
     }
 }
