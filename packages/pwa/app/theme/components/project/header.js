@@ -6,7 +6,7 @@
  */
 
 const barStyle = {
-    maxWidth: 'container.xxxxl',
+    maxWidth: 'container.xxxxxl',
     marginLeft: 'auto',
     marginRight: 'auto',
     paddingTop: [1, 1, 2, 4],
@@ -32,7 +32,28 @@ export default {
         },
         searchContainer: {
             order: [2, 2, 2, 'inherit'],
-            width: ['full', 'full', 'full', 60]
+            width: ['full', 'full', 'full', 60],
+            borderBottom: '1px solid #000000',
+            marginBottom: '9px'
+        },
+        languageSelector: {
+            marginBottom: '9px',
+            marginRight: 6,
+            fontSize: 'xs',
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            color: '#b4b4b4'
+        },
+        langSelectorItem: {
+            textDecoration: 'none',
+            _hover: {
+                textDecoration: 'none',
+                cursor: 'pointer',
+                color: 'gray.900'
+            },
+            _active: {
+                color: 'gray.900'
+            }
         },
         iconContainer: {
             order: [3, 3, 3, 'inherit'],

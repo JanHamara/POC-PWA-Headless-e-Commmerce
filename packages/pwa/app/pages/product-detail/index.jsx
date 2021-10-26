@@ -19,7 +19,11 @@ import {
     AccordionIcon,
     Box,
     Button,
-    Stack
+    Icon,
+    Link,
+    Stack,
+    HStack,
+    Spacer
 } from '@chakra-ui/react'
 
 // Hooks
@@ -41,6 +45,8 @@ import {API_ERROR_MESSAGE} from '../../constants'
 import {rebuildPathWithParams} from '../../utils/url'
 import {useHistory} from 'react-router-dom'
 import {useToast} from '../../hooks/use-toast'
+import Breadcrumb from '../../components/breadcrumb'
+import {ChevronRightIcon} from '../../components/icons'
 
 const ProductDetail = ({category, product, isLoading}) => {
     const {formatMessage} = useIntl()
@@ -155,18 +161,30 @@ const ProductDetail = ({category, product, isLoading}) => {
                 <meta name="description" content={product?.pageDescription} />
             </Helmet>
 
-            {/* <Stack spacing={16}> */}
-            {/* <ProductView
+            {/*    Need styles here for this container */}
+            <HStack h="70px" verticalAlign="middle">
+                <Breadcrumb categories={primaryCategory?.parentCategoryTree || []}></Breadcrumb>
+
+                <Spacer></Spacer>
+
+                {/* Need to setup internationalized label here */}
+                <Link variant="primary" href="/">
+                    Back to Catalogue <ChevronRightIcon boxSize={4} mb="1px" mx="2px" />
+                </Link>
+            </HStack>
+
+            <Stack spacing={16}>
+                <ProductView
                     product={product}
                     category={primaryCategory?.parentCategoryTree || []}
                     addToCart={(variant, quantity) => handleAddToCart(variant, quantity)}
                     addToWishlist={(_, quantity) => handleAddToWishlist(quantity)}
                     isProductLoading={isLoading}
                     isCustomerProductListLoading={!wishlist.isInitialized}
-                /> */}
+                />
 
-            {/* Information Accordion */}
-            {/* <Stack direction="row" spacing={[0, 0, 0, 16]}>
+                {/* Information Accordion */}
+                {/* <Stack direction="row" spacing={[0, 0, 0, 16]}>
                     <Accordion allowMultiple allowToggle maxWidth={'896px'} flex={[1, 1, 1, 5]}>
                         <AccordionItem>
                             <h2>
@@ -238,9 +256,8 @@ const ProductDetail = ({category, product, isLoading}) => {
                     </Accordion>
                     <Box display={['none', 'none', 'none', 'block']} flex={4}></Box>
                 </Stack> */}
-
-            {/* Product Recommendations */}
-            {/* <Stack spacing={16}>
+                {/* Product Recommendations */}
+                {/* <Stack spacing={16}>
                     <RecommendedProducts
                         title={<FormattedMessage defaultMessage="Complete The Set" />}
                         recommender={'complete-the-set'}
@@ -263,7 +280,7 @@ const ProductDetail = ({category, product, isLoading}) => {
                         mx={{base: -4, md: -8, lg: 0}}
                     />
                 </Stack> */}
-            {/* </Stack> */}
+            </Stack>
         </Box>
     )
 }

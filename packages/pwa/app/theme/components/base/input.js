@@ -7,12 +7,6 @@
 const mdSize = {height: 11, borderRadius: 'base'}
 
 export default {
-    sizes: {
-        md: {
-            field: {...mdSize, px: 3},
-            addon: mdSize
-        }
-    },
     baseStyle: {
         field: {
             _focus: {
@@ -20,11 +14,20 @@ export default {
             }
         }
     },
+    sizes: {
+        md: {
+            field: {...mdSize, px: 3},
+            addon: mdSize
+        }
+    },
     variants: {
         search: {
             // search input
             field: {
                 backgroundColor: 'none',
+                color: 'gray.700',
+                fontStyle: 'italic',
+                fontSize: 'xs',
                 _focus: {
                     backgroundColor: 'none'
                 },
@@ -35,7 +38,9 @@ export default {
                     }
                 },
                 _placeholder: {
-                    color: 'gray.700'
+                    color: 'gray.600',
+                    fontStyle: 'italic',
+                    fontSize: '2xs'
                 }
             }
         },

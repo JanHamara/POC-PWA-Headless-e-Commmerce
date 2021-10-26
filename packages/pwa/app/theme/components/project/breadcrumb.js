@@ -8,7 +8,9 @@ export default {
     baseStyle: {
         container: {
             minHeight: 4,
-            fontSize: 'sm'
+            fontSize: '3xs',
+            fontFamily: 'heading',
+            color: 'gray.800'
         },
         icon: {
             display: 'flex',

@@ -34,12 +34,15 @@ const Breadcrumb = ({categories, ...rest}) => {
     const styles = useStyleConfig('Breadcrumb')
 
     return (
-        <ChakraBreadcrumb
-            className="sf-breadcrumb"
-            {...styles.container}
-            separator={<ChevronRightIcon {...styles.icon} />}
-            {...rest}
-        >
+        <ChakraBreadcrumb className="sf-breadcrumb" {...styles.container} separator="/" {...rest}>
+            {/* Home Link */}
+            <ChakraBreadcrumbItem key={0} data-testid="sf-crumb-item">
+                <ChakraBreadcrumbLink as={RouteLink} to={'/'} {...styles.link} color="gray.400">
+                    {/* TO DO: Need locale label here as well */}
+                    Home
+                </ChakraBreadcrumbLink>
+            </ChakraBreadcrumbItem>
+
             {categories.map((category) => (
                 <ChakraBreadcrumbItem key={category.id} data-testid="sf-crumb-item">
                     <ChakraBreadcrumbLink

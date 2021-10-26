@@ -31,11 +31,10 @@ export default {
     },
 
     page: {
-        px: [4, 4, 6, 6, 8],
-        paddingTop: [4, 4, 6, 6, 8],
+        px: [4, 4, 6, 6, 3],
         paddingBottom: 32,
         width: '100%',
-        maxWidth: 'container.xxxl',
+        maxWidth: 'container.xxxxl',
         marginLeft: 'auto',
         marginRight: 'auto'
     }

@@ -54,6 +54,7 @@ import {noop} from '../../utils/utils'
 import {navLinks, messages} from '../../pages/account/constant'
 import useNavigation from '../../hooks/use-navigation'
 import LoadingSpinner from '../loading-spinner'
+import LocaleSelector from '../locale-selector'
 
 const ENTER_KEY = 'Enter'
 
@@ -164,6 +165,23 @@ const Header = ({
                             onClick={onMenuClick}
                         /> */}
 
+                        <HStack spacing={4} {...styles.languageSelector}>
+                            <Link href="/fr-FR/design" {...styles.langSelectorItem}>
+                                FR
+                            </Link>
+                            <Link
+                                href="/en-GB/design"
+                                {...styles.langSelectorItem}
+                                color="gray.900"
+                            >
+                                EN
+                            </Link>
+                            <Link href="/en-GB/design" {...styles.langSelectorItem}>
+                                DE
+                            </Link>
+                            {/* <LocaleSelector></LocaleSelector> */}
+                        </HStack>
+
                         <Box {...styles.searchContainer}>
                             <Search
                                 placeholder={intl.formatMessage({
@@ -176,13 +194,17 @@ const Header = ({
                         <Spacer />
 
                         <AspectRatio maxW="145px" w="full" h="65px" ratio={16 / 9}>
-                            <Image
-                                src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635174241/temp/logo_tumkaa.png"
-                                alt="Site Logo"
-                                objectFit="cover"
-                            />
+                            <Link href="/">
+                                <Image
+                                    src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635174241/temp/logo_tumkaa.png"
+                                    alt="Site Logo"
+                                    objectFit="cover"
+                                />
+                            </Link>
                         </AspectRatio>
+
                         <Spacer></Spacer>
+
                         <HStack {...styles.iconContainer}>
                             <AccountIcon
                                 {...styles.accountIcon}
