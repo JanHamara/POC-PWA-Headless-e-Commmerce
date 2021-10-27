@@ -24,6 +24,7 @@ export default {
     '7xl': '80rem',
     '8xl': '90rem',
     container: {
+        xs: '378px',
         sm: '480px',
         md: '768px',
         lg: '1024px',

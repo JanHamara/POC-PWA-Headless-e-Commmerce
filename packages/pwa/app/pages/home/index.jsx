@@ -45,7 +45,6 @@ const Home = () => {
                         defaultMessage: 'New Arrivals'
                     })
                 }}
-                mt={10}
                 actions={
                     <Button
                         as={Link}

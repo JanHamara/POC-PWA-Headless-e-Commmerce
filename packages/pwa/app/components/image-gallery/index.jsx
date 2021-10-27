@@ -22,6 +22,9 @@ import {
     List,
     useMultiStyleConfig
 } from '@chakra-ui/react'
+
+import {ChevronRightIcon, ChevronLeftIcon} from '../icons'
+
 import {findImageGroupBy} from '../../utils/image-groups-utils'
 
 const EnterKeyNumber = 13
@@ -94,19 +97,37 @@ const ImageGallery = ({imageGroups = [], selectedVariationAttributes = {}, size}
         [selectedVariationAttributes]
     )
 
-    const heroImage = heroImageGroup?.images?.[selectedIndex]
-    const thumbnailImages = thumbnailImageGroup?.images || []
-    return (
-        <Flex direction="column">
-            {heroImage && (
-                <Box {...styles.heroImageGroup}>
-                    <AspectRatio {...styles.heroImage} ratio={1}>
-                        <Img alt={heroImage.alt} src={heroImage.disBaseLink} />
-                    </AspectRatio>
-                </Box>
-            )}
+    // const heroImage = heroImageGroup?.images?.[selectedIndex]
+    // const thumbnailImages = thumbnailImageGroup?.images || []
+    // REPLACE (this is just to mock Bongenie PDP page)
+    const thumbnailImages = [
+        {
+            disBaseLink:
+                'https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635328836/temp/POC:%20PWA%20%2B%20SF%20B2C%20Commerce%20Cloud/product-1_pwxcv5.jpg',
+            alt: 'product-thumbnail'
+        },
+        {
+            disBaseLink:
+                'https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635328836/temp/POC:%20PWA%20%2B%20SF%20B2C%20Commerce%20Cloud/product-2_exvbzi.jpg',
+            alt: 'product-thumbnail'
+        },
+        {
+            disBaseLink:
+                'https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635328836/temp/POC:%20PWA%20%2B%20SF%20B2C%20Commerce%20Cloud/product-3_bq83sq.jpg',
+            alt: 'product-thumbnail'
+        },
+        {
+            disBaseLink:
+                'https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635328836/temp/POC:%20PWA%20%2B%20SF%20B2C%20Commerce%20Cloud/product-4_lqgxdj.jpg',
+            alt: 'product-thumbnail'
+        }
+    ]
 
-            <List display={'flex'} flexWrap={'wrap'}>
+    const heroImage = selectedIndex ? thumbnailImages[selectedIndex] : thumbnailImages[0]
+
+    return (
+        <Flex direction={'row'} wrap={'nowrap'}>
+            <List display={'flex'} flexDirection={'column'} flexWrap={'nowrap'} w={24} maxW={24}>
                 {thumbnailImages.map((image, index) => {
                     const selected = index === selectedIndex
                     return (
@@ -121,16 +142,48 @@ const ImageGallery = ({imageGroups = [], selectedVariationAttributes = {}, size}
                                 }
                             }}
                             onClick={() => setSelectedIndex(index)}
-                            borderColor={`${selected ? 'black' : ''}`}
-                            borderWidth={`${selected ? '1px' : 0}`}
+                            opacity={`${selected ? 1 : 0.4}`}
                         >
-                            <AspectRatio ratio={1}>
-                                <Img alt={image.alt} src={image.disBaseLink} />
+                            <AspectRatio
+                                ratio={1}
+                                sx={{'& > img, & > video': {}}} // Override defaults from AspectRatio in order to be able to apply objectFit="contain"    ISSUE: https://giters.com/chakra-ui/chakra-ui/issues/4347?amp=1
+                            >
+                                <Img alt={image.alt} src={image.disBaseLink} objectFit="contain" />
                             </AspectRatio>
                         </ListItem>
                     )
                 })}
             </List>
+
+            {heroImage && (
+                <Box {...styles.heroImageGroup}>
+                    <AspectRatio
+                        {...styles.heroImage}
+                        ratio={4 / 5}
+                        sx={{'& > img, & > video': {}}} // Override defaults from AspectRatio in order to be able to apply objectFit="contain"    ISSUE: https://giters.com/chakra-ui/chakra-ui/issues/4347?amp=1
+                    >
+                        <Img alt={heroImage.alt} src={heroImage.disBaseLink} objectFit="contain" />
+                    </AspectRatio>
+
+                    <ChevronLeftIcon
+                        onClick={() => {
+                            selectedIndex !== 0
+                                ? setSelectedIndex(selectedIndex - 1)
+                                : setSelectedIndex(thumbnailImages.length - 1)
+                        }}
+                        {...styles.heroImageLeftSwitch}
+                    ></ChevronLeftIcon>
+
+                    <ChevronRightIcon
+                        onClick={() => {
+                            selectedIndex < thumbnailImages.length - 1
+                                ? setSelectedIndex(selectedIndex + 1)
+                                : setSelectedIndex(0)
+                        }}
+                        {...styles.heroImageRightSwitch}
+                    ></ChevronRightIcon>
+                </Box>
+            )}
         </Flex>
     )
 }

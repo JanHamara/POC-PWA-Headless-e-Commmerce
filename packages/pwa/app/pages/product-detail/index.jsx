@@ -153,30 +153,38 @@ const ProductDetail = ({category, product, isLoading}) => {
     return (
         <Box
             className="sf-product-detail-page"
-            layerStyle="page"
+            layerStyle="productPage"
             data-testid="product-details-page"
         >
+            {/**************** HELMET ****************/}
             <Helmet>
                 <title>{product?.pageTitle}</title>
                 <meta name="description" content={product?.pageDescription} />
             </Helmet>
 
             {/*    Need styles here for this container */}
+            {/**************** PDP BREADCRUMB HEADER ****************/}
             <HStack h="63px" verticalAlign="middle">
                 <Breadcrumb
                     categories={primaryCategory?.parentCategoryTree || []}
-                    product={product?.name}
+                    // product={product?.name}
+                    // REPLACE
+                    product={{
+                        name: 'Incas embroidered suede boots'
+                    }}
                 ></Breadcrumb>
 
                 <Spacer></Spacer>
 
                 {/* Need to setup internationalized label here */}
-                <Link variant="primary" href="/">
+                <Link variant="unstyled" href="/">
                     Back to Catalogue <ChevronRightIcon boxSize={4} mb="1px" mx="2px" />
                 </Link>
             </HStack>
 
+            {/**************** PDP CONTENT ****************/}
             <Stack spacing={16}>
+                {/**************** PDP PRODUCT VIEW ****************/}
                 <ProductView
                     product={product}
                     category={primaryCategory?.parentCategoryTree || []}

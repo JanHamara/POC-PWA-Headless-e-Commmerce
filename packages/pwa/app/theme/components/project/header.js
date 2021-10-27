@@ -55,7 +55,7 @@ export default {
         },
         searchContainer: {
             order: [2, 2, 2, 'inherit'],
-            width: ['full', 'full', 'full', 60],
+            width: ['full', 'full', 'full', '215px'],
             borderBottom: '1px solid #000000',
             marginBottom: '9px'
         },
@@ -80,7 +80,7 @@ export default {
         },
         iconContainer: {
             order: [3, 3, 3, 'inherit'],
-            width: ['full', 'full', 'full', 60],
+            width: ['full', 'full', 'full', 80],
             display: 'flex',
             justifyContent: 'flex-end',
             alignItems: 'flex-end',

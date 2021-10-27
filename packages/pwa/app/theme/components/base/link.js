@@ -13,23 +13,34 @@ const linkBase = {
     cursor: 'pointer'
 }
 
+const unstyledBase = {
+    display: 'inline-block',
+    fontSize: '3xs',
+    fontWeight: 'semibold',
+    letterSpacing: 'widest',
+    textTransform: 'uppercase',
+    textDecoration: 'none'
+}
+
 export default {
     baseStyle: {
         bg: 'transparent'
     },
     variants: {
+        unstyled: {
+            ...linkBase,
+            ...unstyledBase,
+            _hover: {
+                textDecoration: 'none'
+            }
+        },
         nodecoration: {
             textTransform: 'uppercase',
             _hover: {textDecoration: 'underline'}
         },
         primary: {
             ...linkBase,
-            display: 'inline-block',
-            fontSize: '3xs',
-            fontWeight: 'semibold',
-            letterSpacing: 'widest',
-            textTransform: 'uppercase',
-            textDecoration: 'none',
+            ...unstyledBase,
             position: 'relative',
             _after: {
                 content: '""',
@@ -83,6 +94,17 @@ export default {
                 textDecorationThickness: '1px',
                 textUnderlineOffset: '3px',
                 textDecorationColor: 'black'
+            }
+        },
+        gray: {
+            ...linkBase,
+            fontSize: '4xs',
+            color: 'gray.500',
+            fontWeight: 'normal',
+            textDecoration: 'none',
+            textTransform: 'uppercase',
+            _hover: {
+                textDecoration: 'none'
             }
         }
     }

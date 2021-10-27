@@ -4,23 +4,44 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+
+const switchBase = {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%) scale(.8, 1.8)',
+    cursor: 'pointer',
+    boxSize: 12
+}
+
 export default {
     baseStyle: {
         container: {},
-        heroImage: {},
+        heroImage: {
+            maxH: '740px'
+        },
         heroImageGroup: {
-            marginBottom: 2
+            minW: '640px',
+            w: '640px',
+            position: 'relative'
+        },
+        heroImageRightSwitch: {
+            ...switchBase,
+            right: '0%'
+        },
+        heroImageLeftSwitch: {
+            ...switchBase,
+            left: '5%'
         },
         heroImageSkeleton: {
             marginBottom: 2
         },
         thumbnailImageGroup: {},
         thumbnailImageItem: {
-            flexShrink: 0,
+            // flexShrink: 0,
             cursor: 'pointer',
-            flexBasis: [20, 20, 24],
-            borderStyle: 'solid',
-            marginBottom: [1, 1, 2, 2],
+            // flexBasis: [20, 20, 24],
+            border: 0,
+            marginBottom: [1, 2, 3, 6],
             marginRight: [1, 1, 2, 2],
             _focus: {
                 boxShadow: 'outline'
@@ -39,12 +60,18 @@ export default {
             heroImageSkeleton: {
                 maxWidth: ['none', 'none', 'none', '500px']
             },
+            heroImageGroup: {
+                maxWidth: ['none', 'none', 'none', '500px']
+            },
             heroImage: {
                 maxWidth: ['none', 'none', 'none', '500px']
             }
         },
         md: {
             heroImageSkeleton: {
+                maxWidth: ['none', 'none', 'none', '680px']
+            },
+            heroImageGroup: {
                 maxWidth: ['none', 'none', 'none', '680px']
             },
             heroImage: {

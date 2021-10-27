@@ -10,7 +10,21 @@ import PropTypes from 'prop-types'
 import {useHistory, useLocation} from 'react-router-dom'
 import {useIntl} from 'react-intl'
 
-import {Flex, Heading, Button, Skeleton, Box, Text, VStack, Fade, useTheme} from '@chakra-ui/react'
+import {
+    Flex,
+    Heading,
+    Button,
+    Link,
+    Skeleton,
+    Box,
+    Text,
+    VStack,
+    Fade,
+    useTheme,
+    Select
+} from '@chakra-ui/react'
+import {ChevronRightIcon, HeartSolidIcon, BullhornIcon} from '../../components/icons'
+
 import {useProduct} from '../../hooks'
 import {useAddToCartModalContext} from '../../hooks/use-add-to-cart-modal'
 
@@ -19,7 +33,6 @@ import SwatchGroup from '../../components/swatch-group'
 import Swatch from '../../components/swatch-group/swatch'
 import ImageGallery from '../../components/image-gallery'
 import Breadcrumb from '../../components/breadcrumb'
-import Link from '../../components/link'
 import withRegistration from '../../hoc/with-registration'
 import {useCurrency} from '../../hooks'
 import {Skeleton as ImageGallerySkeleton} from '../../components/image-gallery'
@@ -54,7 +67,7 @@ const ProductViewHeader = ({name, brand, price, currency, category}) => {
                         {currency ? currency : activeCurrency ? activeCurrency : ''}
                     </Text>
                     <Text textStyle="productPrice" aria-label="price">
-                        {price}
+                        {price.toFixed(2)}
                     </Text>
                 </Flex>
             </Skeleton>
@@ -144,33 +157,56 @@ const ProductView = ({
                 <Button
                     key="cart-button"
                     onClick={handleCartItem}
-                    disabled={!canOrder}
-                    width="100%"
+                    // disabled={!canOrder}
+                    width="full"
                     variant="solid"
                     marginBottom={4}
                 >
                     {updateCart
                         ? intl.formatMessage({defaultMessage: 'Update'})
-                        : intl.formatMessage({defaultMessage: 'Add to cart'})}
+                        : intl.formatMessage({defaultMessage: 'Add to shopping bag'})}
+
+                    <ChevronRightIcon boxSize={4} mb="1px" mx="2px" color="white" />
                 </Button>
             )
         }
 
         if (addToWishlist || updateWishlist) {
             buttons.push(
-                <ButtonWithRegistration
-                    key="wishlist-button"
-                    onClick={handleWishlistItem}
-                    disabled={isWishlistLoading || !canAddToWishlist}
-                    isLoading={isWishlistLoading}
-                    width="100%"
-                    variant="outline"
-                    marginBottom={4}
-                >
-                    {updateWishlist
-                        ? intl.formatMessage({defaultMessage: 'Update'})
-                        : intl.formatMessage({defaultMessage: 'Add to wishlist'})}
-                </ButtonWithRegistration>
+                <Flex justify="center">
+                    <Link
+                        key="wishlist-button"
+                        onClick={handleWishlistItem}
+                        disabled={isWishlistLoading || !canAddToWishlist}
+                        isLoading={isWishlistLoading}
+                        variant="gray"
+                        fontSize="3xs"
+                        fontWeight="normal"
+                        p="5px 15px"
+                    >
+                        <HeartSolidIcon boxSize={4} mb="1px" mr={2} fill="gray.500" />
+                        {updateWishlist
+                            ? intl.formatMessage({defaultMessage: 'Update'})
+                            : intl.formatMessage({defaultMessage: 'Wish-List'})}
+                    </Link>
+
+                    <Link
+                        key="share-button"
+                        // onClick={handleShareItem}
+                        disabled={isWishlistLoading || !canAddToWishlist}
+                        isLoading={isWishlistLoading}
+                        variant="gray"
+                        fontSize="3xs"
+                        fontWeight="normal"
+                        p="5px 15px"
+                    >
+                        <BullhornIcon boxSize={4} mb="1px" mr={2} color="gray.500" />
+
+                        {updateWishlist
+                            ? intl.formatMessage({defaultMessage: 'Update'})
+                            : intl.formatMessage({defaultMessage: 'Share'})}
+                    </Link>
+                </Flex>
             )
         }
 
@@ -231,14 +267,28 @@ const ProductView = ({
                 >
                     <Box display={['none', 'none', 'none', 'block']}>
                         <ProductViewHeader
-                            name={product?.name}
-                            brand="Balenciaga"
-                            price={product?.price}
-                            currency={product?.currency}
+                            // name={product?.name}
+                            // brand="Balenciaga"
+                            // price={product?.price}
+                            // currency={product?.currency}
+                            // breadcrumb={false}
+                            //
+                            // Bongenie Test Data
+                            // REPLACE
+                            name="Incas embroidered suede boots"
+                            brand="ASH"
+                            price={450.0}
+                            currency="CHF"
                             breadcrumb={false}
                         />
                     </Box>
-                    <VStack align="stretch" spacing={4}>
+                    <VStack
+                        align="center"
+                        spacing={5}
+                        w="container.xs"
+                        maxW="container.xs"
+                        alignSelf="center"
+                    >
                         {/*
                             Customize the skeletons shown for attributes to suit your needs. At the point
                             that we show the skeleton we do not know how many variations are selectable. So choose
@@ -264,7 +314,7 @@ const ProductView = ({
                                         selectedValue,
                                         values = []
                                     } = variationAttribute
-                                    return (
+                                    return name == 'Swatch' ? (
                                         <SwatchGroup
                                             key={id}
                                             onChange={(_, href) => {
@@ -304,13 +354,27 @@ const ProductView = ({
                                                 </Swatch>
                                             ))}
                                         </SwatchGroup>
+                                    ) : (
+                                        name == 'Size' && (
+                                            <Flex direction="column" w="full" align="center">
+                                                <Link variant="gray" mb={1}>
+                                                    Size Guide
+                                                </Link>
+                                                <Select placeholder="Select your size">
+                                                    {values.map(({name, value}, index) => (
+                                                        <option key={index} value={value}>
+                                                            {name}
+                                                        </option>
+                                                    ))}
+                                                </Select>
+                                            </Flex>
+                                        )
                                     )
                                 })}
                             </>
                         )}
-
                         {/* Quantity Selector */}
-                        <VStack align="stretch" maxWidth={'200px'}>
+                        {/* <VStack align="stretch" maxWidth={'200px'}>
                             <Box fontWeight="bold">
                                 <label htmlFor="quantity">
                                     {intl.formatMessage({
@@ -360,35 +424,40 @@ const ProductView = ({
                                     </Text>
                                 </Link>
                             )}
-                        </HideOnDesktop>
-                    </VStack>
+                        </HideOnDesktop> */}
 
-                    <Box display={['none', 'none', 'none', 'block']}>
-                        {!showLoading && showInventoryMessage && (
-                            <Fade in={true}>
-                                <Text color="orange.600" fontWeight={600} marginBottom={8}>
-                                    {inventoryMessage}
-                                </Text>
-                            </Fade>
-                        )}
-                        {renderActionButtons()}
-                    </Box>
+                        <Flex
+                            display={['none', 'none', 'none', 'flex']}
+                            direction={{base: 'row', md: 'column'}}
+                            w="full"
+                        >
+                            {!showLoading && showInventoryMessage && (
+                                <Fade in={true}>
+                                    <Text color="orange.600" fontWeight={600} marginBottom={8}>
+                                        {inventoryMessage}
+                                    </Text>
+                                </Fade>
+                            )}
+                            {renderActionButtons()}
+                        </Flex>
+
+                        {/*Add to Cart Button for mobile versions*/}
+                        <Box
+                            position="fixed"
+                            bg="white"
+                            width="100%"
+                            display={['block', 'block', 'block', 'none']}
+                            p={[4, 4, 6]}
+                            left={0}
+                            bottom={0}
+                            zIndex={2}
+                            boxShadow={theme.shadows.top}
+                        >
+                            {renderActionButtons()}
+                        </Box>
+                    </VStack>
                 </VStack>
             </Flex>
-            {/*Add to Cart Button for mobile versions*/}
-            <Box
-                position="fixed"
-                bg="white"
-                width="100%"
-                display={['block', 'block', 'block', 'none']}
-                p={[4, 4, 6]}
-                left={0}
-                bottom={0}
-                zIndex={2}
-                boxShadow={theme.shadows.top}
-            >
-                {renderActionButtons()}
-            </Box>
         </Flex>
     )
 }

@@ -16,6 +16,7 @@ import '../../assets/svg/alert.svg'
 import '../../assets/svg/account.svg'
 import '../../assets/svg/basket.svg'
 import '../../assets/svg/bg-club.svg'
+import '../../assets/svg/bullhorn.svg'
 import '../../assets/svg/check.svg'
 import '../../assets/svg/check-circle.svg'
 import '../../assets/svg/chevron-up.svg'
@@ -181,6 +182,7 @@ export const BgClub = createIcon({
 export const AccountIcon = icon('account')
 export const BrandLogo = icon('brand-logo', {viewBox: BrandLogoSymbol.viewBox})
 export const BasketIcon = icon('basket')
+export const BullhornIcon = icon('bullhorn')
 export const CheckIcon = icon('check')
 export const CheckCircleIcon = icon('check-circle')
 export const ChevronDownIcon = icon('chevron-down')

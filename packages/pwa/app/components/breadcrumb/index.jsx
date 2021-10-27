@@ -62,7 +62,7 @@ const Breadcrumb = ({categories, product, ...rest}) => {
             {/* Product Breadcrumb Item */}
             {product && (
                 <ChakraBreadcrumbItem key={10} data-testid="sf-crumb-item">
-                    <Box {...styles.product}>{product}</Box>
+                    <Box {...styles.product}>{product.name}</Box>
                 </ChakraBreadcrumbItem>
             )}
         </ChakraBreadcrumb>

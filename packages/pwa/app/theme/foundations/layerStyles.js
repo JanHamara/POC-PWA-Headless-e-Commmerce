@@ -5,6 +5,14 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+const pageBase = {
+    paddingBottom: 32,
+    width: '100%',
+    maxWidth: 'container.xxxxl',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    px: [4, 4, 6, 6, 3]
+}
 const card = {
     py: 6,
     px: 4,
@@ -31,12 +39,12 @@ export default {
     },
 
     page: {
-        px: [4, 4, 6, 6, 3],
-        paddingBottom: 32,
-        width: '100%',
-        maxWidth: 'container.xxxxl',
-        marginLeft: 'auto',
-        marginRight: 'auto'
+        ...pageBase,
+        paddingTop: 10
+    },
+
+    productPage: {
+        ...pageBase
     },
 
     reset: {
