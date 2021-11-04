@@ -7,8 +7,9 @@
 
 export default {
     base: '1rem', // 16px
-    '4xs': '0.695rem', // 11px
-    '3xs': '0.75rem', // 12px
+    '5xs': '0.695rem', // 11px
+    '4xs': '0.75rem', // 12px
+    '3xs': '0.8125rem', // 13px
     '2xs': '0.875rem', // 14px
     xs: '0.9375rem', // 15px
     sm: '1.125rem', // 18px

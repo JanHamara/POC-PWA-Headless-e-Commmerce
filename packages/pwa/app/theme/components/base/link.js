@@ -15,7 +15,7 @@ const linkBase = {
 
 const unstyledBase = {
     display: 'inline-block',
-    fontSize: '3xs',
+    fontSize: '4xs',
     fontWeight: 'semibold',
     letterSpacing: 'widest',
     textTransform: 'uppercase',
@@ -71,7 +71,7 @@ export default {
         },
         secondary: {
             ...linkBase,
-            fontSize: '3xs',
+            fontSize: '4xs',
             textDecoration: 'underline',
             fontWeight: 'normal'
         },
@@ -86,9 +86,10 @@ export default {
         },
         submenu: {
             ...linkBase,
-            fontSize: '3xs',
+            fontSize: '4xs',
             // color: props.colorMode === 'dark' ? 'white' : 'gray.400',
             color: 'gray.400',
+            fontWeight: 'regular',
             _hover: {
                 textDecoration: 'underline',
                 textDecorationThickness: '1px',

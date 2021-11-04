@@ -8,7 +8,9 @@ export default {
     11: '2.75rem',
     max: 'max-content',
     min: 'min-content',
+    fit: 'fit-content',
     full: '100%',
+    half: '50%',
     '3xs': '14rem',
     '2xs': '16rem',
     xs: '20rem',
@@ -26,12 +28,13 @@ export default {
     container: {
         xs: '378px',
         sm: '480px',
+        column: '640px',
         md: '768px',
         lg: '1024px',
         xl: '1280px',
         xxl: '1440px',
         xxxl: '1560px',
         xxxxl: '1600px',
-        xxxxxl: '1745px'
+        xxxxxl: '1800px' // max-width
     }
 }

@@ -1779,12 +1779,6 @@
       "value": "Please enter your name as shown on your card"
     }
   ],
-  "header.button.assistive_msg.bg_club": [
-    {
-      "type": 0,
-      "value": "BG Club"
-    }
-  ],
   "header.button.assistive_msg.logo": [
     {
       "type": 0,
@@ -1812,7 +1806,7 @@
   "header.search.field.value.placeholder": [
     {
       "type": 0,
-      "value": "Search"
+      "value": "Search for products..."
     }
   ],
   "hp3uqR": [

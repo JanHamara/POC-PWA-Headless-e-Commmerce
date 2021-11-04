@@ -36,6 +36,7 @@ import '../../assets/svg/flag-cn.svg'
 import '../../assets/svg/flag-jp.svg'
 import '../../assets/svg/hamburger.svg'
 import '../../assets/svg/info.svg'
+import '../../assets/svg/minus.svg'
 import '../../assets/svg/social-facebook.svg'
 import '../../assets/svg/social-instagram.svg'
 import '../../assets/svg/social-twitter.svg'
@@ -207,6 +208,7 @@ export const LocationIcon = icon('location')
 export const PaymentIcon = icon('payment')
 export const PaypalIcon = icon('paypal', {viewBox: PaypalSymbol.viewBox})
 export const PlusIcon = icon('plus')
+export const MinusIcon = icon('minus')
 export const MastercardIcon = icon('cc-mastercard', {viewBox: MastercardSymbol.viewBox})
 export const ReceiptIcon = icon('receipt')
 export const SearchIcon = icon('search')

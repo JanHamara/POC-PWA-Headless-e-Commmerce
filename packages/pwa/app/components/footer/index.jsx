@@ -6,6 +6,8 @@
  */
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
+import {getAssetUrl} from 'pwa-kit-react-sdk/ssr/universal/utils'
+
 import {
     Box,
     Text,
@@ -20,9 +22,16 @@ import {
     InputGroup,
     InputRightElement,
     Button,
-    FormControl
+    VStack,
+    Flex,
+    FormControl,
+    Center,
+    Image
 } from '@chakra-ui/react'
+
 import {useIntl} from 'react-intl'
+
+import footerServices from '../../mocks/footer'
 
 import LinksList from '../links-list'
 import SocialIcons from '../social-icons'
@@ -37,142 +46,218 @@ const Footer = ({...otherProps}) => {
     const [locale, setLocale] = useState(intl.locale)
 
     return (
-        <Box as="footer" {...styles.container} {...otherProps}>
-            <Box {...styles.content}>
-                <StylesProvider value={styles}>
-                    <HideOnMobile>
-                        <SimpleGrid columns={4} spacing={3}>
-                            <LinksList
-                                heading={intl.formatMessage({
-                                    id: 'footer.column.customer_support',
-                                    defaultMessage: 'Customer Support'
-                                })}
-                                links={[
-                                    {
-                                        href: '/',
-                                        text: intl.formatMessage({
-                                            id: 'footer.link.contact_us',
-                                            defaultMessage: 'Contact Us'
-                                        })
-                                    },
-                                    {
-                                        href: '/',
-                                        text: intl.formatMessage({
-                                            id: 'footer.link.shipping',
-                                            defaultMessage: 'Shipping'
-                                        })
+        <Box as="footer" {...otherProps}>
+            <StylesProvider value={styles}>
+                <Box {...styles.container}>
+                    <Box {...styles.content} my={6}>
+                        <Flex>
+                            {footerServices?.map((service, index) => (
+                                <VStack
+                                    {...styles.service}
+                                    spacing={1}
+                                    key={index}
+                                    borderRight={
+                                        footerServices.length - 1 == index ? 0 : '1px solid #bebebe'
                                     }
-                                ]}
-                            />
-                            <LinksList
-                                heading={intl.formatMessage({
-                                    id: 'footer.column.account',
-                                    defaultMessage: 'Account'
-                                })}
-                                links={[
-                                    {
-                                        href: '/',
-                                        text: intl.formatMessage({
-                                            id: 'footer.link.order_status',
-                                            defaultMessage: 'Order Status'
-                                        })
-                                    },
-                                    {
-                                        href: '/',
-                                        text: intl.formatMessage({
-                                            id: 'footer.link.signin_create_account',
-                                            defaultMessage: 'Sign in or Create Account'
-                                        })
-                                    }
-                                ]}
-                            />
-                            <LinksList
-                                heading={intl.formatMessage({
-                                    id: 'footer.column.our_company',
-                                    defaultMessage: 'Our Company'
-                                })}
-                                links={[
-                                    {
-                                        href: '/',
-                                        text: intl.formatMessage({
-                                            id: 'footer.link.store_locator',
-                                            defaultMessage: 'Store Locator'
-                                        })
-                                    },
-                                    {
-                                        href: '/',
-                                        text: intl.formatMessage({
-                                            id: 'footer.link.about_us',
-                                            defaultMessage: 'About Us'
-                                        })
-                                    }
-                                ]}
-                            />
-                            <Box>
-                                <Subscribe />
-                            </Box>
-                        </SimpleGrid>
-                    </HideOnMobile>
+                                >
+                                    <Center h={16} w="full">
+                                        <Image
+                                            {...styles.image}
+                                            alt={service.image.alt}
+                                            src={getAssetUrl(`static/img/${service.image.src}.png`)}
+                                        />
+                                    </Center>
 
-                    <HideOnDesktop>
-                        <Subscribe />
-                    </HideOnDesktop>
+                                    <Text textStyle="baseHeadingBoldShort" fontSize="md">
+                                        {service.title}
+                                    </Text>
 
-                    <Box {...styles.localeSelector}>
-                        <FormControl
-                            data-testid="sf-footer-locale-selector"
-                            id="locale_selector"
-                            width="auto"
-                            {...otherProps}
-                        >
-                            <Select
-                                value={locale}
-                                onChange={({target}) => {
-                                    setLocale(target.value)
-
-                                    // Update the `locale` in the URL.
-                                    const newUrl = getUrlWithLocale(target.value, {
-                                        disallowParams: ['refine']
-                                    })
-
-                                    window.location = newUrl
-                                }}
-                                variant="filled"
-                                {...styles.localeDropdown}
-                            >
-                                {SUPPORTED_LOCALES.map((locale) => (
-                                    <LocaleText
-                                        as="option"
-                                        value={locale.id}
-                                        shortCode={locale.id}
-                                        key={locale.id}
-                                    />
-                                ))}
-                            </Select>
-                        </FormControl>
+                                    <Text
+                                        textAlign="center"
+                                        textStyle="secondaryRegular"
+                                        fontSize="3xs"
+                                        fontStyle="italic"
+                                        maxW="60%"
+                                        dangerouslySetInnerHTML={{__html: service.content}}
+                                    ></Text>
+                                </VStack>
+                            ))}
+                        </Flex>
                     </Box>
+                </Box>
 
-                    <Divider {...styles.horizontalRule} />
+                <Box {...styles.container}>
+                    <Box {...styles.wrapper}>
+                        <Box position="relative" w="full" h="auto">
+                            <Box {...styles.bgWrapper}></Box>
 
-                    <Box {...styles.bottomHalf}>
-                        <Text {...styles.copyright}>
-                            &copy;{' '}
-                            {intl.formatMessage({
-                                id: 'footer.message.copyright',
-                                defaultMessage:
-                                    '2021 Salesforce or its affiliates. All rights reserved. This is a demo store only. Orders made WILL NOT be processed.'
-                            })}
-                        </Text>
+                            <Box {...styles.content}>
+                                <HideOnMobile>
+                                    <SimpleGrid gridTemplateColumns="50% 1fr 1fr" spacing={3}>
+                                        <Box {...styles.listgrid}>
+                                            <LinksList
+                                                heading={intl.formatMessage({
+                                                    id: 'footer.column.the_group',
+                                                    defaultMessage: 'The Group'
+                                                })}
+                                                links={[
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.history',
+                                                            defaultMessage: 'History'
+                                                        })
+                                                    },
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.press',
+                                                            defaultMessage: 'Press'
+                                                        })
+                                                    },
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.partners',
+                                                            defaultMessage: 'Partners'
+                                                        })
+                                                    },
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.carreers',
+                                                            defaultMessage: 'Carreers'
+                                                        })
+                                                    }
+                                                ]}
+                                            />
+                                            <LinksList
+                                                heading={intl.formatMessage({
+                                                    id: 'footer.column.latest_news',
+                                                    defaultMessage: 'Latest News'
+                                                })}
+                                                links={[
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.in_the_mood_magazine',
+                                                            defaultMessage: 'IN THE MOOD Magazine'
+                                                        })
+                                                    },
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.bc_insights',
+                                                            defaultMessage: 'BC Insights'
+                                                        })
+                                                    },
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.bc_live_shopping',
+                                                            defaultMessage: 'BC Live Shopping'
+                                                        })
+                                                    }
+                                                ]}
+                                            />
+                                            {/* <LinksList
+                                                heading={intl.formatMessage({
+                                                    id: 'footer.column.our_company',
+                                                    defaultMessage: 'Our Company'
+                                                })}
+                                                links={[
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.store_locator',
+                                                            defaultMessage: 'Store Locator'
+                                                        })
+                                                    },
+                                                    {
+                                                        href: '/',
+                                                        text: intl.formatMessage({
+                                                            id: 'footer.link.about_us',
+                                                            defaultMessage: 'About Us'
+                                                        })
+                                                    }
+                                                ]}
+                                            /> */}
+                                        </Box>
 
-                        <HideOnDesktop>
-                            <LegalLinks variant="vertical" />
+                                        <Box>
+                                            {/* <Subscribe /> */}
+                                            [Placeholder]
+                                        </Box>
+
+                                        <Box>
+                                            {/* <Subscribe /> */}
+                                            [Placeholder]
+                                        </Box>
+                                    </SimpleGrid>
+                                </HideOnMobile>
+
+                                {/* <HideOnDesktop>
+                            <Subscribe />
                         </HideOnDesktop>
-                        <HideOnMobile>
-                            <LegalLinks variant="horizontal" />
-                        </HideOnMobile>
+
+                        <Box {...styles.localeSelector}>
+                            <FormControl
+                                data-testid="sf-footer-locale-selector"
+                                id="locale_selector"
+                                width="auto"
+                                {...otherProps}
+                            >
+                                <Select
+                                    value={locale}
+                                    onChange={({target}) => {
+                                        setLocale(target.value)
+
+                                        // Update the `locale` in the URL.
+                                        const newUrl = getUrlWithLocale(target.value, {
+                                            disallowParams: ['refine']
+                                        })
+
+                                        window.location = newUrl
+                                    }}
+                                    variant="filled"
+                                    {...styles.localeDropdown}
+                                >
+                                    {SUPPORTED_LOCALES.map((locale) => (
+                                        <LocaleText
+                                            as="option"
+                                            value={locale.id}
+                                            shortCode={locale.id}
+                                            key={locale.id}
+                                        />
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Box>
+
+                        <Divider {...styles.horizontalRule} />
+
+                        <Box {...styles.bottomHalf}>
+                            <Text {...styles.copyright}>
+                                &copy;{' '}
+                                {intl.formatMessage({
+                                    id: 'footer.message.copyright',
+                                    defaultMessage:
+                                        '2021 Salesforce or its affiliates. All rights reserved. This is a demo store only. Orders made WILL NOT be processed.'
+                                })}
+                            </Text>
+
+                            <HideOnDesktop>
+                                <LegalLinks variant="vertical" />
+                            </HideOnDesktop>
+                            <HideOnMobile>
+                                <LegalLinks variant="horizontal" />
+                            </HideOnMobile>
+                        </Box> */}
+                            </Box>
+                        </Box>
                     </Box>
-                </StylesProvider>
-            </Box>
+                </Box>
+            </StylesProvider>
         </Box>
     )
 }

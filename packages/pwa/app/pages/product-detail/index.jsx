@@ -12,18 +12,17 @@ import {FormattedMessage, useIntl} from 'react-intl'
 
 // Components
 import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
     Box,
     Button,
-    Icon,
     Link,
     Stack,
     HStack,
-    Spacer
+    Spacer,
+    VStack,
+    Flex,
+    Center,
+    Text,
+    Divider
 } from '@chakra-ui/react'
 
 // Hooks
@@ -34,8 +33,9 @@ import useNavigation from '../../hooks/use-navigation'
 import useEinstein from '../../commerce-api/hooks/useEinstein'
 
 // Project Components
-import RecommendedProducts from '../../components/recommended-products'
+// import RecommendedProducts from '../../components/recommended-products'
 import ProductView from '../../partials/product-view'
+import ProductCreatorInfo from '../../components/product-creator-info'
 
 // Others/Utils
 import {HTTPNotFound} from 'pwa-kit-react-sdk/ssr/universal/errors'
@@ -47,6 +47,17 @@ import {useHistory} from 'react-router-dom'
 import {useToast} from '../../hooks/use-toast'
 import Breadcrumb from '../../components/breadcrumb'
 import {ChevronRightIcon} from '../../components/icons'
+
+// TODO: Integrate Typescript
+//
+// interface CreatorInfoProps {
+//     name: string;
+//     content: string;
+//     link: {
+//         label: string;
+//         href: string;
+//     }
+// }
 
 const ProductDetail = ({category, product, isLoading}) => {
     const {formatMessage} = useIntl()
@@ -150,20 +161,52 @@ const ProductDetail = ({category, product, isLoading}) => {
         }
     }, [product])
 
+    /**************** Some Mock Data ****************/
+
+    // getProductInfo(productID, variant).then((response) => ...)
+    const productInfo = {
+        referenceInfo: [
+            {
+                label: 'Reference',
+                value: 'A175248-CAME'
+            },
+            {
+                label: 'Assemblage',
+                value: 'Hors Europe'
+            }
+        ],
+        styleInfo: [
+            {
+                label: 'Color',
+                value: 'Medium Brown'
+            }
+        ]
+    }
+
+    // getCreator(productID).then((response) => ...)
+    const creatorInfo = {
+        id: '5812619',
+        name: 'Ash',
+        content:
+            "Ash successfully combines a touch of couture with rock 'n' roll and a twist of casual-chic allure. The brand was created in 2000 by the French designer Patrick Ithier and the Italian entrepreneur Leonello Calvani. Women in search of beautifully edgy shoes simply love the label. Stay comfortable in the brand's signature cult-item, the wedged sneakers, not only do they look great with skirts or trousers, but will elevate any look. Ash's collections offer a great variety of styles, including romantic, boho and rock looks. The brand's flat or heeled shoes, sandals, sneakers and boots guarantee you night and day sartorial sassiness. Discover our Ash shoe selection in our Geneva and Lausanne stores or shop them online and enjoy free delivery in Switzerland and Liechtenstein.",
+        linkLabel: 'Discover'
+    }
+    /**************** ENDOF / Some Mock Data ****************/
+
     return (
         <Box
             className="sf-product-detail-page"
             layerStyle="productPage"
             data-testid="product-details-page"
         >
-            {/**************** HELMET ****************/}
+            {/**************** PDP | HELMET ****************/}
             <Helmet>
                 <title>{product?.pageTitle}</title>
                 <meta name="description" content={product?.pageDescription} />
             </Helmet>
 
             {/*    Need styles here for this container */}
-            {/**************** PDP BREADCRUMB HEADER ****************/}
+            {/**************** PDP | BREADCRUMB HEADER ****************/}
             <HStack h="63px" verticalAlign="middle">
                 <Breadcrumb
                     categories={primaryCategory?.parentCategoryTree || []}
@@ -182,9 +225,9 @@ const ProductDetail = ({category, product, isLoading}) => {
                 </Link>
             </HStack>
 
-            {/**************** PDP CONTENT ****************/}
+            {/**************** PDP | CONTENT ****************/}
             <Stack spacing={16}>
-                {/**************** PDP PRODUCT VIEW ****************/}
+                {/**************** PDP | PRODUCT VIEW ****************/}
                 <ProductView
                     product={product}
                     category={primaryCategory?.parentCategoryTree || []}
@@ -194,79 +237,64 @@ const ProductDetail = ({category, product, isLoading}) => {
                     isCustomerProductListLoading={!wishlist.isInitialized}
                 />
 
-                {/* Information Accordion */}
-                {/* <Stack direction="row" spacing={[0, 0, 0, 16]}>
-                    <Accordion allowMultiple allowToggle maxWidth={'896px'} flex={[1, 1, 1, 5]}>
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton height="64px">
-                                    <Box flex="1" textAlign="left" fontWeight="bold" fontSize="lg">
-                                        {formatMessage({
-                                            defaultMessage: 'Product Detail'
-                                        })}
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel mb={6} mt={4}>
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: product?.longDescription
-                                    }}
-                                />
-                            </AccordionPanel>
-                        </AccordionItem>
+                {/**************** PDP | PRODUCT FEATURES STACK ****************/}
+                <VStack mt={6} align="center" justify="center" spacing={6}>
+                    {/**************** PDP | PRODUCT FEATURES ****************/}
+                    <Box w="full">
+                        <Text
+                            w="full"
+                            as="h6"
+                            mb={6}
+                            fontSize="base"
+                            textAlign="center"
+                            textStyle="baseHeadingBold"
+                        >
+                            Features
+                        </Text>
+                        {productInfo.referenceInfo && (
+                            <Flex
+                                layerStyle="graybox"
+                                textStyle="baseRegular"
+                                fontSize="3xs"
+                                letterSpacing="wider"
+                                w="full"
+                                paddingLeft={10}
+                                paddingRight={10}
+                            >
+                                <VStack w="full" spacing={4}>
+                                    {productInfo.referenceInfo.map((refInfo, index) => (
+                                        <Flex key={index} w="full">
+                                            <Text flex="1">{refInfo.label}:</Text>
+                                            <Text flex="1">{refInfo.value}</Text>
+                                        </Flex>
+                                    ))}
+                                </VStack>
 
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton height="64px">
-                                    <Box flex="1" textAlign="left" fontWeight="bold" fontSize="lg">
-                                        {formatMessage({
-                                            defaultMessage: 'Size & Fit'
-                                        })}
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel mb={6} mt={4}>
-                                {formatMessage({defaultMessage: 'Coming Soon'})}
-                            </AccordionPanel>
-                        </AccordionItem>
+                                <Center w="30%">
+                                    <Divider
+                                        orientation="vertical"
+                                        borderColor="gray.300"
+                                    ></Divider>
+                                </Center>
 
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton height="64px">
-                                    <Box flex="1" textAlign="left" fontWeight="bold" fontSize="lg">
-                                        {formatMessage({
-                                            defaultMessage: 'Reviews'
-                                        })}
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel mb={6} mt={4}>
-                                Coming Soon
-                            </AccordionPanel>
-                        </AccordionItem>
+                                <VStack w="full" spacing={4}>
+                                    {productInfo.styleInfo.map((styleInfoItem, index) => (
+                                        <Flex key={index} w="full">
+                                            <Text flex="1">{styleInfoItem.label}:</Text>
+                                            <Text flex="1">{styleInfoItem.value}</Text>
+                                        </Flex>
+                                    ))}
+                                </VStack>
+                            </Flex>
+                        )}
+                    </Box>
 
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton height="64px">
-                                    <Box flex="1" textAlign="left" fontWeight="bold" fontSize="lg">
-                                        {formatMessage({
-                                            defaultMessage: 'Questions'
-                                        })}
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel mb={6} mt={4}>
-                                Coming Soon
-                            </AccordionPanel>
-                        </AccordionItem>
-                    </Accordion>
-                    <Box display={['none', 'none', 'none', 'block']} flex={4}></Box>
-                </Stack> */}
+                    {/**************** PDP | PRODUCT AUTHOR ****************/}
+                    {creatorInfo.name && creatorInfo.content && (
+                        <ProductCreatorInfo {...creatorInfo}></ProductCreatorInfo>
+                    )}
+                </VStack>
+
                 {/* Product Recommendations */}
                 {/* <Stack spacing={16}>
                     <RecommendedProducts

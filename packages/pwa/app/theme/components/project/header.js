@@ -10,7 +10,9 @@ const barStyle = {
     marginLeft: 'auto',
     marginRight: 'auto',
     paddingTop: [1, 1, 2, 4],
-    paddingBottom: [3, 3, 2, 4]
+    paddingBottom: [3, 3, 2, 4],
+    paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
+    paddingRight: {base: 4, md: 8, xl: 10, max: 4}
 }
 
 const containerBase = {

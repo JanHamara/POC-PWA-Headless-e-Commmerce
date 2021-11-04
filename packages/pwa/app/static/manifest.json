@@ -1,9 +1,9 @@
 {
-  "name": "PWA Headless E-Commerce: Bongenie Grieder",
-  "short_name": "Bongenie Grieder",
+  "name": "example.com",
+  "short_name": "example.com",
   "start_url": "/?homescreen=1",
   "background_color": "#fff",
-  "theme_color": "#000",
+  "theme_color": "#4e439b",
   "display": "standalone",
   "icons": [
     {

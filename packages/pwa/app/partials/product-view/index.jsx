@@ -11,19 +11,35 @@ import {useHistory, useLocation} from 'react-router-dom'
 import {useIntl} from 'react-intl'
 
 import {
+    AspectRatio,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
     Flex,
     Heading,
     Button,
     Link,
     Skeleton,
+    Image,
     Box,
     Text,
     VStack,
     Fade,
     useTheme,
+    Divider,
     Select
 } from '@chakra-ui/react'
-import {ChevronRightIcon, HeartSolidIcon, BullhornIcon} from '../../components/icons'
+import {
+    ChevronRightIcon,
+    HeartSolidIcon,
+    BullhornIcon,
+    LocationIcon,
+    BgClub,
+    MinusIcon,
+    PlusIcon
+} from '../../components/icons'
 
 import {useProduct} from '../../hooks'
 import {useAddToCartModalContext} from '../../hooks/use-add-to-cart-modal'
@@ -130,6 +146,9 @@ const ProductView = ({
         parseInt(quantity) > 0 &&
         parseInt(quantity) <= stockLevel
 
+    // REPLACE - Additional Mock Data
+    const reassurances = ['Quick Delivery', 'To your door', 'Easy Returns']
+
     const renderActionButtons = () => {
         const buttons = []
 
@@ -180,7 +199,7 @@ const ProductView = ({
                         disabled={isWishlistLoading || !canAddToWishlist}
                         isLoading={isWishlistLoading}
                         variant="gray"
-                        fontSize="3xs"
+                        fontSize="4xs"
                         fontWeight="normal"
                         p="5px 15px"
                     >
@@ -196,7 +215,7 @@ const ProductView = ({
                         disabled={isWishlistLoading || !canAddToWishlist}
                         isLoading={isWishlistLoading}
                         variant="gray"
-                        fontSize="3xs"
+                        fontSize="4xs"
                         fontWeight="normal"
                         p="5px 15px"
                     >
@@ -260,10 +279,11 @@ const ProductView = ({
                 {/* Variations & Quantity Selector */}
                 <VStack
                     align="stretch"
-                    spacing={8}
+                    spacing={9}
                     flex={1}
                     marginBottom={[16, 16, 16, 0, 0]}
                     pl={36}
+                    pr={8}
                 >
                     <Box display={['none', 'none', 'none', 'block']}>
                         <ProductViewHeader
@@ -292,7 +312,7 @@ const ProductView = ({
                         {/*
                             Customize the skeletons shown for attributes to suit your needs. At the point
                             that we show the skeleton we do not know how many variations are selectable. So choose
-                            a a skeleton that will meet most of your needs.
+                            a skeleton that will meet most of your needs.
                         */}
                         {showLoading ? (
                             <>
@@ -455,6 +475,123 @@ const ProductView = ({
                         >
                             {renderActionButtons()}
                         </Box>
+
+                        {reassurances && (
+                            <Box>
+                                <Flex mt={5} h={5} justify="center">
+                                    {reassurances.map((item, index) => (
+                                        <Flex h={5} textStyle="baseBold" fontSize="2xs" key={index}>
+                                            {item}{' '}
+                                            {reassurances.length - 1 !== index && (
+                                                <Divider
+                                                    mx={2}
+                                                    orientation="vertical"
+                                                    borderColor="gray.800"
+                                                    borderLeftWidth="2px"
+                                                ></Divider>
+                                            )}
+                                        </Flex>
+                                    ))}
+                                </Flex>
+                            </Box>
+                        )}
+                    </VStack>
+
+                    <VStack align="center" spacing={5} w="full" maxW="full">
+                        {/* Click and Collect Box */}
+                        <Flex w="full" direction="column" justify="center" align="center">
+                            {/* Click-and-collect Asset */}
+                            <Box boxSize="55px">
+                                <AspectRatio ratio={1 / 1}>
+                                    <Image
+                                        src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635942965/temp/POC:%20PWA%20%2B%20SF%20B2C%20Commerce%20Cloud/click-and-collect_n5xsvo.png"
+                                        alt="click-and-collect-icon"
+                                    ></Image>
+                                </AspectRatio>
+                            </Box>
+
+                            <VStack spacing={1.5} marginTop={-3} layerStyle="graybox">
+                                <Text textStyle="baseRegular" fontSize="3xs">
+                                    Reserve and pick up in store
+                                </Text>
+                                <Text textStyle="baseBold" fontSize="2xs">
+                                    Select attributes to see availability
+                                </Text>
+                            </VStack>
+                        </Flex>
+
+                        {/* Location Availability Box */}
+                        <Flex w="full" direction="column" justify="center" align="center">
+                            {/* Click-and-collect Asset */}
+                            <Box boxSize="30px">
+                                <AspectRatio ratio={1 / 1}>
+                                    <LocationIcon></LocationIcon>
+                                </AspectRatio>
+                            </Box>
+
+                            <VStack spacing={1.5} marginTop={-2} layerStyle="graybox">
+                                <Text textStyle="baseBold" fontSize="2xs">
+                                    Select attributes to see availability
+                                </Text>
+                            </VStack>
+                        </Flex>
+
+                        {/* BG CLub Info Box */}
+                        <Flex
+                            w="full"
+                            direction="row"
+                            justify="center"
+                            align="center"
+                            layerStyle="graybox"
+                        >
+                            <BgClub w="52px" h="18px" fill="gray.900" />
+
+                            <Divider
+                                mx={8}
+                                orientation="vertical"
+                                borderColor="gray.400"
+                                borderLeftWidth="1px"
+                            ></Divider>
+
+                            <Text textAlign="center" textStyle="secondaryRegular" fontSize="2xs">
+                                With our tailor-made loyalty program <strong>BG Club</strong>, you
+                                accumulate points with each purchase. Already member? Sign in. Not
+                                one of our privileged members yet? Sign up quickly.
+                            </Text>
+                        </Flex>
+
+                        <Accordion w="full" allowMultiple>
+                            <AccordionItem>
+                                {({isExpanded}) => (
+                                    <>
+                                        <h2>
+                                            <AccordionButton>
+                                                <Box flex="1" textAlign="left">
+                                                    Product Details
+                                                </Box>
+                                                {isExpanded ? (
+                                                    <MinusIcon fontSize="12px" />
+                                                ) : (
+                                                    <PlusIcon fontSize="12px" />
+                                                )}
+                                            </AccordionButton>
+                                        </h2>
+                                        <AccordionPanel>
+                                            Embroidered with ethnical Inca art inspired patterns,
+                                            these <strong>ASH</strong> boots will elevate any
+                                            outfit! They are made of distressed looking suede, and
+                                            are lined with smooth leather. A zipper is concealed on
+                                            the insides of the ankles. Pointy tips, leather soles
+                                            and Cuban heels complete the look.
+                                            <br />
+                                            <br />
+                                            <li>Heel: 4cm</li>
+                                            <li>Shaft height: 32cm</li>
+                                        </AccordionPanel>
+                                    </>
+                                )}
+                            </AccordionItem>
+                        </Accordion>
                     </VStack>
                 </VStack>
             </Flex>

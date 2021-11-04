@@ -332,16 +332,17 @@ const Header = ({
                                 icon={
                                     <>
                                         <BasketIcon boxSize={6} />
-                                        {basket?.loaded && (
+                                        {/* {basket?.loaded && (
                                             <Badge variant="notification" boxSize={6}>
                                                 {basket.itemAccumulatedCount}
                                             </Badge>
-                                        )}
+                                        )} */}
                                     </>
                                 }
                                 variant="unstyled"
                                 {...styles.icons}
-                                onClick={onMyCartClick}
+                                // onClick={onMyCartClick}
+                                onClick={toggleColorMode}
                             />
                         </HStack>
                     </Flex>

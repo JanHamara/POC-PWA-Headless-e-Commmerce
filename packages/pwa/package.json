@@ -1,6 +1,6 @@
 {
-    "name": "scaffold-pwa",
-    "version": "1.2.0-dev",
+    "name": "poc-pwa-headless-ecommerce",
+    "version": "0.0.1",
     "license": "See license in LICENSE",
     "private": true,
     "mobify": {
@@ -23,16 +23,16 @@
             "ssrFunctionNodeVersion": "14.x",
             "proxyConfigs": [
                 {
-                    "host": "kv7kzm78.api.commercecloud.salesforce.com",
-                    "path": "api"
+                    "path": "api",
+                    "host": "kv7kzm78.api.commercecloud.salesforce.com"
                 },
                 {
-                    "host": "zzrf-001.sandbox.us01.dx.commercecloud.salesforce.com",
-                    "path": "ocapi"
+                    "path": "ocapi",
+                    "host": "zzte-033.sandbox.us02.dx.commercecloud.salesforce.com"
                 },
                 {
-                    "host": "api.cquotient.com",
-                    "path": "einstein"
+                    "path": "einstein",
+                    "host": "api.cquotient.com"
                 }
             ]
         }

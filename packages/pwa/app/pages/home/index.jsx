@@ -59,7 +59,6 @@ const Home = () => {
                 })}
                 marginBottom="16"
             />
-
             <Section
                 title={intl.formatMessage({
                     defaultMessage: 'Shop by Category'

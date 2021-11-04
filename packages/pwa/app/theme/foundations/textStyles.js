@@ -54,10 +54,52 @@ const productPrice = {
 
 const productPriceCurrency = {
     ...productPrice,
-    fontSize: '3xs',
+    fontSize: '4xs',
     lineHeight: 4,
     mr: 1,
     mt: 2
+}
+
+const baseRegular = {
+    ...base,
+    color: 'gray.800',
+    fontWeight: 'regular',
+    textTransform: 'uppercase'
+}
+
+const baseBold = {
+    ...base,
+    color: 'gray.800',
+    fontWeight: 'semibold',
+    textTransform: 'uppercase'
+}
+
+const secondaryRegular = {
+    fontFamily: 'heading',
+    color: 'gray.800'
+}
+
+const baseHeadingBold = {
+    ...baseBold,
+    color: 'black',
+    letterSpacing: 'wider'
+}
+
+const baseHeadingBoldShort = {
+    ...baseHeadingBold,
+    letterSpacing: 'normal'
+}
+
+const grayboxHeading = {
+    ...base,
+    fontSize: 'sm',
+    fontWeight: 'semibold',
+    color: 'gray.800',
+    letterSpacing: 'wider'
+}
+
+const footerNavItem = {
+    color: 'gray.400'
 }
 
 export default {
@@ -65,6 +107,22 @@ export default {
     heading,
     subtitle,
     text,
+
+    // Base Text Styles
+    baseRegular,
+    baseBold,
+
+    // Base Headings
+    baseHeadingBold,
+    baseHeadingBoldShort,
+
+    // Heading Text Styles (Playfair)
+    secondaryRegular,
+
+    // Graybox Styles
+    grayboxHeading,
+
+    footerNavItem,
 
     // PDP Text Styles
     productName,

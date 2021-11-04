@@ -6,7 +6,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Box, List, ListItem, Link, Heading, HStack, useMultiStyleConfig} from '@chakra-ui/react'
+import {Box, List, ListItem, Link, Text, HStack, useMultiStyleConfig} from '@chakra-ui/react'
 import {Link as RouteLink} from 'react-router-dom'
 
 const LinksList = ({
@@ -30,16 +30,16 @@ const LinksList = ({
                         ref={headingLinkRef}
                         {...styles.headingLink}
                     >
-                        <Heading {...styles.heading} {...(heading.styles ? heading.styles : {})}>
+                        <Text {...styles.heading} {...(heading.styles ? heading.styles : {})}>
                             {heading.text}
-                        </Heading>
+                        </Text>
                     </Link>
                 ) : (
-                    <Heading {...styles.heading}>{heading}</Heading>
+                    <Text {...styles.heading}>{heading}</Text>
                 ))}
 
             {links && (
-                <List spacing={5} {...styles.list}>
+                <List spacing={0.5} {...styles.list}>
                     {variant === 'horizontal' ? (
                         <HStack>
                             {links.map((link, i) => (
@@ -49,6 +49,7 @@ const LinksList = ({
                                         to={link.href}
                                         onClick={onLinkClick}
                                         {...(link.styles ? link.styles : {})}
+                                        variant="submenu"
                                     >
                                         {link.text}
                                     </Link>
@@ -63,6 +64,7 @@ const LinksList = ({
                                     to={link.href}
                                     onClick={onLinkClick}
                                     {...(link.styles ? link.styles : {})}
+                                    variant="submenu"
                                 >
                                     {link.text}
                                 </Link>

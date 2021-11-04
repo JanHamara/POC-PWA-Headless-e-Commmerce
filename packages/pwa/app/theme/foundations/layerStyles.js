@@ -6,32 +6,49 @@
  */
 
 const pageBase = {
-    paddingBottom: 32,
-    width: '100%',
+    paddingBottom: 16,
+    width: 'full',
     maxWidth: 'container.xxxxl',
     marginLeft: 'auto',
     marginRight: 'auto',
-    px: [4, 4, 6, 6, 3]
-}
-const card = {
-    py: 6,
-    px: 4,
-    backgroundColor: 'white',
-    rounded: 'base',
-    boxShadow: 'base'
+    paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
+    paddingRight: {base: 4, md: 8, xl: 10, max: 4}
 }
 
-const cardBordered = {
-    ...card,
-    px: [4, 4, 5, 6],
-    border: '1px solid',
-    borderColor: 'gray.50'
+// const card = {
+//     py: 6,
+//     px: 4,
+//     backgroundColor: 'white',
+//     rounded: 'base',
+//     boxShadow: 'base'
+// }
+
+// const cardBordered = {
+//     ...card,
+//     px: [4, 4, 5, 6],
+//     border: '1px solid',
+//     borderColor: 'gray.50'
+// }
+
+const graybox = {
+    w: 'full',
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 6,
+    paddingBottom: 5,
+    backgroundColor: 'bg'
+}
+
+const grayboxMedium = {
+    ...graybox,
+    paddingTop: 10,
+    paddingBottom: 10
 }
 
 export default {
-    card,
+    // card,
 
-    cardBordered,
+    // cardBordered,
 
     ccIcon: {
         width: '34px',
@@ -46,6 +63,9 @@ export default {
     productPage: {
         ...pageBase
     },
+
+    graybox,
+    grayboxMedium,
 
     reset: {
         p: 0,

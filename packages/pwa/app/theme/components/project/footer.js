@@ -4,10 +4,23 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import {background} from '@chakra-ui/styled-system'
+
+/*
+ * Copyright (c) 2021, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 export default {
     parts: [
         'container',
         'content',
+        'service',
+        'wrapper',
+        'bgWrapper',
+        'section',
+        'listgrid',
         'subscribe',
         'subscribeField',
         'subscribeButtonContainer',
@@ -22,17 +35,42 @@ export default {
     baseStyle: {
         container: {
             width: 'full',
-            background: 'gray.900'
+            background: 'white',
+            borderTop: '1px solid #bebebe',
+            position: 'relative'
+        },
+        wrapper: {
+            position: 'absolute',
+            w: 'full',
+            h: 'auto'
+        },
+        bgWrapper: {
+            w: '50%',
+            h: 'full',
+            position: 'absolute',
+            left: 0,
+            backgroundColor: 'bg',
+            zIndex: '-2'
         },
         content: {
-            maxWidth: 'container.xxl',
+            w: 'full',
+            maxWidth: 'container.xxxxxl',
             marginLeft: 'auto',
             marginRight: 'auto',
-            color: 'white',
-            paddingTop: {base: 8, lg: 10},
-            paddingBottom: 8,
-            paddingLeft: [4, 4, 6, 8],
-            paddingRight: [4, 4, 6, 8]
+            color: 'black',
+            paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
+            paddingRight: {base: 4, md: 8, xl: 10, max: 4}
+        },
+        service: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            py: 4
+        },
+        listgrid: {
+            borderRight: '1px solid #bebebe',
+            paddingTop: 6,
+            paddingBottom: 6
         },
         subscribe: {
             maxWidth: {base: '21.5rem', lg: 'none'}

@@ -78,7 +78,12 @@ const SelectedRefinements = ({toggleFilter, selectedFilterValues, filters}) => {
             {selectedFilters?.length > 0 && (
                 <WrapItem>
                     <Box>
-                        <Button variant="link" size="sm" onClick={resetFilters}>
+                        <Button
+                            padding={{sm: 0, base: 2}}
+                            variant="link"
+                            size="sm"
+                            onClick={resetFilters}
+                        >
                             <FormattedMessage defaultMessage="Clear All" />
                         </Button>
                     </Box>

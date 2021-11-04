@@ -7,15 +7,27 @@
 export default {
     baseStyle: {
         button: {
-            paddingLeft: 0,
+            textStyle: 'baseRegular',
+            paddingLeft: 4,
+            minHeight: '45px',
+            fontSize: '2xs',
+
+            _expanded: {
+                color: 'black',
+                fontWeight: 'semibold',
+                borderTop: '1.5px #000000 solid'
+            },
 
             _hover: {
                 background: 'none'
             }
         },
         panel: {
-            paddingTop: 0,
-            paddingBottom: 0
+            paddingLeft: 4,
+            paddingRight: 4,
+            paddingBottom: 5,
+            textStyle: 'secondaryRegular',
+            fontSize: '3xs'
         }
     }
 }

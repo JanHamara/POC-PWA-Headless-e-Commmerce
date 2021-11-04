@@ -245,6 +245,9 @@ const App = (props) => {
                                     >
                                         <OfflineBoundary isOnline={false}>
                                             {children}
+
+                                            {/**************** PDP | FOOTER ****************/}
+                                            <Footer></Footer>
                                         </OfflineBoundary>
                                     </Box>
                                 </SkipNavContent>

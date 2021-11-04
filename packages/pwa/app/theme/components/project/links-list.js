@@ -9,17 +9,20 @@ export default {
     baseStyle: {
         container: {
             // color: 'white'
+            mb: 6
         },
         list: {
-            fontSize: 'sm'
+            fontSize: '4xs',
+            textStyle: 'footerNavItem'
         },
         headingLink: {
             display: 'inline-flex'
         },
         heading: {
-            fontSize: 'md',
-            paddingTop: 3,
-            paddingBottom: 3
+            fontFamily: 'body',
+            textStyle: 'baseHeadingBold',
+            fontSize: '4xs',
+            mb: 1
         }
     },
     variants: {
