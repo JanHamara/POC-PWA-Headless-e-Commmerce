@@ -40,4 +40,58 @@ const footerServices = [
     }
 ]
 
+// const footerNavigation = [
+//     {
+//         heading: {
+//             id: 'footer.column.the_group',
+//             value: 'The Group'
+//         },
+//         items: [
+//             {
+//                 id: 'footer.column.history',
+//                 href: '/',
+//                 value: 'History'
+//             },
+//             {
+//                 id: 'footer.column.press',
+//                 href: '/',
+//                 value: 'Press'
+//             },
+//             {
+//                 id: 'footer.column.partners',
+//                 href: '/',
+//                 value: 'Partners'
+//             },
+//             {
+//                 id: 'footer.column.careers',
+//                 href: '/',
+//                 value: 'Careers'
+//             }
+//         ]
+//     },
+//     {
+//         heading: {
+//             id: 'footer.column.latest_news',
+//             value: 'Latest News'
+//         },
+//         items: [
+//             {
+//                 id: 'footer.column.in_the_mood_magazine',
+//                 href: '/',
+//                 value: 'IN THE MOOD Magazine'
+//             },
+//             {
+//                 id: 'footer.link.bc_insights',
+//                 href: '/',
+//                 value: 'BC YOLO'
+//             },
+//             {
+//                 id: 'footer.link.bc_live_shopping',
+//                 href: '/',
+//                 defaultMessage: 'BC Live Shopping'
+//             }
+//         ]
+//     }
+// ]
+
 export default footerServices

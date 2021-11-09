@@ -17,11 +17,11 @@ export default {
     baseStyle: {
         container: {},
         heroImage: {
-            maxH: '740px'
+            maxH: {base: '530px', md: '740px'}
         },
         heroImageGroup: {
-            minW: '640px',
-            w: '640px',
+            minW: {base: 'full', md: '400px', '2xl': '640px'},
+            w: {base: 'full', md: '400px', '2xl': '640px'},
             position: 'relative'
         },
         heroImageRightSwitch: {
@@ -30,7 +30,7 @@ export default {
         },
         heroImageLeftSwitch: {
             ...switchBase,
-            left: '5%'
+            left: {base: '0%', md: '5%'}
         },
         heroImageSkeleton: {
             marginBottom: 2

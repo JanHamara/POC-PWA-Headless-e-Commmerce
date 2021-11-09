@@ -30,7 +30,7 @@ const ProductCreatorInfo = ({id, name, content, linkLabel}) => {
             layerStyle="grayboxMedium"
         >
             <VStack w="full" spacing={3}>
-                <Text textStyle="baseRegular" fontSize="4xs">
+                <Text textStyle="baseRegular" fontSize="4xs" letterSpacing="wider">
                     {formatMessage({
                         defaultMessage: 'About the creator'
                     })}
@@ -49,7 +49,13 @@ const ProductCreatorInfo = ({id, name, content, linkLabel}) => {
             </VStack>
 
             {linkLabel && id && (
-                <Link mt={10} mb={4} w="fit" href={`/creator/${id}`} variant="primary">
+                <Link
+                    mt={10}
+                    mb={{base: 0, md: 4}}
+                    w="fit"
+                    href={`/creator/${id}`}
+                    variant="primary"
+                >
                     {linkLabel}
                 </Link>
             )}

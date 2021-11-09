@@ -190,6 +190,7 @@ const Search = (props) => {
                                     onFocus={() => shouldOpenPopover()}
                                     onBlur={() => setIsOpen(false)}
                                     type="search"
+                                    size="md"
                                     ref={searchInputRef}
                                     {...props}
                                     variant="search"

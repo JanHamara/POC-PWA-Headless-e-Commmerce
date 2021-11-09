@@ -90,12 +90,13 @@ export default {
             // color: props.colorMode === 'dark' ? 'white' : 'gray.400',
             color: 'gray.400',
             fontWeight: 'regular',
-            _hover: {
-                textDecoration: 'underline',
-                textDecorationThickness: '1px',
-                textUnderlineOffset: '3px',
-                textDecorationColor: 'black'
-            }
+            letterSpacing: 'normal'
+            // _hover: {
+            //     textDecoration: 'underline',
+            //     textDecorationThickness: '1px',
+            //     textUnderlineOffset: '3px',
+            //     textDecorationColor: 'black'
+            // }
         },
         gray: {
             ...linkBase,

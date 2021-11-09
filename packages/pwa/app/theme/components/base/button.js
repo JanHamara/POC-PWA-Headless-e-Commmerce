@@ -18,7 +18,8 @@ export default {
         fontSize: '2xs',
         borderRadius: 0,
         fontWeight: 'medium',
-        letterSpacing: 'widest'
+        letterSpacing: 'widest',
+        _hover: {bg: 'gray.800', _disabled: {bg: 'whiteAlpha.300'}}
     },
     variants: {
         solid: (props) =>
@@ -95,7 +96,18 @@ export default {
             w: 6,
             h: 6,
             m: 0,
-            lineHeight: 0
+            lineHeight: 0,
+            _hover: {
+                background: 'transparent'
+            }
+        },
+        footer: {
+            fontSize: '4xs',
+            minH: 'auto',
+            h: 'auto',
+            w: 'fit-content',
+            py: 2,
+            fontWeight: 'semibold'
         }
     }
 }

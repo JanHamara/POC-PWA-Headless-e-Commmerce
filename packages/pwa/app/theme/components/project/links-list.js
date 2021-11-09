@@ -11,12 +11,11 @@ export default {
             // color: 'white'
             mb: 6
         },
-        list: {
-            fontSize: '4xs',
-            textStyle: 'footerNavItem'
-        },
         headingLink: {
             display: 'inline-flex'
+        },
+        listItem: {
+            lineHeight: 'none'
         },
         heading: {
             fontFamily: 'body',

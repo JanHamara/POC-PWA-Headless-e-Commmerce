@@ -10,11 +10,12 @@ import PropTypes from 'prop-types'
 
 // Components
 import {
-    Flex,
+    HStack,
     IconButton,
 
     // Hooks
-    useMultiStyleConfig
+    useMultiStyleConfig,
+    useMediaQuery
 } from '@chakra-ui/react'
 
 // Icons
@@ -31,10 +32,14 @@ import {
  */
 const SocialIcons = ({variant, pinterestInnerColor = 'white', ...otherProps}) => {
     const styles = useMultiStyleConfig('SocialIcons', {variant})
+    const [isDesktop] = useMediaQuery('(min-width: 768px)')
 
     return (
-        <Flex
+        <HStack
+            spacing={{base: 2, md: 3}}
             className="sf-social-icons"
+            maxWidth={isDesktop ? 'unset' : '300px'}
+            mx="auto"
             {...styles.container}
             sx={{'--pinterest-icon-inner': pinterestInnerColor}}
             {...otherProps}
@@ -78,7 +83,7 @@ const SocialIcons = ({variant, pinterestInnerColor = 'white', ...otherProps}) =>
                     aria-label={ariaLabel}
                 />
             ))}
-        </Flex>
+        </HStack>
     )
 }
 

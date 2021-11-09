@@ -4,33 +4,32 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import {background} from '@chakra-ui/styled-system'
-
-/*
- * Copyright (c) 2021, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
 export default {
     parts: [
         'container',
         'content',
-        'service',
         'wrapper',
         'bgWrapper',
-        'section',
-        'listgrid',
-        'subscribe',
-        'subscribeField',
-        'subscribeButtonContainer',
-        'subscribeHeading',
-        'subscribeMessage',
-        'localeSelector',
-        'bottomHalf',
-        'horizontalRule',
+
+        'footerServices',
+        'footerService',
+        'footerServiceTitle',
+        'footerServiceContent',
+
+        'footerNavGrid',
+
+        'newsletter',
+        'newsletterHeading',
+        'newsletterSebheading',
+        'newsletterMessage',
+
+        'customerService',
+        'customerServiceNumber',
+        'customerServiceWrapper',
+
         'copyright',
-        'socialIcons'
+        'copyrightWrapper',
+        'copyrightFlex'
     ],
     baseStyle: {
         container: {
@@ -38,6 +37,15 @@ export default {
             background: 'white',
             borderTop: '1px solid #bebebe',
             position: 'relative'
+        },
+        content: {
+            w: 'full',
+            maxWidth: 'container.xxxxxl',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            color: 'black',
+            paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
+            paddingRight: {base: 4, md: 8, xl: 10, max: 4}
         },
         wrapper: {
             position: 'absolute',
@@ -50,70 +58,112 @@ export default {
             position: 'absolute',
             left: 0,
             backgroundColor: 'bg',
-            zIndex: '-2'
+            zIndex: '-2',
+            borderRight: '1px solid #bebebe'
         },
-        content: {
-            w: 'full',
-            maxWidth: 'container.xxxxxl',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            color: 'black',
-            paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
-            paddingRight: {base: 4, md: 8, xl: 10, max: 4}
+
+        // Footer Services
+        footerServices: {
+            flexWrap: {base: 'wrap', xl: 'nowrap'}
         },
-        service: {
+        footerService: {
             flex: 1,
             alignItems: 'center',
             justifyContent: 'flex-start',
-            py: 4
+            py: 4,
+            maxW: {base: 'half', xl: 'auto'},
+            minW: {base: 'half', xl: 'auto'},
+            spacing: 1
         },
-        listgrid: {
-            borderRight: '1px solid #bebebe',
+        footerServiceTitle: {
+            textStyle: 'baseHeadingBoldShort',
+            textAlign: 'center',
+            fontSize: {base: '2xs', xl: 'md'}
+        },
+        footerServiceContent: {
+            textAlign: 'center',
+            textStyle: 'secondaryRegular',
+            fontSize: '3xs',
+            fontStyle: 'italic',
+            mx: 'auto',
+            maxWidth: '240px'
+        },
+
+        // Footer Navigation
+        footerNavGrid: {
             paddingTop: 6,
-            paddingBottom: 6
+            paddingBottom: 6,
+            paddingLeft: {base: 8, md: 0},
+            paddingRight: {base: 8, md: 0, xl: 6}
         },
-        subscribe: {
-            maxWidth: {base: '21.5rem', lg: 'none'}
+
+        // Footer Newsletter
+        newsletter: {
+            backgroundColor: 'bg',
+            paddingX: {base: 8, md: 0, xl: 6},
+            paddingY: 6
         },
-        subscribeField: {
-            background: 'white',
-            color: 'gray.900'
-        },
-        subscribeButtonContainer: {
-            width: 'auto'
-        },
-        subscribeHeading: {
-            fontSize: 'md',
+        newsletterHeading: {
+            fontSize: 'lg',
+            textStyle: 'baseThin',
             marginBottom: 2
         },
-        subscribeMessage: {
-            fontSize: 'sm',
-            marginBottom: 4
-        },
-        localeSelector: {
-            display: 'inline-block',
+        newsletterSubheading: {
+            fontSize: 'md',
+            textStyle: 'baseThin',
+            textAlign: {base: 'center', md: 'left'},
             marginTop: 8,
-            marginBottom: 5
+            marginBottom: 1
         },
-        localeDropdown: {
-            background: 'gray.800',
-            _hover: {
-                background: 'whiteAlpha.500'
-            }
+        newsletterMessage: {
+            fontSize: '3xs',
+            textStyle: 'secondaryItalic',
+            marginBottom: {base: 0, lg: 4}
         },
-        bottomHalf: {
-            maxWidth: {base: '34.5rem', lg: '100%'}
+
+        // Customer Service
+        customerService: {
+            display: {base: 'flex', lg: 'block'},
+            flexDirection: 'column',
+            alignItems: {base: 'center', md: 'flex-start'},
+            paddingLeft: {base: 8, md: 0, xl: 6},
+            paddingRight: {base: 8, lg: 0},
+            paddingY: 6
         },
-        horizontalRule: {
-            marginBottom: 4
+        customerServiceNumber: {
+            mt: {base: 4, lg: 6},
+            justifyContent: 'flex-start',
+            h: '40px'
         },
+        customerServiceWrapper: {
+            alignItems: 'flex-start',
+            spacing: 0,
+            mt: '-7px',
+            ml: 3
+        },
+
+        // Copyright Row
         copyright: {
-            fontSize: 'sm',
-            marginBottom: 6,
-            color: 'gray.50'
+            position: {base: 'static', xl: 'absolute'},
+            h: {base: 'auto', md: '50px'},
+            bottom: {base: 'unset', xl: '-370px'}
         },
-        socialIcons: {
-            marginTop: 4
+        copyrightWrapper: {
+            my: {base: 6, md: 0},
+            h: 'full'
+        },
+        copyrightFlex: {
+            h: 'full',
+            flexDirection: {base: 'vertical', md: 'horizontal'},
+            flexWrap: {base: 'wrap', md: 'nowrap'},
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+        copyrightItem: {
+            w: {base: 'full', md: 'auto'},
+            textAlign: 'center',
+            textStyle: 'submenu',
+            textTransform: 'uppercase'
         }
     }
 }

@@ -39,6 +39,7 @@ import ProductCreatorInfo from '../../components/product-creator-info'
 
 // Others/Utils
 import {HTTPNotFound} from 'pwa-kit-react-sdk/ssr/universal/errors'
+import {HideOnDesktop, HideOnMobile} from '../../components/responsive'
 
 // constant
 import {API_ERROR_MESSAGE} from '../../constants'
@@ -207,23 +208,25 @@ const ProductDetail = ({category, product, isLoading}) => {
 
             {/*    Need styles here for this container */}
             {/**************** PDP | BREADCRUMB HEADER ****************/}
-            <HStack h="63px" verticalAlign="middle">
-                <Breadcrumb
-                    categories={primaryCategory?.parentCategoryTree || []}
-                    // product={product?.name}
-                    // REPLACE
-                    product={{
-                        name: 'Incas embroidered suede boots'
-                    }}
-                ></Breadcrumb>
+            <HideOnMobile>
+                <HStack h="63px" verticalAlign="middle">
+                    <Breadcrumb
+                        categories={primaryCategory?.parentCategoryTree || []}
+                        // product={product?.name}
+                        // REPLACE
+                        product={{
+                            name: 'Incas embroidered suede boots'
+                        }}
+                    ></Breadcrumb>
 
-                <Spacer></Spacer>
+                    <Spacer></Spacer>
 
-                {/* Need to setup internationalized label here */}
-                <Link variant="unstyled" href="/">
-                    Back to Catalogue <ChevronRightIcon boxSize={4} mb="1px" mx="2px" />
-                </Link>
-            </HStack>
+                    {/* Need to setup internationalized label here */}
+                    <Link variant="unstyled" href="/">
+                        Back to Catalogue <ChevronRightIcon boxSize={4} mb="1px" mx="2px" />
+                    </Link>
+                </HStack>
+            </HideOnMobile>
 
             {/**************** PDP | CONTENT ****************/}
             <Stack spacing={16}>
@@ -260,6 +263,7 @@ const ProductDetail = ({category, product, isLoading}) => {
                                 w="full"
                                 paddingLeft={10}
                                 paddingRight={10}
+                                flexDirection={{base: 'column', md: 'row'}}
                             >
                                 <VStack w="full" spacing={4}>
                                     {productInfo.referenceInfo.map((refInfo, index) => (
@@ -271,11 +275,17 @@ const ProductDetail = ({category, product, isLoading}) => {
                                 </VStack>
 
                                 <Center w="30%">
-                                    <Divider
-                                        orientation="vertical"
-                                        borderColor="gray.300"
-                                    ></Divider>
+                                    <HideOnMobile fh={true}>
+                                        <Divider
+                                            orientation="vertical"
+                                            borderColor="gray.300"
+                                        ></Divider>
+                                    </HideOnMobile>
                                 </Center>
+
+                                <HideOnDesktop>
+                                    <Box minH={4} h={4}></Box>
+                                </HideOnDesktop>
 
                                 <VStack w="full" spacing={4}>
                                     {productInfo.styleInfo.map((styleInfoItem, index) => (

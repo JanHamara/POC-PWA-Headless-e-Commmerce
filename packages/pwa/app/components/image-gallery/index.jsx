@@ -27,6 +27,8 @@ import {ChevronRightIcon, ChevronLeftIcon} from '../icons'
 
 import {findImageGroupBy} from '../../utils/image-groups-utils'
 
+import {HideOnMobile} from '../responsive'
+
 const EnterKeyNumber = 13
 
 const LARGE = 'large'
@@ -126,34 +128,46 @@ const ImageGallery = ({imageGroups = [], selectedVariationAttributes = {}, size}
     const heroImage = selectedIndex ? thumbnailImages[selectedIndex] : thumbnailImages[0]
 
     return (
-        <Flex direction={'row'} wrap={'nowrap'}>
-            <List display={'flex'} flexDirection={'column'} flexWrap={'nowrap'} w={24} maxW={24}>
-                {thumbnailImages.map((image, index) => {
-                    const selected = index === selectedIndex
-                    return (
-                        <ListItem
-                            {...styles.thumbnailImageItem}
-                            tabIndex={0}
-                            key={index}
-                            data-testid="image-gallery-thumbnails"
-                            onKeyDown={(e) => {
-                                if (e.keyCode === EnterKeyNumber) {
-                                    return setSelectedIndex(index)
-                                }
-                            }}
-                            onClick={() => setSelectedIndex(index)}
-                            opacity={`${selected ? 1 : 0.4}`}
-                        >
-                            <AspectRatio
-                                ratio={1}
-                                sx={{'& > img, & > video': {}}} // Override defaults from AspectRatio in order to be able to apply objectFit="contain"    ISSUE: https://giters.com/chakra-ui/chakra-ui/issues/4347?amp=1
+        <Flex direction={{base: 'column', md: 'row'}} wrap={'nowrap'}>
+            <HideOnMobile>
+                <List
+                    display={'flex'}
+                    flexDirection={'column'}
+                    flexWrap={'nowrap'}
+                    w={24}
+                    maxW={24}
+                >
+                    {thumbnailImages.map((image, index) => {
+                        const selected = index === selectedIndex
+                        return (
+                            <ListItem
+                                {...styles.thumbnailImageItem}
+                                tabIndex={0}
+                                key={index}
+                                data-testid="image-gallery-thumbnails"
+                                onKeyDown={(e) => {
+                                    if (e.keyCode === EnterKeyNumber) {
+                                        return setSelectedIndex(index)
+                                    }
+                                }}
+                                onClick={() => setSelectedIndex(index)}
+                                opacity={`${selected ? 1 : 0.4}`}
                             >
-                                <Img alt={image.alt} src={image.disBaseLink} objectFit="contain" />
-                            </AspectRatio>
-                        </ListItem>
-                    )
-                })}
-            </List>
+                                <AspectRatio
+                                    ratio={1}
+                                    sx={{'& > img, & > video': {}}} // Override defaults from AspectRatio in order to be able to apply objectFit="contain"    ISSUE: https://giters.com/chakra-ui/chakra-ui/issues/4347?amp=1
+                                >
+                                    <Img
+                                        alt={image.alt}
+                                        src={image.disBaseLink}
+                                        objectFit="contain"
+                                    />
+                                </AspectRatio>
+                            </ListItem>
+                        )
+                    })}
+                </List>
+            </HideOnMobile>
 
             {heroImage && (
                 <Box {...styles.heroImageGroup}>
@@ -162,7 +176,12 @@ const ImageGallery = ({imageGroups = [], selectedVariationAttributes = {}, size}
                         ratio={4 / 5}
                         sx={{'& > img, & > video': {}}} // Override defaults from AspectRatio in order to be able to apply objectFit="contain"    ISSUE: https://giters.com/chakra-ui/chakra-ui/issues/4347?amp=1
                     >
-                        <Img alt={heroImage.alt} src={heroImage.disBaseLink} objectFit="contain" />
+                        <Img
+                            alt={heroImage.alt}
+                            src={heroImage.disBaseLink}
+                            py={{base: 6, md: 0}}
+                            objectFit="contain"
+                        />
                     </AspectRatio>
 
                     <ChevronLeftIcon

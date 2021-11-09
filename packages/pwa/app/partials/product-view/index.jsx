@@ -192,7 +192,7 @@ const ProductView = ({
 
         if (addToWishlist || updateWishlist) {
             buttons.push(
-                <Flex justify="center">
+                <Flex justify="center" w={{base: 'full'}}>
                     <Link
                         key="wishlist-button"
                         onClick={handleWishlistItem}
@@ -250,8 +250,13 @@ const ProductView = ({
                     category={category}
                 />
             </Box> */}
-            <Flex direction={['column', 'column', 'column', 'row']}>
-                <Box flex={1} mr={[0, 0, 0, 6, 6]} borderTop="1px solid #bebebe" pt={12}>
+            <Flex direction={{base: 'column', lg: 'row'}}>
+                <Box
+                    flex={1}
+                    mr={{base: 0, md: 6}}
+                    borderTop={{base: 0, md: '1px solid #bebebe'}}
+                    pt={12}
+                >
                     {product ? (
                         <>
                             <ImageGallery
@@ -282,10 +287,11 @@ const ProductView = ({
                     spacing={9}
                     flex={1}
                     marginBottom={[16, 16, 16, 0, 0]}
-                    pl={36}
-                    pr={8}
+                    pl={{base: 0, md: 36}}
+                    pr={{base: 0, md: 8}}
+                    pt={{base: 3, md: 0}}
                 >
-                    <Box display={['none', 'none', 'none', 'block']}>
+                    <Box>
                         <ProductViewHeader
                             // name={product?.name}
                             // brand="Balenciaga"
@@ -305,8 +311,8 @@ const ProductView = ({
                     <VStack
                         align="center"
                         spacing={5}
-                        w="container.xs"
-                        maxW="container.xs"
+                        w={{base: 'full', md: 'container.xs'}}
+                        maxW={{base: 'full', md: 'container.xs'}}
                         alignSelf="center"
                     >
                         {/*
@@ -446,35 +452,16 @@ const ProductView = ({
                             )}
                         </HideOnDesktop> */}
 
-                        <Flex
-                            display={['none', 'none', 'none', 'flex']}
-                            direction={{base: 'row', md: 'column'}}
-                            w="full"
-                        >
+                        <Flex direction="column" w="full">
                             {!showLoading && showInventoryMessage && (
                                 <Fade in={true}>
-                                    <Text color="orange.600" fontWeight={600} marginBottom={8}>
+                                    <Text color="red.600" fontWeight={600} marginBottom={8}>
                                         {inventoryMessage}
                                     </Text>
                                 </Fade>
                             )}
                             {renderActionButtons()}
                         </Flex>
-
-                        {/*Add to Cart Button for mobile versions*/}
-                        <Box
-                            position="fixed"
-                            bg="white"
-                            width="100%"
-                            display={['block', 'block', 'block', 'none']}
-                            p={[4, 4, 6]}
-                            left={0}
-                            bottom={0}
-                            zIndex={2}
-                            boxShadow={theme.shadows.top}
-                        >
-                            {renderActionButtons()}
-                        </Box>
 
                         {reassurances && (
                             <Box>

@@ -9,8 +9,8 @@ const barStyle = {
     maxWidth: 'container.xxxxxl',
     marginLeft: 'auto',
     marginRight: 'auto',
-    paddingTop: [1, 1, 2, 4],
-    paddingBottom: [3, 3, 2, 4],
+    paddingTop: {base: 2, lg: 4},
+    paddingBottom: {base: 2, lg: 4},
     paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
     paddingRight: {base: 4, md: 8, xl: 10, max: 4}
 }
@@ -32,21 +32,41 @@ export default {
             borderTop: '1px solid #bebebe',
             borderBottom: '1px solid #bebebe'
         },
+
+        // Top Bar
         topbar: {
             ...barStyle,
             maxH: 10,
             h: 10,
-            paddingTop: [1],
-            paddingBottom: [1],
+            w: 'full',
+            paddingTop: {base: 2, md: 1},
+            paddingBottom: {base: 2, md: 1},
             size: 'xs',
             fontWeight: 'semibold',
-            letterSpacing: 'wide'
+            letterSpacing: 'wide',
+            alignItems: 'center',
+            justifyContent: 'space-between'
         },
+        topBarLink: {
+            minW: 'fit-content'
+        },
+
+        // Main Bar
         mainbar: {
             ...barStyle,
-            maxH: '94px',
-            h: '94px'
+            maxH: {base: '46px', lg: '94px'},
+            h: {base: '46px', lg: '94px'},
+            display: {base: 'flex', lg: 'block'},
+            alignItems: {base: 'center', lg: 'unset'}
         },
+        mainbarWrapper: {
+            flexwrap: 'nowrap',
+            alignItems: {base: 'center', lg: 'flex-end'},
+            minH: 'full',
+            justifyContent: {base: 'space-between', lg: 'center'}
+        },
+
+        // Secondary Bar
         secondarybar: {
             ...barStyle,
             maxWidth: 'container.xxl',
@@ -55,6 +75,8 @@ export default {
             paddingTop: 0,
             paddingBottom: 0
         },
+
+        // Navigation Comnponents
         searchContainer: {
             order: [2, 2, 2, 'inherit'],
             width: ['full', 'full', 'full', '215px'],
@@ -106,6 +128,11 @@ export default {
         icons: {
             color: 'gray.500'
         },
+        menuIcon: {
+            color: 'black',
+            width: 6,
+            height: 6
+        },
         bgclub: {
             width: '72px',
             h: '25px',
@@ -145,11 +172,16 @@ export default {
     },
     parts: [
         'container',
+        'containerBordered',
         'topbar',
+        'topBarLink',
         'mainbar',
+        'mainbarWrapper',
+        'secondarybar',
         'searchContainer',
         'bodyContainer',
         'logo',
+        'menuIcon',
         'icons',
         'signout'
     ]

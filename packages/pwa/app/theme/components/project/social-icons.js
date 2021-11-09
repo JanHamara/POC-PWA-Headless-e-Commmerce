@@ -7,16 +7,17 @@
 export default {
     baseStyle: {
         container: {
-            flex: 1
+            flex: 1,
+            h: '40px'
         },
         icon: {
-            width: 5,
-            height: 5
+            width: 8,
+            height: 8
         },
         item: {
+            w: 'fit-content',
             textAlign: 'center',
-            paddingLeft: 2,
-            paddingRight: 2
+            mx: 4
         }
     },
     variants: {
@@ -25,7 +26,8 @@ export default {
                 justifyContent: 'flex-start'
             },
             item: {
-                flex: 0
+                flex: 0,
+                mx: 0
             }
         },
         'flex-end': {

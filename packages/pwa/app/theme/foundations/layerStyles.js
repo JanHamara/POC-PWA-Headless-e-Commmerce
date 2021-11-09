@@ -41,8 +41,15 @@ const graybox = {
 
 const grayboxMedium = {
     ...graybox,
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: {base: 4, md: 16},
+    paddingRight: {base: 4, md: 16},
+    paddingTop: {base: 4, md: 6},
+    paddingBottom: {base: 0, md: 5},
+    backgroundColor: {base: 'none', md: 'bg'}
+}
+
+const bordered = {
+    border: '1px solid #dadada'
 }
 
 export default {
@@ -66,6 +73,7 @@ export default {
 
     graybox,
     grayboxMedium,
+    bordered,
 
     reset: {
         p: 0,

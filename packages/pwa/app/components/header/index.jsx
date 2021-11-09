@@ -14,6 +14,7 @@ import {
     IconButton,
     Image,
     Badge,
+    Img,
     Button,
     Popover,
     PopoverHeader,
@@ -44,15 +45,18 @@ import {
     AccountIcon,
     BgClub,
     BasketIcon,
-    HamburgerIcon,
     ChevronDownIcon,
     HeartIcon,
-    SignoutIcon
+    SignoutIcon,
+    HamburgerIcon
 } from '../icons'
+
+import {AboveLG, BelowLG} from '../responsive'
 
 import {noop} from '../../utils/utils'
 import {navLinks, messages} from '../../pages/account/constant'
 import useNavigation from '../../hooks/use-navigation'
+import {getAssetUrl} from 'pwa-kit-react-sdk/ssr/universal/utils'
 import LoadingSpinner from '../loading-spinner'
 import LocaleSelector from '../locale-selector'
 
@@ -91,6 +95,8 @@ const Header = ({
     const navigate = useNavigation()
 
     const {colorMode, toggleColorMode} = useColorMode()
+
+    // Color Modes
     const topBarBg = useColorModeValue('bg', 'gray.800')
     const mainBarBg = useColorModeValue('white', 'gray.900')
 
@@ -129,15 +135,23 @@ const Header = ({
             {/* Navigation - Top Bar */}
             {/* -------------------- */}
             <Box {...styles.container} minW="full" bg={topBarBg} {...props}>
-                <Flex alignItems="center" {...styles.topbar}>
-                    Subscribe to our newsletter and be the first to know about our offers, new
-                    arrivals and events.
-                    <Spacer />
-                    <Stack direction="row" spacing="40px">
-                        <Link>Outlet</Link>
-                        <Link>Hofstetter</Link>
-                        <Link onClick={toggleColorMode}>Our Stores</Link>
-                    </Stack>
+                <Flex {...styles.topbar}>
+                    <Text fontSize={{base: '4xs', md: '2xs'}} lineHeight="shorter">
+                        Looking for gift ideas? Find the most desirable presents for your love dones
+                        in our Christmas shop.
+                    </Text>
+
+                    <AboveLG>
+                        <Spacer />
+
+                        <Stack direction="row" spacing="40px" ml="40px">
+                            <Link {...styles.topBarLink}>Outlet</Link>
+                            <Link {...styles.topBarLink}>Hofstetter</Link>
+                            <Link {...styles.topBarLink} onClick={toggleColorMode}>
+                                Our Stores
+                            </Link>
+                        </Stack>
+                    </AboveLG>
                 </Flex>
             </Box>
 
@@ -147,222 +161,274 @@ const Header = ({
             <Box {...styles.container} minW="full" bg={mainBarBg} {...props}>
                 <Box {...styles.mainbar}>
                     {showLoading && <LoadingSpinner wrapperStyles={{height: '100vh'}} />}
-                    <Flex
-                        wrap="wrap"
-                        alignItems={['baseline', 'baseline', 'baseline', 'flex-end']}
-                        minH="full"
-                        justifyContent="center"
-                    >
-                        {/* <IconButton
-                            aria-label={intl.formatMessage({
-                                id: 'header.button.assistive_msg.menu',
-                                defaultMessage: 'Menu'
-                            })}
-                            icon={<HamburgerIcon />}
-                            variant="unstyled"
-                            display={{lg: 'none'}}
-                            {...styles.icons}
-                            onClick={onMenuClick}
-                        /> */}
+                    <AboveLG fw={true}>
+                        <Flex {...styles.mainbarWrapper}>
+                            {/* ------------------------ */}
+                            {/* ---- DESKTOP ---- */}
+                            {/* ------------------------ */}
+                            <HStack spacing={4} {...styles.languageSelector}>
+                                <Link href="/fr-FR/design" {...styles.langSelectorItem}>
+                                    FR
+                                </Link>
+                                <Link
+                                    href="/en-GB/design"
+                                    {...styles.langSelectorItem}
+                                    color="gray.900"
+                                >
+                                    EN
+                                </Link>
+                                <Link href="/en-GB/design" {...styles.langSelectorItem}>
+                                    DE
+                                </Link>
+                                {/* <LocaleSelector></LocaleSelector> */}
+                            </HStack>
 
-                        <HStack spacing={4} {...styles.languageSelector}>
-                            <Link href="/fr-FR/design" {...styles.langSelectorItem}>
-                                FR
-                            </Link>
-                            <Link
-                                href="/en-GB/design"
-                                {...styles.langSelectorItem}
-                                color="gray.900"
-                            >
-                                EN
-                            </Link>
-                            <Link href="/en-GB/design" {...styles.langSelectorItem}>
-                                DE
-                            </Link>
-                            {/* <LocaleSelector></LocaleSelector> */}
-                        </HStack>
-
-                        <Box {...styles.searchContainer}>
-                            <Search
-                                placeholder={intl.formatMessage({
-                                    id: 'header.search.field.value.placeholder',
-                                    defaultMessage: 'Search...'
-                                })}
-                            />
-                        </Box>
-
-                        <Spacer />
-
-                        <AspectRatio maxW="145px" w="full" h="65px" ratio={16 / 9}>
-                            <Link href="/">
-                                <Image
-                                    src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635174241/temp/logo_tumkaa.png"
-                                    alt="Site Logo"
-                                    objectFit="cover"
-                                />
-                            </Link>
-                        </AspectRatio>
-
-                        <Spacer></Spacer>
-
-                        <HStack {...styles.iconContainer} spacing={4}>
-                            <Link href="/" {...styles.bgclub}>
-                                <BgClub
-                                    w="72px"
-                                    h="25px"
-                                    fill="gray.500"
-                                    _hover={{fill: 'gray.900'}}
-                                />
-                            </Link>
-
-                            <Flex boxSize={6} justifyContent="center" alignItems="center">
-                                <AccountIcon
-                                    {...styles.accountIcon}
-                                    tabIndex={0}
-                                    onMouseOver={isDesktop ? onOpen : noop}
-                                    onKeyDown={(e) => {
-                                        e.key === ENTER_KEY ? onMyAccountClick() : noop
-                                    }}
-                                    onClick={onMyAccountClick}
-                                    aria-label={intl.formatMessage({
-                                        id: 'header.button.assistive_msg.my_account',
-                                        defaultMessage: 'My account'
+                            <Box {...styles.searchContainer}>
+                                <Search
+                                    placeholder={intl.formatMessage({
+                                        id: 'header.search.field.value.placeholder',
+                                        defaultMessage: 'Search...'
                                     })}
                                 />
-                            </Flex>
+                            </Box>
 
-                            {customer.isRegistered && (
-                                <Popover
-                                    isLazy
-                                    arrowSize={15}
-                                    isOpen={isOpen}
-                                    placement="bottom-end"
-                                    onClose={onClose}
-                                    onOpen={onOpen}
-                                >
-                                    <PopoverTrigger>
-                                        <ChevronDownIcon
-                                            aria-label="My account trigger"
-                                            onMouseLeave={handleIconsMouseLeave}
-                                            onKeyDown={(e) => {
-                                                keyMap[e.key]?.(e)
-                                            }}
-                                            {...styles.arrowDown}
-                                            onMouseOver={onOpen}
-                                            tabIndex={0}
-                                        />
-                                    </PopoverTrigger>
+                            <Spacer />
 
-                                    <PopoverContent
-                                        {...styles.popoverContent}
-                                        onMouseLeave={() => {
-                                            hasEnterPopoverContent.current = false
-                                            onClose()
+                            <AspectRatio maxW="145px" w="full" h="65px" ratio={16 / 9}>
+                                <Link href="/">
+                                    <Image
+                                        src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635174241/temp/logo_tumkaa.png"
+                                        alt="Site Logo"
+                                        objectFit="cover"
+                                    />
+                                </Link>
+                            </AspectRatio>
+
+                            <Spacer></Spacer>
+
+                            <HStack {...styles.iconContainer} spacing={4}>
+                                <Link href="/" {...styles.bgclub}>
+                                    <BgClub
+                                        w="72px"
+                                        h="25px"
+                                        fill="gray.500"
+                                        _hover={{fill: 'gray.900'}}
+                                    />
+                                </Link>
+
+                                <Flex boxSize={6} justifyContent="center" alignItems="center">
+                                    <AccountIcon
+                                        {...styles.accountIcon}
+                                        tabIndex={0}
+                                        onMouseOver={isDesktop ? onOpen : noop}
+                                        onKeyDown={(e) => {
+                                            e.key === ENTER_KEY ? onMyAccountClick() : noop
                                         }}
-                                        onMouseOver={() => {
-                                            hasEnterPopoverContent.current = true
-                                        }}
+                                        onClick={onMyAccountClick}
+                                        aria-label={intl.formatMessage({
+                                            id: 'header.button.assistive_msg.my_account',
+                                            defaultMessage: 'My account'
+                                        })}
+                                    />
+                                </Flex>
+
+                                {customer.isRegistered && (
+                                    <Popover
+                                        isLazy
+                                        arrowSize={15}
+                                        isOpen={isOpen}
+                                        placement="bottom-end"
+                                        onClose={onClose}
+                                        onOpen={onOpen}
                                     >
-                                        <PopoverArrow />
-                                        <PopoverHeader>
-                                            <Text>
-                                                {intl.formatMessage({
-                                                    defaultMessage: 'My Account'
-                                                })}
-                                            </Text>
-                                        </PopoverHeader>
-                                        <PopoverBody>
-                                            <Stack
-                                                spacing={0}
-                                                as="nav"
-                                                data-testid="account-detail-nav"
+                                        <PopoverTrigger>
+                                            <ChevronDownIcon
+                                                aria-label="My account trigger"
+                                                onMouseLeave={handleIconsMouseLeave}
+                                                onKeyDown={(e) => {
+                                                    keyMap[e.key]?.(e)
+                                                }}
+                                                {...styles.arrowDown}
+                                                onMouseOver={onOpen}
+                                                tabIndex={0}
+                                            />
+                                        </PopoverTrigger>
+
+                                        <PopoverContent
+                                            {...styles.popoverContent}
+                                            onMouseLeave={() => {
+                                                hasEnterPopoverContent.current = false
+                                                onClose()
+                                            }}
+                                            onMouseOver={() => {
+                                                hasEnterPopoverContent.current = true
+                                            }}
+                                        >
+                                            <PopoverArrow />
+                                            <PopoverHeader>
+                                                <Text>
+                                                    {intl.formatMessage({
+                                                        defaultMessage: 'My Account'
+                                                    })}
+                                                </Text>
+                                            </PopoverHeader>
+                                            <PopoverBody>
+                                                <Stack
+                                                    spacing={0}
+                                                    as="nav"
+                                                    data-testid="account-detail-nav"
+                                                >
+                                                    {navLinks.map((link) => {
+                                                        const LinkIcon = link.icon
+                                                        return (
+                                                            <Button
+                                                                key={link.name}
+                                                                as={Link}
+                                                                to={`/account${link.path}`}
+                                                                useNavLink={true}
+                                                                variant="menu-link"
+                                                                leftIcon={<LinkIcon boxSize={5} />}
+                                                            >
+                                                                {intl.formatMessage(
+                                                                    messages[link.name]
+                                                                )}
+                                                            </Button>
+                                                        )
+                                                    })}
+                                                </Stack>
+                                            </PopoverBody>
+                                            <PopoverFooter
+                                                onClick={onSignoutClick}
+                                                cursor="pointer"
                                             >
-                                                {navLinks.map((link) => {
-                                                    const LinkIcon = link.icon
-                                                    return (
-                                                        <Button
-                                                            key={link.name}
-                                                            as={Link}
-                                                            to={`/account${link.path}`}
-                                                            useNavLink={true}
-                                                            variant="menu-link"
-                                                            leftIcon={<LinkIcon boxSize={5} />}
-                                                        >
-                                                            {intl.formatMessage(
-                                                                messages[link.name]
-                                                            )}
-                                                        </Button>
-                                                    )
-                                                })}
-                                            </Stack>
-                                        </PopoverBody>
-                                        <PopoverFooter onClick={onSignoutClick} cursor="pointer">
-                                            <Divider colorScheme="gray" />
-                                            <Button variant="unstyled" {...styles.signout}>
-                                                <Flex>
-                                                    <SignoutIcon
-                                                        boxSize={5}
-                                                        {...styles.signoutIcon}
-                                                    />
-                                                    <Text as="span" {...styles.signoutText}>
-                                                        {intl.formatMessage({
-                                                            defaultMessage: 'Log out'
-                                                        })}
-                                                    </Text>
-                                                </Flex>
-                                            </Button>
-                                        </PopoverFooter>
-                                    </PopoverContent>
-                                </Popover>
-                            )}
-                            <IconButtonWithRegistration
-                                aria-label={intl.formatMessage({
-                                    defaultMessage: 'Wishlist'
-                                })}
-                                icon={<HeartIcon boxSize={6} />}
-                                variant="unstyled"
-                                {...styles.icons}
-                                onClick={onWishlistClick}
-                            />
-                            <IconButton
-                                aria-label={intl.formatMessage({
-                                    id: 'header.button.assistive_msg.my_cart',
-                                    defaultMessage: 'My cart'
-                                })}
-                                icon={
-                                    <>
-                                        <BasketIcon boxSize={6} />
-                                        {/* {basket?.loaded && (
-                                            <Badge variant="notification" boxSize={6}>
-                                                {basket.itemAccumulatedCount}
-                                            </Badge>
-                                        )} */}
-                                    </>
-                                }
-                                variant="unstyled"
-                                {...styles.icons}
-                                // onClick={onMyCartClick}
-                                onClick={toggleColorMode}
-                            />
-                        </HStack>
-                    </Flex>
+                                                <Divider colorScheme="gray" />
+                                                <Button variant="unstyled" {...styles.signout}>
+                                                    <Flex>
+                                                        <SignoutIcon
+                                                            boxSize={5}
+                                                            {...styles.signoutIcon}
+                                                        />
+                                                        <Text as="span" {...styles.signoutText}>
+                                                            {intl.formatMessage({
+                                                                defaultMessage: 'Log out'
+                                                            })}
+                                                        </Text>
+                                                    </Flex>
+                                                </Button>
+                                            </PopoverFooter>
+                                        </PopoverContent>
+                                    </Popover>
+                                )}
+                                <IconButtonWithRegistration
+                                    aria-label={intl.formatMessage({
+                                        defaultMessage: 'Wishlist'
+                                    })}
+                                    icon={<HeartIcon boxSize={6} />}
+                                    variant="unstyled"
+                                    {...styles.icons}
+                                    onClick={onWishlistClick}
+                                />
+                                <IconButton
+                                    aria-label={intl.formatMessage({
+                                        id: 'header.button.assistive_msg.my_cart',
+                                        defaultMessage: 'My cart'
+                                    })}
+                                    icon={
+                                        <>
+                                            <BasketIcon boxSize={6} />
+                                            {/* {basket?.loaded && (
+                                                <Badge variant="notification" boxSize={6}>
+                                                    {basket.itemAccumulatedCount}
+                                                </Badge>
+                                            )} */}
+                                        </>
+                                    }
+                                    variant="unstyled"
+                                    {...styles.icons}
+                                    // onClick={onMyCartClick}
+                                    onClick={toggleColorMode}
+                                />
+                            </HStack>
+                        </Flex>
+                    </AboveLG>
+                    {/* ------------------------ */}
+                    {/* ---- END OF DESKTOP ---- */}
+                    {/* ------------------------ */}
+
+                    {/* ------------------------ */}
+                    {/* -------- MOBILE -------- */}
+                    {/* ------------------------ */}
+                    <BelowLG fw={true} display="flex" alignItems="center">
+                        <Flex {...styles.mainbarWrapper}>
+                            <HStack spacing={4}>
+                                <IconButton
+                                    aria-label={intl.formatMessage({
+                                        id: 'header.button.assistive_msg.menu',
+                                        defaultMessage: 'Menu'
+                                    })}
+                                    icon={<HamburgerIcon boxSize={6} />}
+                                    variant="unstyled"
+                                    transform="scale(1.3)"
+                                    onClick={onMenuClick}
+                                />
+
+                                <AspectRatio w="144px" h="24px" ratio={6 / 1}>
+                                    <Img
+                                        src={getAssetUrl('static/img/mobile_logo.png')}
+                                        alt="Bongenie-Mobile-Logo"
+                                    ></Img>
+                                </AspectRatio>
+                            </HStack>
+
+                            <HStack spacing={3}>
+                                <Link href="/about">
+                                    <AspectRatio w="22px" h="24px">
+                                        <Img
+                                            src={getAssetUrl('static/img/bgclub_mobile.png')}
+                                            alt="Bongenie-Mobile-Search-Icon"
+                                        ></Img>
+                                    </AspectRatio>
+                                </Link>
+
+                                <Box _hover={{cursor: 'pointer'}}>
+                                    <AspectRatio w="24px" h="24px" ratio={1 / 1}>
+                                        <Img
+                                            src={getAssetUrl('static/img/search.png')}
+                                            alt="Bongenie-Mobile-Search-Icon"
+                                        ></Img>
+                                    </AspectRatio>
+                                </Box>
+
+                                <Box _hover={{cursor: 'pointer'}}>
+                                    <AspectRatio w="24px" h="24px" ratio={1 / 1}>
+                                        <Img
+                                            src={getAssetUrl('static/img/cart.png')}
+                                            alt="Bongenie-Mobile-Cart-Icon"
+                                        ></Img>
+                                    </AspectRatio>
+                                </Box>
+                            </HStack>
+                        </Flex>
+                    </BelowLG>
                 </Box>
             </Box>
 
             {/* -------------------- */}
             {/* Navigation - Navigation List Bar */}
             {/* -------------------- */}
-            <Box {...styles.containerBordered} minW="full" bg={mainBarBg} {...props}>
-                <Box {...styles.secondarybar}>
-                    <Flex
-                        wrap="wrap"
-                        alignItems={['baseline', 'baseline', 'baseline', 'center']}
-                        justifyContent="center"
-                    >
-                        {children}
-                    </Flex>
+            <AboveLG fw={true}>
+                <Box {...styles.containerBordered} minW="full" bg={mainBarBg} {...props}>
+                    <Box {...styles.secondarybar}>
+                        <Flex
+                            wrap="wrap"
+                            alignItems={['baseline', 'baseline', 'baseline', 'center']}
+                            justifyContent="center"
+                        >
+                            {children}
+                        </Flex>
+                    </Box>
                 </Box>
-            </Box>
+            </AboveLG>
         </Flex>
     )
 }

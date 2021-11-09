@@ -41,14 +41,14 @@ const LinksList = ({
             {links && (
                 <List spacing={0.5} {...styles.list}>
                     {variant === 'horizontal' ? (
-                        <HStack>
+                        <HStack spacing={0.5}>
                             {links.map((link, i) => (
                                 <ListItem key={i} {...styles.listItem} sx={styles.listItemSx}>
                                     <Link
                                         as={RouteLink}
                                         to={link.href}
                                         onClick={onLinkClick}
-                                        {...(link.styles ? link.styles : {})}
+                                        // {...(link.styles ? link.styles : {})}
                                         variant="submenu"
                                     >
                                         {link.text}
@@ -58,12 +58,12 @@ const LinksList = ({
                         </HStack>
                     ) : (
                         links.map((link, i) => (
-                            <ListItem key={i}>
+                            <ListItem {...styles.listItem} key={i}>
                                 <Link
                                     as={RouteLink}
                                     to={link.href}
                                     onClick={onLinkClick}
-                                    {...(link.styles ? link.styles : {})}
+                                    // {...(link.styles ? link.styles : {})}
                                     variant="submenu"
                                 >
                                     {link.text}
