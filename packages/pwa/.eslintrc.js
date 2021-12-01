@@ -20,7 +20,7 @@ module.exports = {
         jest: true
     },
     extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier', 'prettier/react'],
-    plugins: ['header', 'react', 'prettier'],
+    plugins: ['', 'react', 'prettier'],
     settings: {
         react: {
             version: '16.8'

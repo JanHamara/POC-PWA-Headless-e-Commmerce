@@ -23,8 +23,15 @@ const subtitle = {
     letterSpacing: 'wider'
 }
 
+const sectionHeading = {
+    fontFamily: 'heading',
+    color: 'black',
+    fontWeight: 'hairline',
+    fontStyle: 'italic'
+}
+
 const heading = {
-    ...base
+    ...secondaryBase
 }
 
 const text = {
@@ -70,14 +77,32 @@ const baseThin = {
 const baseRegular = {
     ...base,
     color: 'gray.800',
-    fontWeight: 'regular',
+    fontWeight: 'normal',
     textTransform: 'uppercase'
+}
+
+const baseMedium = {
+    ...base,
+    fontFamily: 'body',
+    color: 'black',
+    fontWeight: 'medium',
+    letterSpacing: 'wider'
 }
 
 const baseBold = {
     ...base,
     color: 'gray.800',
     fontWeight: 'semibold',
+    textTransform: 'uppercase'
+}
+
+const menu = {
+    fontFamily: 'body',
+    color: 'black',
+    fontSize: 'xs',
+    fontWeight: 'semibold',
+    letterSpacing: 'wide',
+    cursor: 'pointer',
     textTransform: 'uppercase'
 }
 
@@ -89,6 +114,13 @@ const secondaryRegular = {
 const secondaryItalic = {
     ...secondaryRegular,
     fontStyle: 'italic'
+}
+
+const secondaryBold = {
+    ...secondaryRegular,
+    color: 'black',
+    fontStyle: 'italic',
+    fontWeight: 'bold'
 }
 
 const baseHeadingBold = {
@@ -126,6 +158,7 @@ export default {
     // Base Text Styles
     baseThin,
     baseRegular,
+    baseMedium,
     baseBold,
 
     // Base Headings
@@ -135,10 +168,13 @@ export default {
     // Heading Text Styles (Playfair)
     secondaryRegular,
     secondaryItalic,
+    secondaryBold,
+
+    sectionHeading,
 
     // Graybox Styles
     grayboxHeading,
-
+    menu,
     submenu,
 
     // PDP Text Styles

@@ -24,7 +24,7 @@ export default {
     },
     sizes: {
         md: {
-            label: {fontSize: 'sm'}
+            label: {fontSize: '4xs'}
         }
     }
 }

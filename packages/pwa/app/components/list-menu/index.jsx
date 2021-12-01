@@ -110,8 +110,9 @@ const ListMenuContent = ({maxColumns, items, itemsKey, onClose, initialFocusRef}
                                 href: categoryUrlBuilder(item, locale),
                                 text: name,
                                 styles: {
-                                    fontSize: 'md',
-                                    marginBottom: 2
+                                    fontSize: '13px',
+                                    marginBottom: 2,
+                                    marginTop: 2
                                 }
                             }
 
@@ -217,7 +218,7 @@ const ListMenu = ({root, maxColumns = MAXIMUM_NUMBER_COLUMNS}) => {
 
     return (
         <nav aria-label="main">
-            <Flex {...baseStyle.container}>
+            <Flex {...baseStyle.container} justifyContent="center" alignItems="center" h="44px">
                 {items ? (
                     <Stack direction={'row'} spacing={0} {...baseStyle.stackContainer}>
                         {items.map((item) => {
@@ -237,8 +238,8 @@ const ListMenu = ({root, maxColumns = MAXIMUM_NUMBER_COLUMNS}) => {
                         })}
                     </Stack>
                 ) : (
-                    <Center p="2">
-                        <Spinner size="lg" />
+                    <Center>
+                        <Spinner size="md" />
                     </Center>
                 )}
             </Flex>

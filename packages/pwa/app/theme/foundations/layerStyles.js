@@ -6,7 +6,6 @@
  */
 
 const pageBase = {
-    paddingBottom: 16,
     width: 'full',
     maxWidth: 'container.xxxxl',
     marginLeft: 'auto',
@@ -14,7 +13,6 @@ const pageBase = {
     paddingLeft: {base: 4, md: 8, xl: 10, max: 4},
     paddingRight: {base: 4, md: 8, xl: 10, max: 4}
 }
-
 // const card = {
 //     py: 6,
 //     px: 4,
@@ -57,18 +55,28 @@ export default {
 
     // cardBordered,
 
+    maxContainer: {
+        ...pageBase
+    },
+
+    maxContainerNoPad: {
+        ...pageBase,
+        paddingLeft: {base: 0, lg: 8, xl: 10, max: 4},
+        paddingRight: {base: 0, lg: 8, xl: 10, max: 4}
+    },
+
     ccIcon: {
         width: '34px',
         height: '22px'
     },
 
     page: {
-        ...pageBase,
-        paddingTop: 10
+        ...pageBase
     },
 
     productPage: {
-        ...pageBase
+        ...pageBase,
+        paddingBottom: 16
     },
 
     graybox,

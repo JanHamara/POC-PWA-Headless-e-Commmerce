@@ -31,21 +31,21 @@ const ColorRefinements = ({filter, toggleFilter, selectedFilters}) => {
                                         selectedFilters?.includes(value.value)
                                     )
                                 }
-                                spacing={1}
+                                spacing={2}
                                 cursor="pointer"
                             >
                                 <Button
                                     {...styles.swatch}
-                                    color={
-                                        selectedFilters?.includes(value.value)
-                                            ? 'black'
-                                            : 'gray.200'
-                                    }
+                                    // color={
+                                    //     selectedFilters?.includes(value.value)
+                                    //         ? 'black'
+                                    //         : 'gray.200'
+                                    // }
                                     border={selectedFilters?.includes(value.value) ? '1px' : '0'}
                                     aria-checked={selectedFilters?.includes(value.value)}
-                                    variant="outline"
+                                    variant="swatch"
                                     marginRight={0}
-                                    marginBottom="-1px"
+                                    marginBottom={0}
                                 >
                                     <Center
                                         {...styles.swatchButton}
@@ -59,7 +59,6 @@ const ColorRefinements = ({filter, toggleFilter, selectedFilters}) => {
                                             marginRight={0}
                                             height="100%"
                                             width="100%"
-                                            minWidth="32px"
                                             backgroundRepeat="no-repeat"
                                             backgroundSize="cover"
                                             backgroundColor={
@@ -73,12 +72,13 @@ const ColorRefinements = ({filter, toggleFilter, selectedFilters}) => {
                                         />
                                     </Center>
                                 </Button>
-                                <Text
+
+                                {/* <Text
                                     display="flex"
                                     alignItems="center"
-                                    fontSize="sm"
+                                    fontSize="4xs"
                                     marginBottom="1px"
-                                >{`${value.label} (${value.hitCount})`}</Text>
+                                >{`${value.label} (${value.hitCount})`}</Text> */}
                             </HStack>
                         </Box>
                     )

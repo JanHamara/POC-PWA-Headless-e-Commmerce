@@ -43,8 +43,10 @@ import Popover from './components/base/popover'
 // Component Style Overrides - Project Components
 import App from './components/project/_app'
 import Breadcrumb from './components/project/breadcrumb'
+import Carousel from './components/project/carousel'
 import Header from './components/project/header'
 import ListMenu from './components/project/list-menu'
+import Features from './components/project/features'
 import Footer from './components/project/footer'
 import CheckoutFooter from './components/project/checkout-footer'
 import LinksList from './components/project/links-list'
@@ -54,6 +56,7 @@ import LocaleSelector from './components/project/locale-selector'
 import OfflineBanner from './components/project/offline-banner'
 import Pagination from './components/project/pagination'
 import ProductTile from './components/project/product-tile'
+import PromoTile from './components/project/promo-tile'
 import SocialIcons from './components/project/social-icons'
 import SwatchGroup from './components/project/swatch-group'
 import ImageGallery from './components/project/image-gallery'
@@ -102,7 +105,9 @@ const overrides = {
         // project components
         App,
         Breadcrumb,
+        Carousel,
         Header,
+        Features,
         Footer,
         CheckoutFooter,
         LinksList,
@@ -114,6 +119,7 @@ const overrides = {
         SocialIcons,
         Pagination,
         ProductTile,
+        PromoTile,
         SwatchGroup,
         ImageGallery
     }

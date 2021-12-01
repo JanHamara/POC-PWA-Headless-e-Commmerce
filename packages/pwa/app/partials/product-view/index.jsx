@@ -52,11 +52,11 @@ import Breadcrumb from '../../components/breadcrumb'
 import withRegistration from '../../hoc/with-registration'
 import {useCurrency} from '../../hooks'
 import {Skeleton as ImageGallerySkeleton} from '../../components/image-gallery'
-import {HideOnDesktop, HideOnMobile} from '../../components/responsive'
-import QuantityPicker from '../../components/quantity-picker'
+import {HideOnMobile} from '../../components/responsive'
+// import QuantityPicker from '../../components/quantity-picker'
 
 const ProductViewHeader = ({name, brand, price, currency, category}) => {
-    const intl = useIntl()
+    // const intl = useIntl()
     const {currency: activeCurrency} = useCurrency()
     return (
         <VStack mr={4} spacing={2} align="flex-start" marginBottom={[4, 4, 4, 0, 0]}>
@@ -287,9 +287,9 @@ const ProductView = ({
                     spacing={9}
                     flex={1}
                     marginBottom={[16, 16, 16, 0, 0]}
-                    pl={{base: 0, md: 36}}
-                    pr={{base: 0, md: 8}}
-                    pt={{base: 3, md: 0}}
+                    pl={{base: 0, lg: 10, xl: 36}}
+                    pr={{base: 0, lg: 10, xl: 8}}
+                    pt={{base: 3, md: 6, lg: 0}}
                 >
                     <Box>
                         <ProductViewHeader
@@ -386,7 +386,10 @@ const ProductView = ({
                                                 <Link variant="gray" mb={1}>
                                                     Size Guide
                                                 </Link>
-                                                <Select placeholder="Select your size">
+                                                <Select
+                                                    placeholder="Select your size"
+                                                    variant="attribute"
+                                                >
                                                     {values.map(({name, value}, index) => (
                                                         <option key={index} value={value}>
                                                             {name}

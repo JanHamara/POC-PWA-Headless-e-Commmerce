@@ -22,14 +22,51 @@ const unstyledBase = {
     textDecoration: 'none'
 }
 
+const menuLinkBase = {
+    ...linkBase,
+    textTransform: 'uppercase',
+    _hover: {
+        textDecoration: 'underline',
+        textDecorationThickness: '5px',
+        textUnderlineOffset: '7px'
+    }
+}
+
 export default {
     baseStyle: {
         bg: 'transparent'
     },
     variants: {
+        solid: {
+            width: 'fit-content',
+            minH: '60px',
+            h: '60px',
+            lineHeight: '60px',
+            px: 8,
+            fontFamily: 'body',
+            textTransform: 'uppercase',
+            fontSize: '2xs',
+            borderRadius: 0,
+            fontWeight: 'medium',
+            letterSpacing: 'widest',
+            px: 8,
+            fontSize: '2xs',
+            bg: 'black',
+            color: 'white',
+            _hover: {bg: 'gray.900', textDecoration: 'none', _disabled: {bg: 'gray.300'}},
+            _active: {bg: 'black'},
+            _disabled: {bg: 'gray.300'}
+        },
         unstyled: {
             ...linkBase,
             ...unstyledBase,
+            _hover: {
+                textDecoration: 'none'
+            }
+        },
+        ghost: {
+            cursor: 'pointer',
+            letterSpacing: 'normal',
             _hover: {
                 textDecoration: 'none'
             }
@@ -76,11 +113,16 @@ export default {
             fontWeight: 'normal'
         },
         menu: {
-            ...linkBase,
-            textTransform: 'uppercase',
+            ...menuLinkBase
+        },
+        category: {
+            ...menuLinkBase,
+            w: 'fit-content',
+            color: 'white',
+            fontWeight: 'semibold',
+            fontSize: '2xs',
             _hover: {
-                textDecoration: 'underline',
-                textDecorationThickness: '5px',
+                textDecorationThickness: '1px',
                 textUnderlineOffset: '7px'
             }
         },
@@ -89,7 +131,6 @@ export default {
             fontSize: '4xs',
             // color: props.colorMode === 'dark' ? 'white' : 'gray.400',
             color: 'gray.400',
-            fontWeight: 'regular',
             letterSpacing: 'normal'
             // _hover: {
             //     textDecoration: 'underline',

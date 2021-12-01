@@ -53,6 +53,10 @@ import '../../assets/svg/visibility-off.svg'
 import '../../assets/svg/heart.svg'
 import '../../assets/svg/heart-solid.svg'
 import '../../assets/svg/close.svg'
+import '../../assets/svg/delivery.svg'
+import '../../assets/svg/bg_you.svg'
+import '../../assets/svg/diamond.svg'
+import '../../assets/svg/connect.svg'
 
 // For non-square SVGs, we can use the symbol data from the import to set the
 // proper viewBox attribute on the Icon wrapper.
@@ -192,6 +196,11 @@ export const ChevronRightIcon = icon('chevron-right')
 export const ChevronUpIcon = icon('chevron-up')
 export const CVVIcon = icon('cc-cvv', {viewBox: CVVSymbol.viewBox})
 export const DiscoverIcon = icon('cc-discover', {viewBox: DiscoverSymbol.viewBox})
+export const Delivery = icon('delivery')
+export const Diamond = icon('diamond')
+export const Connect = icon('connect')
+export const BgYou = icon('bg_you')
+
 export const FilterIcon = icon('filter')
 export const FileIcon = icon('file')
 export const FlagCAIcon = icon('flag-ca')

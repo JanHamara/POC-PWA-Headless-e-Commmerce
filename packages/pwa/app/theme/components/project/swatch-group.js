@@ -14,10 +14,8 @@ export default {
         },
         swatch: {
             position: 'relative',
-            backgroundColor: 'white',
             _focus: {
-                outline: 'none',
-                boxShadow: 'outline'
+                outline: 'none'
             }
         },
         swatchesWrapper: {
@@ -33,11 +31,9 @@ export default {
     variants: {
         circle: (props) => ({
             swatch: {
-                height: 11,
-                width: 11,
                 bg: 'none',
                 // borderRadius: 'full',
-                padding: 1,
+                padding: 0,
                 cursor: 'pointer',
                 marginRight: 2,
                 marginLeft: 0,
@@ -45,30 +41,28 @@ export default {
                 color: `${props.selected ? 'black' : 'gray.200'}`,
                 // border: `${props.selected ? '1px' : '0'}`,
                 _hover: {
-                    borderColor: `${props.selected ? 'black' : 'gray.200'}`,
-                    borderWidth: 1,
+                    borderColor: `${props.selected ? 'black' : 'none'}`,
+                    borderWidth: `${props.selected ? '1' : 0}`,
                     borderStyle: 'solid'
                 },
                 _active: {
                     background: 'transparent'
-                },
-                _before: {
-                    content: '""',
-                    display: `${props.disabled ? 'block' : 'none'}`,
-                    position: 'absolute',
-                    height: 11,
-                    width: '1px',
-                    transform: 'rotate(45deg)',
-                    backgroundColor: 'black',
-                    zIndex: 1
                 }
+                // _before: {
+                //     content: '""',
+                //     display: `${props.disabled ? 'block' : 'none'}`,
+                //     position: 'absolute',
+                //     height: 11,
+                //     width: '1px',
+                //     transform: 'rotate(45deg)',
+                //     backgroundColor: 'black',
+                //     zIndex: 1
+                // }
             },
             swatchButton: {
-                height: 8,
-                // borderColor: 'gray.200',
-                width: 8,
+                height: 4,
+                width: 4,
                 overflow: 'hidden',
-                borderRadius: 'full',
                 minWidth: 'auto',
                 opacity: 1,
                 _focus: {

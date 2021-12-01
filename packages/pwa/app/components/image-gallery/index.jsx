@@ -128,7 +128,11 @@ const ImageGallery = ({imageGroups = [], selectedVariationAttributes = {}, size}
     const heroImage = selectedIndex ? thumbnailImages[selectedIndex] : thumbnailImages[0]
 
     return (
-        <Flex direction={{base: 'column', md: 'row'}} wrap={'nowrap'}>
+        <Flex
+            direction={{base: 'column', md: 'row'}}
+            wrap={'nowrap'}
+            maxW={{base: '100%', md: 'calc(100% - 88px)'}}
+        >
             <HideOnMobile>
                 <List
                     display={'flex'}

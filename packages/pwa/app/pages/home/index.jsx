@@ -8,15 +8,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {useIntl, FormattedMessage} from 'react-intl'
-import {Box, Button, Grid, GridItem, Stack} from '@chakra-ui/react'
+import {Box, Button, Grid, GridItem, Stack, Text} from '@chakra-ui/react'
 import {getAssetUrl} from 'pwa-kit-react-sdk/ssr/universal/utils'
 import {Link} from 'react-router-dom'
 import Hero from '../../components/hero'
 import Seo from '../../components/seo'
 import Section from '../../components/section'
 import BasicTile from '../../components/basic-tile'
-import {categoriesThreeColumns, categoriesTwoColumns} from './data'
+import {gridData, slides, featureData} from './data'
 import RecommendedProducts from '../../components/recommended-products'
+import Carousel from '../../components/carousel'
+import FeatureStack from '../../components/feature-stack'
+import SectionHeading from '../../components/section-heading'
+import PromoGrid from '../../components/promo-grid'
+import {builder, BuilderComponent} from '@builder.io/react'
 
 /**
  * This is the home page for Retail React App.
@@ -28,14 +33,29 @@ const Home = () => {
     const intl = useIntl()
 
     return (
-        <Box data-testid="home-page" layerStyle="page">
+        <Box data-testid="home-page">
             <Seo
                 title="Home Page"
                 description="Commerce Cloud Retail React App"
                 keywords="Commerce Cloud, Retail React App, React Storefront"
             />
 
-            <Hero
+            <Carousel slides={slides} carouselHeight="660px"></Carousel>
+
+            <Box layerStyle="page" pb={24}>
+                {featureData && <FeatureStack services={featureData}></FeatureStack>}
+
+                {/* <SectionHeading
+                    heading="New season must-haves"
+                    subheading="Update your wardrobe"
+                ></SectionHeading> */}
+
+                <BuilderComponent model="section-heading" />
+
+                <PromoGrid items={gridData}></PromoGrid>
+            </Box>
+
+            {/* <Hero
                 title={intl.formatMessage({
                     defaultMessage: 'Lighter layers for lighter days.'
                 })}
@@ -58,8 +78,8 @@ const Home = () => {
                     defaultMessage: 'New In'
                 })}
                 marginBottom="16"
-            />
-            <Section
+            /> */}
+            {/* <Section
                 title={intl.formatMessage({
                     defaultMessage: 'Shop by Category'
                 })}
@@ -106,9 +126,9 @@ const Home = () => {
                         )
                     })}
                 </Grid>
-            </Section>
+            </Section> */}
 
-            <Stack spacing={16}>
+            {/* <Stack spacing={16}>
                 <RecommendedProducts
                     title={<FormattedMessage defaultMessage="Top Sellers" />}
                     recommender={'home-top-revenue-for-category'}
@@ -120,7 +140,7 @@ const Home = () => {
                     recommender={'products-in-all-categories'}
                     mx={{base: -4, md: -8, lg: 0}}
                 />
-            </Stack>
+            </Stack> */}
         </Box>
     )
 }

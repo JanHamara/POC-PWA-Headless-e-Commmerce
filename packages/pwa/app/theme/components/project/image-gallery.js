@@ -20,8 +20,8 @@ export default {
             maxH: {base: '530px', md: '740px'}
         },
         heroImageGroup: {
-            minW: {base: 'full', md: '400px', '2xl': '640px'},
-            w: {base: 'full', md: '400px', '2xl': '640px'},
+            minW: {base: 'full', lg: '400px', '2xl': '640px'},
+            w: {base: 'full', lg: '400px', '2xl': '640px'},
             position: 'relative'
         },
         heroImageRightSwitch: {
@@ -53,30 +53,6 @@ export default {
         thumbnailImageSkeleton: {
             marginRight: 2,
             width: [20, 20, 24, 24]
-        }
-    },
-    sizes: {
-        sm: {
-            heroImageSkeleton: {
-                maxWidth: ['none', 'none', 'none', '500px']
-            },
-            heroImageGroup: {
-                maxWidth: ['none', 'none', 'none', '500px']
-            },
-            heroImage: {
-                maxWidth: ['none', 'none', 'none', '500px']
-            }
-        },
-        md: {
-            heroImageSkeleton: {
-                maxWidth: ['none', 'none', 'none', '680px']
-            },
-            heroImageGroup: {
-                maxWidth: ['none', 'none', 'none', '680px']
-            },
-            heroImage: {
-                maxWidth: ['none', 'none', 'none', '680px']
-            }
         }
     },
     defaultProps: {

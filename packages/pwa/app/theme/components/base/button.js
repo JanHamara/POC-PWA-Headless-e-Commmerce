@@ -101,6 +101,17 @@ export default {
                 background: 'transparent'
             }
         },
+        swatch: {
+            minW: 'auto',
+            minH: 'auto',
+            w: 4,
+            h: 4,
+            m: 0,
+            lineHeight: 0,
+            _hover: {
+                background: 'transparent'
+            }
+        },
         footer: {
             fontSize: '4xs',
             minH: 'auto',
@@ -108,6 +119,21 @@ export default {
             w: 'fit-content',
             py: 2,
             fontWeight: 'semibold'
+        },
+        mobileFilter: {
+            flex: 1,
+            minH: '49px',
+            h: '49px',
+            px: 0,
+            fontSize: 'base',
+            fontWeight: 'semibold',
+            textStyle: 'menu',
+            bg: 'none',
+            color: 'black',
+            border: '1px black solid',
+            _hover: {bg: 'none', _disabled: {bg: 'none', color: 'black'}},
+            _active: {bg: 'none', color: 'black'},
+            _disabled: {bg: 'none', color: 'gray.800'}
         }
     }
 }

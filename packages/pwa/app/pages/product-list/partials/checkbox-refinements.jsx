@@ -6,7 +6,7 @@
  */
 
 import React from 'react'
-import {Box, Checkbox, Stack} from '@chakra-ui/react'
+import {Box, Checkbox, Stack, Text} from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 const CheckboxRefinements = ({filter, toggleFilter, selectedFilters}) => {
@@ -19,6 +19,7 @@ const CheckboxRefinements = ({filter, toggleFilter, selectedFilters}) => {
                         <Box key={value.value}>
                             <Checkbox
                                 isChecked={!!selectedFilters}
+                                fontSize="4xs"
                                 onChange={() =>
                                     toggleFilter(
                                         value,
@@ -28,7 +29,7 @@ const CheckboxRefinements = ({filter, toggleFilter, selectedFilters}) => {
                                     )
                                 }
                             >
-                                {value.label}
+                                <Text fontSize="4xs">{value.label}</Text>
                             </Checkbox>
                         </Box>
                     )

@@ -32,9 +32,9 @@ const RadioRefinements = ({filter, toggleFilter, selectedFilters}) => {
                                                 false
                                             )
                                         }
-                                        fontSize="sm"
+                                        fontSize="4xs"
                                     >
-                                        <Text marginLeft={-1} fontSize="sm">
+                                        <Text marginLeft={-1} fontSize="4xs">
                                             {value.label}
                                         </Text>
                                     </Radio>

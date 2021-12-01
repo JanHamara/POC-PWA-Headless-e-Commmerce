@@ -21,6 +21,7 @@ import {Skeleton} from '@chakra-ui/react'
 const fallback = <Skeleton height="75vh" width="100%" />
 
 // Pages
+const About = loadable(() => import('./pages/about'), {fallback})
 const Home = loadable(() => import('./pages/home'), {fallback})
 const Login = loadable(() => import('./pages/login'), {fallback})
 const Registration = loadable(() => import('./pages/registration'), {fallback})
@@ -37,6 +38,11 @@ const PageNotFound = loadable(() => import('./pages/page-not-found'))
 const Design = loadable(() => import('./pages/design'), {fallback})
 
 const routes = [
+    {
+        path: '/about',
+        component: About,
+        exact: true
+    },
     {
         path: '/',
         component: Home,

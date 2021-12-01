@@ -23,7 +23,7 @@ const LinkRefinements = ({filter}) => {
                         href={`/category/${value.value}`}
                         useNavLink
                     >
-                        <Text fontSize="sm">{value.label}</Text>
+                        <Text fontSize="4xs">{value.label}</Text>
                     </Link>
                 )
             })}

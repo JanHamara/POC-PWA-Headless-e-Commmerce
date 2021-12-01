@@ -9,8 +9,12 @@ export default {
         button: {
             color: 'black'
         },
-        container: {},
+        container: {
+            alignItems: 'center'
+        },
         text: {
+            display: 'flex',
+            alignItems: 'center',
             whiteSpace: 'nowrap',
             paddingLeft: 4,
             paddingRight: 4,

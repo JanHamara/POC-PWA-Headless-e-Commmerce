@@ -19,12 +19,14 @@ export default {
         },
         'h1, h2, h3, h4, h5, h6': {
             fontFamily: 'heading',
+            fontWeight: 'normal',
+            lineHeight: 'base'
+        },
+        h1: {
             fontSize: {
                 base: '3xl',
                 lg: '4xl'
-            },
-            fontWeight: 'normal',
-            lineHeight: 'base'
+            }
         },
         h2: {
             fontSize: {

@@ -11,14 +11,21 @@ export default {
             width: 'full'
         },
         control: {
+            mt: 0,
             backgroundColor: 'white',
+            borderRadius: 'none',
+            borderWidth: '1px',
+            padding: 1,
             _checked: {
-                backgroundColor: 'blue.600',
-                borderColor: 'blue.600',
+                backgroundColor: 'black',
+                borderColor: 'black',
                 _hover: {
-                    backgroundColor: 'blue.700',
-                    borderColor: 'blue.700'
+                    backgroundColor: 'black',
+                    borderColor: 'black'
                 }
+            },
+            _before: {
+                content: 'unset'
             },
             _indeterminate: {}
         }
@@ -26,8 +33,12 @@ export default {
     sizes: {
         md: {
             container: {alignItems: 'flex-start'},
-            control: {marginTop: '0.25em'},
             label: {marginLeft: 3}
+        },
+        sm: {
+            label: {
+                fontSize: '4xs'
+            }
         }
     }
 }

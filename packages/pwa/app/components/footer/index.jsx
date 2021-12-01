@@ -603,7 +603,7 @@ const Subscribe = ({...otherProps}) => {
                         </Button>
                     </AboveLG>
                     <BelowLG>
-                        <Button variant="solid" fontWeight="semibold">
+                        <Button variant="solid" fontWeight="semibold" w="full">
                             {intl.formatMessage({
                                 id: 'footer.subscribe.button.sign_up_for_newsletter',
                                 defaultMessage: 'Sign up for the newsletter'

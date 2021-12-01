@@ -6,6 +6,9 @@
  */
 export default {
     baseStyle: {
+        container: {
+            borderBottom: 0
+        },
         button: {
             textStyle: 'baseRegular',
             paddingLeft: 4,
@@ -28,6 +31,25 @@ export default {
             paddingBottom: 5,
             textStyle: 'secondaryRegular',
             fontSize: '3xs'
+        }
+    },
+    variants: {
+        filter: {
+            button: {
+                py: 0,
+                justifyContent: 'space-between',
+                _expanded: {
+                    borderTop: '1px gray.200 solid',
+                    paddingBottom: 0
+                }
+            },
+            panel: {
+                fontSize: '4xs',
+                padding: 0,
+                marginLeft: 4,
+                marginRight: 4,
+                marginBottom: 5
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ const Refinements = ({filters, toggleFilter, selectedFilters, isLoading}) => {
     }
 
     return (
-        <Stack spacing={8}>
+        <Stack spacing={0} w="full">
             {/* Wait to have filters before rendering the Accordion to allow the deafult indexes to be accurate */}
             {filtersIndexes && (
                 <Accordion
@@ -73,41 +73,26 @@ const Refinements = ({filters, toggleFilter, selectedFilters, isLoading}) => {
                     allowToggle={true}
                     defaultIndex={filtersIndexes}
                     reduceMotion={true}
+                    borderBottom="1px #d1d1d1 solid"
+                    variant="filter"
                 >
-                    {filters?.map((filter, idx) => {
+                    {filters?.map((filter) => {
                         // Render the appropriate component for the refinement type, fallback to checkboxes
                         const Values = componentMap[filter.attributeId] || CheckboxRefinements
                         const selectedFiltersArray = selectedFilters?.[filter.attributeId]
                         if (filter.values) {
                             return (
-                                <Stack key={filter.attributeId} divider={<Divider />}>
-                                    <AccordionItem
-                                        paddingTop={idx !== 0 ? 6 : 0}
-                                        borderBottom={
-                                            idx === filters.length - 1
-                                                ? '1px solid gray.200'
-                                                : 'none'
-                                        }
-                                        paddingBottom={6}
-                                        borderTop={idx === 0 && 'none'}
-                                    >
-                                        {({isExpanded}) => (
+                                <Stack key={filter.attributeId}>
+                                    <AccordionItem>
+                                        {() => (
                                             <>
-                                                <AccordionButton
-                                                    paddingTop={0}
-                                                    paddingBottom={isExpanded ? 2 : 0}
-                                                >
-                                                    <Text
-                                                        flex="1"
-                                                        textAlign="left"
-                                                        fontSize="md"
-                                                        fontWeight={600}
-                                                    >
+                                                <AccordionButton>
+                                                    <Text textStyle="menu" fontSize="2xs">
                                                         {filter.label}
                                                     </Text>
                                                     <AccordionIcon />
                                                 </AccordionButton>
-                                                <AccordionPanel paddingLeft={0}>
+                                                <AccordionPanel paddingLeft={4}>
                                                     <Values
                                                         selectedFilters={selectedFiltersArray}
                                                         filter={filter}

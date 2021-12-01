@@ -14,6 +14,7 @@ import {
     Heading,
     Button,
     Link,
+    Text,
     Accordion,
     AccordionItem,
     AccordionButton,

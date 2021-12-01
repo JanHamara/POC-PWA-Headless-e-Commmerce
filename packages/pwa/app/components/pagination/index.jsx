@@ -59,7 +59,7 @@ const Pagination = (props) => {
                 to={prev || currentURL}
                 aria-label="Previous Page"
                 isDisabled={!prev}
-                variant="link"
+                variant="ghost"
             >
                 <ChevronLeftIcon />
                 <Text>
@@ -78,6 +78,7 @@ const Pagination = (props) => {
                         history.push(e.target.value)
                     }}
                     value={currentURL}
+                    variant="attribute"
                     height={11}
                 >
                     {urls.map((href, index) => (
@@ -106,7 +107,7 @@ const Pagination = (props) => {
                 to={next || currentURL}
                 aria-label="Next Page"
                 isDisabled={!next}
-                variant="link"
+                variant="ghost"
             >
                 <Text>
                     {intl.formatMessage({

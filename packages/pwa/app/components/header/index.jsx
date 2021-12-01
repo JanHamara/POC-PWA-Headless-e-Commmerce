@@ -161,7 +161,7 @@ const Header = ({
             <Box {...styles.container} minW="full" bg={mainBarBg} {...props}>
                 <Box {...styles.mainbar}>
                     {showLoading && <LoadingSpinner wrapperStyles={{height: '100vh'}} />}
-                    <AboveLG fw={true}>
+                    <AboveLG fw={true} fh={true}>
                         <Flex {...styles.mainbarWrapper}>
                             {/* ------------------------ */}
                             {/* ---- DESKTOP ---- */}
@@ -194,13 +194,28 @@ const Header = ({
 
                             <Spacer />
 
-                            <AspectRatio maxW="145px" w="full" h="65px" ratio={16 / 9}>
+                            {/* <AspectRatio maxW="145px" w="full" h="65px" ratio={16 / 9}>
                                 <Link href="/">
                                     <Image
                                         src="https://res.cloudinary.com/qlik-tour-geneve/image/upload/v1635174241/temp/logo_tumkaa.png"
                                         alt="Site Logo"
                                         objectFit="cover"
                                     />
+                                </Link>
+                            </AspectRatio> */}
+
+                            <AspectRatio
+                                maxW="240px"
+                                w="240px"
+                                h="40px"
+                                ratio={6 / 1}
+                                alignSelf="center"
+                            >
+                                <Link href="/">
+                                    <Img
+                                        src={getAssetUrl('static/img/mobile_logo.png')}
+                                        alt="Bongenie-Mobile-Search-Icon"
+                                    ></Img>
                                 </Link>
                             </AspectRatio>
 
