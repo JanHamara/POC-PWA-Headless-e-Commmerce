@@ -24,18 +24,15 @@ const FeatureStack = (props) => {
             {services.map((service, idx) => (
                 <HStack {...style.item} _last={{mb: 0}} key={idx} spacing={4}>
                     <Flex alignItems="center">
-                        {service.icon == 'diamond' && <Diamond boxSize={20} />}
-                        {service.icon == 'delivery' && <Delivery boxSize={20} />}
-                        {service.icon == 'connect' && <Connect boxSize={20} />}
-                        {service.icon == 'bgyou' && <BgYou boxSize={20} />}
+                        <Img boxSize={20} src={service.icon} alt="service-icon" />
 
                         <Flex maxW="175px" flexDirection="column" ml={8}>
-                            <h5>{service.heading}</h5>
+                            <h6>{service.heading}</h6>
 
                             <Text>{service.content}</Text>
 
-                            <Link href={service.cta.href} variant="secondary">
-                                {service.cta.label}
+                            <Link href={service.ctaHref} variant="secondary">
+                                {service.ctaLabel}
                             </Link>
                         </Flex>
                     </Flex>

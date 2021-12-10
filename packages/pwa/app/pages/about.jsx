@@ -4,13 +4,7 @@ import {BuilderComponent, builder} from '@builder.io/react'
 const About = ({location}) => {
     const [builderContentJson, setBuilderContentJson] = React.useState(null)
 
-    React.useEffect(() => {
-        builder
-            .get('page', {url: location.pathname})
-            .promise()
-            .then(setBuilderContentJson)
-    }, [])
-    return <BuilderComponent model="page" content={builderContentJson} />
+    return <BuilderComponent model="page" />
 }
 
 About.getTemplateName = () => 'About'

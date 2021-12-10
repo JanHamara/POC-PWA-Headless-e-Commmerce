@@ -40,20 +40,7 @@ const Home = () => {
                 keywords="Commerce Cloud, Retail React App, React Storefront"
             />
 
-            <Carousel slides={slides} carouselHeight="660px"></Carousel>
-
-            <Box layerStyle="page" pb={24}>
-                {featureData && <FeatureStack services={featureData}></FeatureStack>}
-
-                {/* <SectionHeading
-                    heading="New season must-haves"
-                    subheading="Update your wardrobe"
-                ></SectionHeading> */}
-
-                <BuilderComponent model="section-heading" />
-
-                <PromoGrid items={gridData}></PromoGrid>
-            </Box>
+            <BuilderComponent model="section-heading" />
 
             {/* <Hero
                 title={intl.formatMessage({

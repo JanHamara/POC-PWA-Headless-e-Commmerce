@@ -9,6 +9,7 @@ import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {useHistory, useLocation} from 'react-router-dom'
 import {useIntl} from 'react-intl'
+import {BuilderComponent} from '@builder.io/react'
 
 import {
     AspectRatio,
@@ -525,64 +526,9 @@ const ProductView = ({
                                 </Text>
                             </VStack>
                         </Flex>
-
-                        {/* BG CLub Info Box */}
-                        <Flex
-                            w="full"
-                            direction="row"
-                            justify="center"
-                            align="center"
-                            layerStyle="graybox"
-                        >
-                            <BgClub w="52px" h="18px" fill="gray.900" />
-
-                            <Divider
-                                mx={8}
-                                orientation="vertical"
-                                borderColor="gray.400"
-                                borderLeftWidth="1px"
-                            ></Divider>
-
-                            <Text textAlign="center" textStyle="secondaryRegular" fontSize="2xs">
-                                With our tailor-made loyalty program <strong>BG Club</strong>, you
-                                accumulate points with each purchase. Already member? Sign in. Not
-                                one of our privileged members yet? Sign up quickly.
-                            </Text>
-                        </Flex>
-
-                        <Accordion w="full" allowMultiple>
-                            <AccordionItem>
-                                {({isExpanded}) => (
-                                    <>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box flex="1" textAlign="left">
-                                                    Product Details
-                                                </Box>
-                                                {isExpanded ? (
-                                                    <MinusIcon fontSize="12px" />
-                                                ) : (
-                                                    <PlusIcon fontSize="12px" />
-                                                )}
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel>
-                                            Embroidered with ethnical Inca art inspired patterns,
-                                            these <strong>ASH</strong> boots will elevate any
-                                            outfit! They are made of distressed looking suede, and
-                                            are lined with smooth leather. A zipper is concealed on
-                                            the insides of the ankles. Pointy tips, leather soles
-                                            and Cuban heels complete the look.
-                                            <br />
-                                            <br />
-                                            <li>Heel: 4cm</li>
-                                            <li>Shaft height: 32cm</li>
-                                        </AccordionPanel>
-                                    </>
-                                )}
-                            </AccordionItem>
-                        </Accordion>
                     </VStack>
+
+                    <BuilderComponent model="product-view-accordion" />
                 </VStack>
             </Flex>
         </Flex>

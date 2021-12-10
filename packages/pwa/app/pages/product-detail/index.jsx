@@ -8,6 +8,7 @@
 import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Helmet} from 'react-helmet'
+import {builder, BuilderComponent} from '@builder.io/react'
 import {FormattedMessage, useIntl} from 'react-intl'
 
 // Components
@@ -162,38 +163,6 @@ const ProductDetail = ({category, product, isLoading}) => {
         }
     }, [product])
 
-    /**************** Some Mock Data ****************/
-
-    // getProductInfo(productID, variant).then((response) => ...)
-    const productInfo = {
-        referenceInfo: [
-            {
-                label: 'Reference',
-                value: 'A175248-CAME'
-            },
-            {
-                label: 'Assemblage',
-                value: 'Hors Europe'
-            }
-        ],
-        styleInfo: [
-            {
-                label: 'Color',
-                value: 'Medium Brown'
-            }
-        ]
-    }
-
-    // getCreator(productID).then((response) => ...)
-    const creatorInfo = {
-        id: '5812619',
-        name: 'Ash',
-        content:
-            "Ash successfully combines a touch of couture with rock 'n' roll and a twist of casual-chic allure. The brand was created in 2000 by the French designer Patrick Ithier and the Italian entrepreneur Leonello Calvani. Women in search of beautifully edgy shoes simply love the label. Stay comfortable in the brand's signature cult-item, the wedged sneakers, not only do they look great with skirts or trousers, but will elevate any look. Ash's collections offer a great variety of styles, including romantic, boho and rock looks. The brand's flat or heeled shoes, sandals, sneakers and boots guarantee you night and day sartorial sassiness. Discover our Ash shoe selection in our Geneva and Lausanne stores or shop them online and enjoy free delivery in Switzerland and Liechtenstein.",
-        linkLabel: 'Discover'
-    }
-    /**************** ENDOF / Some Mock Data ****************/
-
     return (
         <Box
             className="sf-product-detail-page"
@@ -229,7 +198,7 @@ const ProductDetail = ({category, product, isLoading}) => {
             </HideOnMobile>
 
             {/**************** PDP | CONTENT ****************/}
-            <Stack spacing={16}>
+            <Stack spacing={{base: 4, md: 16}}>
                 {/**************** PDP | PRODUCT VIEW ****************/}
                 <ProductView
                     product={product}
@@ -240,70 +209,7 @@ const ProductDetail = ({category, product, isLoading}) => {
                     isCustomerProductListLoading={!wishlist.isInitialized}
                 />
 
-                {/**************** PDP | PRODUCT FEATURES STACK ****************/}
-                <VStack mt={6} align="center" justify="center" spacing={6}>
-                    {/**************** PDP | PRODUCT FEATURES ****************/}
-                    <Box w="full">
-                        <Text
-                            w="full"
-                            as="h6"
-                            mb={6}
-                            fontSize="base"
-                            textAlign="center"
-                            textStyle="baseHeadingBold"
-                        >
-                            Features
-                        </Text>
-                        {productInfo.referenceInfo && (
-                            <Flex
-                                layerStyle="graybox"
-                                textStyle="baseRegular"
-                                fontSize="3xs"
-                                letterSpacing="wider"
-                                w="full"
-                                paddingLeft={10}
-                                paddingRight={10}
-                                flexDirection={{base: 'column', md: 'row'}}
-                            >
-                                <VStack w="full" spacing={4}>
-                                    {productInfo.referenceInfo.map((refInfo, index) => (
-                                        <Flex key={index} w="full">
-                                            <Text flex="1">{refInfo.label}:</Text>
-                                            <Text flex="1">{refInfo.value}</Text>
-                                        </Flex>
-                                    ))}
-                                </VStack>
-
-                                <Center w="30%">
-                                    <HideOnMobile fh={true}>
-                                        <Divider
-                                            orientation="vertical"
-                                            borderColor="gray.300"
-                                        ></Divider>
-                                    </HideOnMobile>
-                                </Center>
-
-                                <HideOnDesktop>
-                                    <Box minH={4} h={4}></Box>
-                                </HideOnDesktop>
-
-                                <VStack w="full" spacing={4}>
-                                    {productInfo.styleInfo.map((styleInfoItem, index) => (
-                                        <Flex key={index} w="full">
-                                            <Text flex="1">{styleInfoItem.label}:</Text>
-                                            <Text flex="1">{styleInfoItem.value}</Text>
-                                        </Flex>
-                                    ))}
-                                </VStack>
-                            </Flex>
-                        )}
-                    </Box>
-
-                    {/**************** PDP | PRODUCT AUTHOR ****************/}
-                    {creatorInfo.name && creatorInfo.content && (
-                        <ProductCreatorInfo {...creatorInfo}></ProductCreatorInfo>
-                    )}
-                </VStack>
+                <BuilderComponent model="product-description-page" />
 
                 {/* Product Recommendations */}
                 {/* <Stack spacing={16}>

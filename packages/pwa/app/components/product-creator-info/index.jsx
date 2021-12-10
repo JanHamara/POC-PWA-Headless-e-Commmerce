@@ -6,22 +6,20 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {useIntl} from 'react-intl'
 
 // Chakra Components
 import {Flex, VStack, Text, Link} from '@chakra-ui/react'
 
 /**
- * Component representing product creator information with required heading for author name and required paragraph for author info
+ * Component representing product creator information with required heading for author name and required paragraph for author info, within a content box
  * @param {number} id Creator Id
- * @param {node} name Creator Name
- * @param {node} content Creator Description Paragraph
+ * @param {string} title Box Title
+ * @param {string} name Creator Name
+ * @param {string} content Creator Description Paragraph
  * @param {string} linkLabel Link label for CTA to guide to creator profile
- * @returns A JSX element representing product creator information (inside graybox layer style).
+ * @returns A JSX element representing product creator information.
  */
-const ProductCreatorInfo = ({id, name, content, linkLabel}) => {
-    const {formatMessage} = useIntl()
-
+const ProductCreatorInfo = ({id, title, name, content, linkLabel}) => {
     return (
         <Flex
             direction="column"
@@ -31,9 +29,7 @@ const ProductCreatorInfo = ({id, name, content, linkLabel}) => {
         >
             <VStack w="full" spacing={3}>
                 <Text textStyle="baseRegular" fontSize="4xs" letterSpacing="wider">
-                    {formatMessage({
-                        defaultMessage: 'About the creator'
-                    })}
+                    {title}
                 </Text>
 
                 <Text textStyle="grayboxHeading">{name}</Text>
@@ -65,6 +61,7 @@ const ProductCreatorInfo = ({id, name, content, linkLabel}) => {
 
 ProductCreatorInfo.propTypes = {
     id: PropTypes.number,
+    title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     linkLabel: PropTypes.string
